@@ -17,6 +17,7 @@ export default function fadeIn($element, options) {
                     options.timingFunction || 'easeIn',
                     function(i1, i2) {
                         $element.css({
+                            display: 'block',
                             opacity: 1 * i2
                         });
                     }

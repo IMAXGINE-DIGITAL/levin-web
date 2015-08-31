@@ -21,9 +21,7 @@ export default function boxfold($element, options) {
                 height: elHeight + 'px'
             });
 
-            $wrap.
-                append($img).
-                appendTo($element);
+            $wrap.append($img).appendTo($element);
 
             var ready = Promise.resolve();
 
@@ -84,8 +82,8 @@ export default function boxfold($element, options) {
                 ).play();
             }).then(function() {
                 $img.css({
-                    width: '0',
-                    height: '0'
+                    width: '',
+                    height: ''
                 }).appendTo($element);
                 $wrap.remove();
             });
