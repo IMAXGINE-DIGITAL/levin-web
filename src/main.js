@@ -2,24 +2,27 @@ import './main.less';
 import $ from 'jquery';
 import {Promise, defer} from './lib/promise';
 import './lib/viewport';
-import './lib/global';
+// import './lib/global';
 import * as page from './lib/page';
 import {scrollPage} from './lib/pagescroll';
 import {listenWheel, wheelPage} from './lib/pagewheel';
 
 page.ready().then(function ($pageRoot) {
+    var $win = $(window);
+    var $doc = $(window.document);
+
 
     function getHashName() {
         var hash = location.hash.replace('#', '');
-        var name = hash || 'loading';
+        var name = hash || 'home';
         return name;
     }
 
     function hashchange() {
         var deferred = defer();
 
-        $(window).on('hashchange', function handler() {
-            $(window).off('hashchange', handler);
+        $win.on('hashchange', function handler() {
+            $win.off('hashchange', handler);
             var name = getHashName();
             deferred.resolve(name);
         });
@@ -27,8 +30,19 @@ page.ready().then(function ($pageRoot) {
         return deferred.promise;
     }
 
+    function pagechange() {
+        var deferred = defer();
+
+        $doc.on('pagechange', function handler(e, name) {
+            $doc.off('pagechange', handler);
+            deferred.resolve(name);
+        });
+
+        return deferred.promise;
+    }
+
     function circle(curName) {
-        Promise.race([hashchange(), wheelPage()])
+        Promise.race([hashchange(), pagechange(), wheelPage()])
             .then(function(ret) {
                 var direction;
                 var name;

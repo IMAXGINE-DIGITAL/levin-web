@@ -72,8 +72,12 @@ export function show(name) {
 }
 
 var seq = [
+    'home',   // 加载
+    'page_c', // 首页
+    'page_d', // 外观
     'page_a', // 变速器
     'page_b'  // 内饰
+
 ]
 export function indexOf(name) {
     return seq.indexOf(name);

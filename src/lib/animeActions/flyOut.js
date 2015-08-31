@@ -5,12 +5,12 @@ import fa from '../frameAnimation';
 
 /*
 'fly-out': {
-    direction: 'up' // up/down/left/right
+    to: 'top' // top/bottom/left/right
 }
 */
 const POS_MAP = {
-    'up': ['top', -1],
-    'down': ['top', 1],
+    'top': ['top', -1],
+    'bottom': ['top', 1],
     'left': ['left', -1],
     'right': ['left', 1]
 };
@@ -33,13 +33,13 @@ export default function flyOut($element, options) {
             }
 
             var flyOutOpt = options['fly-out'] || {};
-            var direction = flyOutOpt.direction || 'up';
+            var to = flyOutOpt.to || 'up';
 
             return ready.then(function() {
                 return fa(options.duration, 
                     options.timingFunction || 'easeIn',
                     function(i1, i2) {
-                        var [prop, sign] = POS_MAP[direction];
+                        var [prop, sign] = POS_MAP[to];
 
                         $wrap.css({
                             display: 'block',

@@ -6,13 +6,13 @@ import fa from '../frameAnimation';
 /*
     'slide-in': {
         offset: '5%', //  增减的偏移量，0~100%,
-        direction: 'up' // up/down/left/right
+        from: 'top' // top/bottom/left/right
     }
 */
 
 const POS_MAP = {
-    'up': ['top', -1],
-    'down': ['top', 1],
+    'top': ['top', -1],
+    'bottom': ['top', 1],
     'left': ['left', -1],
     'right': ['left', 1]
 };
@@ -28,7 +28,7 @@ export default function slideIn($element, options) {
 
             var slideInOpt = options['slide-in'] || {};
             var offset = parseFloat(slideInOpt.offset || '10%') / 100;
-            var direction = slideInOpt.direction || 'up';
+            var from = slideInOpt.from || 'top';
 
             var elStyle = $element[0].style;
             var origin = {
@@ -37,13 +37,14 @@ export default function slideIn($element, options) {
             };
 
             return ready.then(function() {
-                var prop = POS_MAP[direction][0];
-                var sign = POS_MAP[direction][1];
+                var prop = POS_MAP[from][0];
+                var sign = POS_MAP[from][1];
 
                 return fa(options.duration, 
                     options.timingFunction || 'easeIn',
                     function(i1, i2) {
                         $element.css({
+                            display: 'block',
                             [prop]: (origin[prop] + offset * (1 - i2) * sign) * 100 + '%'
                         });
                     }

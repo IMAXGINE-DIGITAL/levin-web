@@ -60,29 +60,31 @@
 	
 	__webpack_require__(16);
 	
-	__webpack_require__(19);
+	// import './lib/global';
 	
 	var _libPage = __webpack_require__(23);
 	
 	var page = _interopRequireWildcard(_libPage);
 	
-	var _libPagescroll = __webpack_require__(67);
+	var _libPagescroll = __webpack_require__(72);
 	
-	var _libPagewheel = __webpack_require__(68);
+	var _libPagewheel = __webpack_require__(73);
 	
 	page.ready().then(function ($pageRoot) {
+	    var $win = (0, _jquery2['default'])(window);
+	    var $doc = (0, _jquery2['default'])(window.document);
 	
 	    function getHashName() {
 	        var hash = location.hash.replace('#', '');
-	        var name = hash || 'loading';
+	        var name = hash || 'home';
 	        return name;
 	    }
 	
 	    function hashchange() {
 	        var deferred = (0, _libPromise.defer)();
 	
-	        (0, _jquery2['default'])(window).on('hashchange', function handler() {
-	            (0, _jquery2['default'])(window).off('hashchange', handler);
+	        $win.on('hashchange', function handler() {
+	            $win.off('hashchange', handler);
 	            var name = getHashName();
 	            deferred.resolve(name);
 	        });
@@ -90,8 +92,19 @@
 	        return deferred.promise;
 	    }
 	
+	    function pagechange() {
+	        var deferred = (0, _libPromise.defer)();
+	
+	        $doc.on('pagechange', function handler(e, name) {
+	            $doc.off('pagechange', handler);
+	            deferred.resolve(name);
+	        });
+	
+	        return deferred.promise;
+	    }
+	
 	    function circle(curName) {
-	        _libPromise.Promise.race([hashchange(), (0, _libPagewheel.wheelPage)()]).then(function (ret) {
+	        _libPromise.Promise.race([hashchange(), pagechange(), (0, _libPagewheel.wheelPage)()]).then(function (ret) {
 	            var direction;
 	            var name;
 	            if (['next', 'prev'].indexOf(ret) > -1) {
@@ -11987,92 +12000,9 @@
 
 
 /***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	exports.ready = ready;
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
-	
-	__webpack_require__(20);
-	
-	var _jquery = __webpack_require__(5);
-	
-	var jQuery = _interopRequireWildcard(_jquery);
-	
-	var _promise = __webpack_require__(6);
-	
-	var _viewport = __webpack_require__(16);
-	
-	var viewport = _interopRequireWildcard(_viewport);
-	
-	var _util = __webpack_require__(22);
-	
-	var $ = jQuery.noConflict();
-	var deferred = (0, _promise.defer)();
-	
-	function ready() {
-	    return deferred.promise;
-	}
-	
-	var path = 'images';
-	
-	function render() {
-	    return '\n        <div id="global">\n            <div class="el toyota-logo" style="' + (0, _util.elementRect)(292, 23, 35, 25) + '">\n                <img src="' + path + '/toyota-logo.png">\n            </div>\n            <div class="el levin-logo" style="' + (0, _util.elementRect)(242, 121, 1331, 36) + '">\n                <img src="' + path + '/levin-logo.png">\n            </div>\n            <div class="el top-menu" style="' + (0, _util.elementRect)(148, 72, 722, 0) + '">\n                <img src="' + path + '/top-menu.png">\n            </div>\n        </div>\n    ';
-	}
-	
-	viewport.ready().then(function ($viewport) {
-	    var $global = $(render());
-	    $viewport.append($global);
-	    deferred.resolve($global);
-	});
-
-/***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(21);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./global.less", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./global.less");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "#global {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 999;\n  -webkit-transform: translateZ(999px);\n  -ms-transform: translateZ(999px);\n  tranform: translateZ(999px);\n}\n#global img {\n  width: 100%;\n  height: 100%;\n  vertical-align: middle;\n}\n#global .bg {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  z-index: 1;\n}\n#global .el {\n  position: absolute;\n  overflow: hidden;\n  top: 0;\n  left: 0;\n  z-index: 2;\n  line-height: 0;\n}\n", ""]);
-	
-	// exports
-
-
-/***/ },
+/* 19 */,
+/* 20 */,
+/* 21 */,
 /* 22 */
 /***/ function(module, exports) {
 
@@ -12190,8 +12120,12 @@
 	    return page.show();
 	}
 	
-	var seq = ['page_a', // 变速器
+	var seq = ['home', // 加载
+	'page_c', // 首页
+	'page_d', // 外观
+	'page_a', // 变速器
 	'page_b' // 内饰
+	
 	];
 	
 	function indexOf(name) {
@@ -12253,12 +12187,21 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./page_a": 27,
-		"./page_a.js": 27,
-		"./page_a.less": 28,
-		"./page_b": 64,
-		"./page_b.js": 64,
-		"./page_b.less": 65
+		"./home": 27,
+		"./home.js": 27,
+		"./home.less": 28,
+		"./page_a": 66,
+		"./page_a.js": 66,
+		"./page_a.less": 67,
+		"./page_b": 69,
+		"./page_b.js": 69,
+		"./page_b.less": 70,
+		"./page_c": 75,
+		"./page_c.js": 75,
+		"./page_c.less": 76,
+		"./page_d": 78,
+		"./page_d.js": 78,
+		"./page_d.less": 79
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -12307,34 +12250,64 @@
 	var $ = jQuery.noConflict();
 	
 	function render() {
-	    var path = 'images/page_a';
+	    var path = 'images/home';
 	
-	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(511, 200, 394, 272) + '">\n            <img src="' + path + '/img_11.png">\n        </div>\n        <div class="el text-light anime box-unfold" style="' + (0, _libUtil.elementRect)(356, 82, 603, 356) + '">\n            <img src="' + path + '/img_14.png">\n        </div>\n        <div class="el shift anime box-unfold" style="' + (0, _libUtil.elementRect)(499, 182, 556, 685) + '">\n            <img src="' + path + '/img_15.png">\n        </div>\n    ';
+	    return '\n        <div class="bg"></div>\n        <div class="el bottom anime slide-in" style="' + (0, _libUtil.elementRect)(1600, 468, 0, 432) + '">\n            <img src="' + path + '/bottom.jpg" />\n        </div>\n        <div class="el eagle anime slide-in" style="' + (0, _libUtil.elementRect)(796, 335, 0, 536) + '">\n            <img src="' + path + '/eagle.png" />\n        </div>\n        <div class="el light-gray anime fade-in" style="' + (0, _libUtil.elementRect)(1236, 197, 166, 258) + '">\n            <img src="' + path + '/light_gray.png" />\n        </div>\n        <div class="el light anime box-unfold" style="' + (0, _libUtil.elementRect)(1236, 197, 166, 258) + '">\n            <img src="' + path + '/light.png" />\n        </div>\n        <div class="el logo anime zoom" style="' + (0, _libUtil.elementRect)(1031, 168, 278, 201) + '">\n            <img src="' + path + '/logo.png" />\n        </div>\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(408, 59, 594, 527) + '">\n            <img src="' + path + '/text.gif" />\n        </div>\n        <div class="el arrow-down anime flash" style="' + (0, _libUtil.elementRect)(140, 71, 730, 735) + '">\n            <img src="' + path + '/arrow-down.gif" />\n        </div>\n    ';
 	}
 	
 	function show($page) {
 	    var animation = $page.animation();
 	
-	    return animation.then(function (item) {
-	        return animation.get('.text').animate({
-	            duration: 400
+	    $page.find('.arrow-down').on('click', function () {
+	        $(document).trigger('pagechange', 'next');
+	    });
+	
+	    return animation.then(function () {
+	        return animation.get('.logo').animate({
+	            duration: 700,
+	            timingFunction: 'easeOut',
+	            zoom: {
+	                zoom: '400%'
+	            }
 	        });
-	    }).then(function (item) {
-	        return animation.get('.text-light').animate({
-	            duration: 400,
+	    }).then(function () {
+	        return animation.get('.light-gray').animate({
+	            duration: 50
+	        });
+	    }).then(function () {
+	        return animation.get('.light').animate({
+	            duration: 800,
 	            'box-unfold': {
 	                origin: [0, 0],
 	                angle: 0
 	            }
 	        });
-	    }).then(function (item) {
-	        return animation.get('.shift').animate({
-	            duration: 600,
-	            'box-unfold': {
-	                origin: [0, '100%'],
-	                angle: 20
+	    }).then(function () {
+	        return _libPromise.Promise.all([animation.get('.bottom').animate({
+	            duration: 1000,
+	            timingFunction: 'easeOut',
+	            'slide-in': {
+	                offset: '100%',
+	                from: 'bottom'
 	            }
-	        });
+	        }), animation.get('.eagle').animate({
+	            duration: 1000,
+	            timingFunction: 'easeOut',
+	            'slide-in': {
+	                offset: '100%',
+	                from: 'left'
+	            }
+	        })]);
+	    }).then(function () {
+	        return _libPromise.Promise.all([animation.get('.text').animate({
+	            duration: 400
+	        }), animation.get('.arrow-down').animate({
+	            delay: 200,
+	            flash: {
+	                loop: Infinity,
+	                interval: 800
+	            }
+	        })]);
 	    });
 	}
 
@@ -12354,8 +12327,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_a.less", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_a.less");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./home.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./home.less");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12373,7 +12346,7 @@
 	
 	
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, "#home .bg {\n  background-color: #000;\n}\n#home .arrow-down {\n  cursor: pointer;\n  z-index: 9999;\n}\n", ""]);
 	
 	// exports
 
@@ -13428,17 +13401,24 @@
 	        var originHeight = parseFloat(elStyle.height) / 100;
 	        var originLeft = parseFloat(elStyle.left) / 100;
 	        var originTop = parseFloat(elStyle.top) / 100;
+	
 	        var zoomOpt = options['zoom'] || {};
 	        var zoom = parseFloat(zoomOpt.zoom || '200%') / 100;
 	
+	        var startWidth = originWidth * zoom;
+	        var startHeight = originHeight * zoom;
+	        var startLeft = originLeft * zoom;
+	        var startTop = originTop * zoom;
+	
 	        return ready.then(function () {
 	            return (0, _frameAnimation2['default'])(options.duration, options.timingFunction || 'easeIn', function (i1, i2) {
-	                var curWidth = originWidth * (1 + (zoom - 1) * i2);
-	                var curHeight = originHeight * (1 + (zoom - 1) * i2);
+	                var curWidth = startWidth + (originWidth - startWidth) * i2;
+	                var curHeight = startHeight + (originHeight - startHeight) * i2;
 	                var curLeft = originLeft - (curWidth - originWidth) / 2;
 	                var curTop = originTop - (curHeight - originHeight) / 2;
 	
 	                $element.css({
+	                    display: 'block',
 	                    width: curWidth * 100 + '%',
 	                    height: curHeight * 100 + '%',
 	                    left: curLeft * 100 + '%',
@@ -13486,7 +13466,7 @@
 	
 	
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, ".anime.zoom {\n  display: none;\n}\n", ""]);
 	
 	// exports
 
@@ -13645,13 +13625,13 @@
 	/*
 	    'slide-in': {
 	        offset: '5%', //  增减的偏移量，0~100%,
-	        direction: 'up' // up/down/left/right
+	        from: 'top' // top/bottom/left/right
 	    }
 	*/
 	
 	var POS_MAP = {
-	    'up': ['top', -1],
-	    'down': ['top', 1],
+	    'top': ['top', -1],
+	    'bottom': ['top', 1],
 	    'left': ['left', -1],
 	    'right': ['left', 1]
 	};
@@ -13666,7 +13646,7 @@
 	
 	        var slideInOpt = options['slide-in'] || {};
 	        var offset = parseFloat(slideInOpt.offset || '10%') / 100;
-	        var direction = slideInOpt.direction || 'up';
+	        var from = slideInOpt.from || 'top';
 	
 	        var elStyle = $element[0].style;
 	        var origin = {
@@ -13675,11 +13655,13 @@
 	        };
 	
 	        return ready.then(function () {
-	            var prop = POS_MAP[direction][0];
-	            var sign = POS_MAP[direction][1];
+	            var prop = POS_MAP[from][0];
+	            var sign = POS_MAP[from][1];
 	
 	            return (0, _frameAnimation2['default'])(options.duration, options.timingFunction || 'easeIn', function (i1, i2) {
-	                $element.css(_defineProperty({}, prop, (origin[prop] + offset * (1 - i2) * sign) * 100 + '%'));
+	                $element.css(_defineProperty({
+	                    display: 'block'
+	                }, prop, (origin[prop] + offset * (1 - i2) * sign) * 100 + '%'));
 	            }).play();
 	        });
 	    })();
@@ -13722,7 +13704,7 @@
 	
 	
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, ".anime.slide-in {\n  display: none;\n}\n", ""]);
 	
 	// exports
 
@@ -13736,6 +13718,9 @@
 	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
+	
+	var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
+	
 	exports['default'] = slideIn;
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -13757,13 +13742,13 @@
 	/*
 	    'slide-out': {
 	        offset: '5%', //  增减的偏移量，0~100%,
-	        direction: 'up' // up/down/left/right
+	        to: 'top' // top/bottom/left/right
 	    }
 	*/
 	
 	var POS_MAP = {
-	    'up': ['top', -1],
-	    'down': ['top', 1],
+	    'top': ['top', -1],
+	    'bottom': ['top', 1],
 	    'left': ['left', -1],
 	    'right': ['left', 1]
 	};
@@ -13778,7 +13763,7 @@
 	
 	        var slideOutOpt = options['slide-out'] || {};
 	        var offset = parseFloat(slideOutOpt.offset || '10%') / 100;
-	        var direction = slideOutOpt.direction || 'up';
+	        var to = slideOutOpt.to || 'top';
 	
 	        var elStyle = $element[0].style;
 	        var origin = {
@@ -13787,8 +13772,10 @@
 	        };
 	
 	        return ready.then(function () {
-	            var prop = POS_MAP[direction][0];
-	            var sign = POS_MAP[direction][1];
+	            var _POS_MAP$to = _slicedToArray(POS_MAP[to], 2);
+	
+	            var prop = _POS_MAP$to[0];
+	            var sign = _POS_MAP$to[1];
 	
 	            return (0, _frameAnimation2['default'])(options.duration, options.timingFunction || 'easeIn', function (i1, i2) {
 	                $element.css(_defineProperty({}, prop, (origin[prop] + offset * i2 * sign) * 100 + '%'));
@@ -13857,7 +13844,7 @@
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
-	__webpack_require__(70);
+	__webpack_require__(61);
 	
 	var _jquery = __webpack_require__(5);
 	
@@ -13871,12 +13858,12 @@
 	
 	/*
 	'fly-in': {
-	    direction: 'up' // up/down/left/right
+	    from: 'top' // top/bottom/left/right
 	}
 	*/
 	var POS_MAP = {
-	    'up': ['top', -1],
-	    'down': ['top', 1],
+	    'top': ['top', -1],
+	    'bottom': ['top', 1],
 	    'left': ['left', -1],
 	    'right': ['left', 1]
 	};
@@ -13896,14 +13883,14 @@
 	        }
 	
 	        var flyInOpt = options['fly-in'] || {};
-	        var direction = flyInOpt.direction || 'up';
+	        var from = flyInOpt.from || 'top';
 	
 	        return ready.then(function () {
 	            return (0, _frameAnimation2['default'])(options.duration, options.timingFunction || 'easeIn', function (i1, i2) {
-	                var _POS_MAP$direction = _slicedToArray(POS_MAP[direction], 2);
+	                var _POS_MAP$from = _slicedToArray(POS_MAP[from], 2);
 	
-	                var prop = _POS_MAP$direction[0];
-	                var sign = _POS_MAP$direction[1];
+	                var prop = _POS_MAP$from[0];
+	                var sign = _POS_MAP$from[1];
 	
 	                $wrap.css(_defineProperty({
 	                    display: 'block'
@@ -13923,8 +13910,46 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 61 */,
-/* 62 */,
+/* 61 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(62);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./flyIn.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./flyIn.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 62 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".anime.fly-in > * {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: none;\n}\n", ""]);
+	
+	// exports
+
+
+/***/ },
 /* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -13942,7 +13967,7 @@
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
-	__webpack_require__(72);
+	__webpack_require__(64);
 	
 	var _jquery = __webpack_require__(5);
 	
@@ -13956,12 +13981,12 @@
 	
 	/*
 	'fly-out': {
-	    direction: 'up' // up/down/left/right
+	    to: 'top' // top/bottom/left/right
 	}
 	*/
 	var POS_MAP = {
-	    'up': ['top', -1],
-	    'down': ['top', 1],
+	    'top': ['top', -1],
+	    'bottom': ['top', 1],
 	    'left': ['left', -1],
 	    'right': ['left', 1]
 	};
@@ -13981,14 +14006,14 @@
 	        }
 	
 	        var flyOutOpt = options['fly-out'] || {};
-	        var direction = flyOutOpt.direction || 'up';
+	        var to = flyOutOpt.to || 'up';
 	
 	        return ready.then(function () {
 	            return (0, _frameAnimation2['default'])(options.duration, options.timingFunction || 'easeIn', function (i1, i2) {
-	                var _POS_MAP$direction = _slicedToArray(POS_MAP[direction], 2);
+	                var _POS_MAP$to = _slicedToArray(POS_MAP[to], 2);
 	
-	                var prop = _POS_MAP$direction[0];
-	                var sign = _POS_MAP$direction[1];
+	                var prop = _POS_MAP$to[0];
+	                var sign = _POS_MAP$to[1];
 	
 	                $wrap.css(_defineProperty({
 	                    display: 'block'
@@ -14009,6 +14034,46 @@
 /* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(65);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./flyOut.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./flyOut.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 65 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".anime.fly-out > * {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: none;\n}\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 66 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
 	Object.defineProperty(exports, '__esModule', {
@@ -14019,7 +14084,111 @@
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 	
-	__webpack_require__(28);
+	__webpack_require__(67);
+	
+	var _jquery = __webpack_require__(5);
+	
+	var jQuery = _interopRequireWildcard(_jquery);
+	
+	var _libPromise = __webpack_require__(6);
+	
+	var _libPage = __webpack_require__(23);
+	
+	var page = _interopRequireWildcard(_libPage);
+	
+	var _libUtil = __webpack_require__(22);
+	
+	__webpack_require__(30);
+	
+	var $ = jQuery.noConflict();
+	
+	function render() {
+	    var path = 'images/page_a';
+	
+	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(511, 200, 394, 272) + '">\n            <img src="' + path + '/img_11.png">\n        </div>\n        <div class="el text-light anime box-unfold" style="' + (0, _libUtil.elementRect)(356, 82, 603, 356) + '">\n            <img src="' + path + '/img_14.png">\n        </div>\n        <div class="el shift anime box-unfold" style="' + (0, _libUtil.elementRect)(499, 182, 556, 685) + '">\n            <img src="' + path + '/img_15.png">\n        </div>\n    ';
+	}
+	
+	function show($page) {
+	    var animation = $page.animation();
+	
+	    return animation.then(function (item) {
+	        return animation.get('.text').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.text-light').animate({
+	            duration: 400,
+	            'box-unfold': {
+	                origin: [0, 0],
+	                angle: 0
+	            }
+	        });
+	    }).then(function (item) {
+	        return animation.get('.shift').animate({
+	            duration: 600,
+	            'box-unfold': {
+	                origin: [0, '100%'],
+	                angle: 20
+	            }
+	        });
+	    });
+	}
+
+/***/ },
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(68);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_a.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_a.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 69 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.render = render;
+	exports.show = show;
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+	
+	__webpack_require__(67);
 	
 	var _jquery = __webpack_require__(5);
 	
@@ -14093,13 +14262,13 @@
 	}
 
 /***/ },
-/* 65 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(66);
+	var content = __webpack_require__(71);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -14119,7 +14288,7 @@
 	}
 
 /***/ },
-/* 66 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -14133,7 +14302,7 @@
 
 
 /***/ },
-/* 67 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14208,7 +14377,7 @@
 	}
 
 /***/ },
-/* 68 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14227,7 +14396,7 @@
 	
 	var _promise = __webpack_require__(6);
 	
-	var _mousewheel = __webpack_require__(69);
+	var _mousewheel = __webpack_require__(74);
 	
 	var _mousewheel2 = _interopRequireDefault(_mousewheel);
 	
@@ -14288,7 +14457,7 @@
 	}
 
 /***/ },
-/* 69 */
+/* 74 */
 /***/ function(module, exports) {
 
 	/*!
@@ -14522,13 +14691,65 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 70 */
+/* 75 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.render = render;
+	exports.show = show;
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+	
+	__webpack_require__(76);
+	
+	var _jquery = __webpack_require__(5);
+	
+	var jQuery = _interopRequireWildcard(_jquery);
+	
+	var _libPromise = __webpack_require__(6);
+	
+	var _libPage = __webpack_require__(23);
+	
+	var page = _interopRequireWildcard(_libPage);
+	
+	var _libUtil = __webpack_require__(22);
+	
+	__webpack_require__(30);
+	
+	var $ = jQuery.noConflict();
+	
+	function render() {
+	    var path = 'images/page_c';
+	
+	    return '\n        <div class="bg">\n            <img src="' + path + '/bg.jpg" />\n        </div>\n        <div class="el car anime fade-in" style="' + (0, _libUtil.elementRect)(1045, 665, 0, 235) + '">\n            <img src="' + path + '/car.jpg" />\n        </div>\n        <div class="el eagle anime fade-in" style="' + (0, _libUtil.elementRect)(758, 101, 842, 190) + '">\n            <img src="' + path + '/eagle.jpg" />\n        </div>\n    ';
+	}
+	
+	function show($page) {
+	    var animation = $page.animation();
+	
+	    return animation.then(function () {
+	        return animation.get('.car').animate({
+	            duration: 400
+	        });
+	    }).then(function () {
+	        return animation.get('.eagle').animate({
+	            duration: 400
+	        });
+	    });
+	}
+
+/***/ },
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(71);
+	var content = __webpack_require__(77);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -14537,8 +14758,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./flyIn.less", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./flyIn.less");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_c.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_c.less");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -14548,7 +14769,7 @@
 	}
 
 /***/ },
-/* 71 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -14556,19 +14777,84 @@
 	
 	
 	// module
-	exports.push([module.id, ".anime.fly-in > * {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: none;\n}\n", ""]);
+	exports.push([module.id, "", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 72 */
+/* 78 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.render = render;
+	exports.show = show;
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+	
+	__webpack_require__(79);
+	
+	var _jquery = __webpack_require__(5);
+	
+	var jQuery = _interopRequireWildcard(_jquery);
+	
+	var _libPromise = __webpack_require__(6);
+	
+	var _libPage = __webpack_require__(23);
+	
+	var page = _interopRequireWildcard(_libPage);
+	
+	var _libUtil = __webpack_require__(22);
+	
+	__webpack_require__(30);
+	
+	var $ = jQuery.noConflict();
+	
+	function render() {
+	    var path = 'images/page_d';
+	
+	    return '\n        <div class="bg">\n            <img src="' + path + '/bg.jpg" />\n        </div>\n        <div class="el car anime slide-in" style="' + (0, _libUtil.elementRect)(1045, 425, 475, 369) + '">\n            <img src="' + path + '/car.png" />\n        </div>\n        <div class="el eagle anime fly-in" style="' + (0, _libUtil.elementRect)(643, 200, 149, 112) + '">\n            <img src="' + path + '/eagle.png" />\n        </div>\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(627, 153, 83, 299) + '">\n            <img src="' + path + '/text.png" />\n        </div>\n    ';
+	}
+	
+	function show($page) {
+	    var animation = $page.animation();
+	
+	    return animation.then(function () {
+	        return animation.get('.car').animate({
+	            duration: 800,
+	            timingFunction: 'easeOut',
+	            'slide-in': {
+	                offset: '100%',
+	                from: 'right'
+	            }
+	        });
+	    }).then(function () {
+	        return animation.get('.eagle').animate({
+	            duration: 1000,
+	            timingFunction: [0, 0, 0, 1],
+	            'fly-in': {
+	                from: 'right'
+	            }
+	        });
+	    }).then(function () {
+	        return animation.get('.text').animate({
+	            duration: 400
+	        });
+	    });
+	}
+
+/***/ },
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(73);
+	var content = __webpack_require__(80);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -14577,8 +14863,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./flyOut.less", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./flyOut.less");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_d.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_d.less");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -14588,7 +14874,7 @@
 	}
 
 /***/ },
-/* 73 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -14596,7 +14882,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".anime.fly-out > * {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: none;\n}\n", ""]);
+	exports.push([module.id, "", ""]);
 	
 	// exports
 

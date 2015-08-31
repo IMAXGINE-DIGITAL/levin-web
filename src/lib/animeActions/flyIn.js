@@ -5,12 +5,12 @@ import fa from '../frameAnimation';
 
 /*
 'fly-in': {
-    direction: 'up' // up/down/left/right
+    from: 'top' // top/bottom/left/right
 }
 */
 const POS_MAP = {
-    'up': ['top', -1],
-    'down': ['top', 1],
+    'top': ['top', -1],
+    'bottom': ['top', 1],
     'left': ['left', -1],
     'right': ['left', 1]
 };
@@ -33,14 +33,13 @@ export default function flyIn($element, options) {
             }
 
             var flyInOpt = options['fly-in'] || {};
-            var direction = flyInOpt.direction || 'up';
+            var from = flyInOpt.from || 'top';
 
             return ready.then(function() {
                 return fa(options.duration, 
                     options.timingFunction || 'easeIn',
                     function(i1, i2) {
-                        var [prop, sign] = POS_MAP[direction];
-
+                        var [prop, sign] = POS_MAP[from];
                         $wrap.css({
                             display: 'block',
                             [prop]: (1 - i2) * sign * 100 + '%'
