@@ -75,8 +75,23 @@ var seq = [
     'home',   // 加载
     'page_c', // 首页
     'page_d', // 外观
+    'page_aa', // 大灯前脸
+    'page_ab', // 尾灯
     'page_b',  // 内饰
-    'page_a' // 变速器
+    'page_a', // 变速器
+    'page_ad', // 天窗
+    'page_e', // 空调
+    'page_ac', // 轴距
+    'page_f', // 后排
+    'page_g', // 座椅
+    'page_i', // 后备箱
+    'page_j', // 油耗
+    'page_k', // 换挡
+    'page_ag', // 五星安全
+    'page_af', // GOA车身
+    'page_ae', // 主动安全配置
+    'page_h' // 主动安全系统
+
 ]
 export function indexOf(name) {
     return seq.indexOf(name);
