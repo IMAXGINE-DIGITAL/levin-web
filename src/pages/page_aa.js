@@ -70,7 +70,8 @@ export function show($page) {
             return animation.get('.car').animate({
                 duration:400,
                 'zoom': {
-                    zoom: '10%'
+                    from: '10%',
+                    to: '100%'
                 }
             })
         })
