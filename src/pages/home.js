@@ -11,6 +11,8 @@ var logoImg = require(`../../images/logo`);
 var lightGrayImg = require(`../../images/light_gray.gif`);
 var lightImg = require(`../../images/light.jpg`);
 
+console.log(logoImg)
+
 export function render() {
     return `
         <div class="bg"></div>

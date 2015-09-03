@@ -47,6 +47,7 @@ export default function zoom($element, options) {
                         var curTop = endTop - (curHeight - endHeight) / 2;
 
                         $element.css({
+                            display: 'block',
                             width: curWidth * 100 + '%',
                             height: curHeight * 100 + '%',
                             left: curLeft * 100 + '%',
