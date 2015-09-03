@@ -8,8 +8,8 @@ import preloadImags from '../lib/preload';
 
 var path = 'images/home';
 var logoImg = require(`../../images/logo`);
-var lightGrayImg = require(`../../images/light_gray`);
-var lightImg = require(`../../images/light`);
+var lightGrayImg = require(`../../images/light_gray.gif`);
+var lightImg = require(`../../images/light.jpg`);
 
 export function render() {
     return `

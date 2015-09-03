@@ -12,7 +12,7 @@ function webpackBundle(watch) {
 
     return gulp.src('./src/main.js')
         .pipe(webpack(webpackConfig))
-        .pipe(gulp.dest('./temp/'));
+        .pipe(gulp.dest('./'));
 }
 
 gulp.task('webpack', function () {
