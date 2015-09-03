@@ -11,8 +11,6 @@ var logoImg = require(`../../images/logo`);
 var lightGrayImg = require(`../../images/light_gray.gif`);
 var lightImg = require(`../../images/light.jpg`);
 
-console.log(logoImg)
-
 export function render() {
     return `
         <div class="bg"></div>
@@ -60,13 +58,11 @@ export function show($page) {
             duration: 50
         });
     }).then(function() {
-        var all = animation.get('.light').animate({
-            frame: true,
-            'box-unfold': {
+        var {frame, done} = animation.get('.light')
+            .action('box-unfold', {
                 origin: [0, 0],
                 angle: 0
-            }
-        });
+            });
 
         function progress($image, 
             $allImages, 
@@ -75,13 +71,10 @@ export function show($page) {
             isBroken, 
             percentage) {
 
-            all.then(function(frames) {
-                frames.forEach(function(frame) {
-                    frame && frame(percentage / 100, percentage / 100);
-                });
-            });
+            frame(percentage / 100, percentage / 100);
         }
-        return preloadImags(progress).done();
+        return preloadImags(progress)
+            .done().then(done);
     }).then(function() {
         return Promise.all([
             animation.get('.bottom').animate({

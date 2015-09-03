@@ -17,6 +17,14 @@ function Item(element) {
 
         return Promise.all(actions);
     }
+
+    this.action = function(name, options) {
+        var file = name.replace(/\-[a-z0-9]/ig, function($1) {
+            return $1.substr(1).toUpperCase();
+        });
+        var action = require('./animeActions/' + file);
+        return action.get($element, {[name] : options});
+    }
 }
 
 function Animation(root) {
