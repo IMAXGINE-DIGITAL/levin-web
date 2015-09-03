@@ -3,6 +3,7 @@ var gutil = require('gulp-util');
 var webpack = require('gulp-webpack');
 var webpackConfig = require('./webpack.config.js');
 var uglifyjs = require('gulp-uglify');
+var concat = require('gulp-concat');
 var through2 = require('through2');
 var path = require('path');
 var cwd = process.cwd();
@@ -52,11 +53,18 @@ gulp.task('imagelist', function () {
         .pipe(gulp.dest('./src/'))
 });
 
+gulp.task('iefix', function() {
+    return gulp.src(['./src/iefix/*'])
+        .pipe(concat('iefix.js'))
+        .pipe(uglifyjs())
+        .pipe(gulp.dest('dist/'));
+});
+
 gulp.task('watch', function() {
     return webpackBundle(true);
 });
 
-gulp.task('dist', ['imagelist', 'webpack'], function() {
+gulp.task('dist', ['imagelist', 'webpack', 'iefix'], function() {
     return gulp.src(['./temp/*.js'])
         .pipe(uglifyjs())
         .pipe(gulp.dest('dist/'));
