@@ -66,9 +66,9 @@
 	
 	var page = _interopRequireWildcard(_libPage);
 	
-	var _libPagescroll = __webpack_require__(75);
+	var _libPagescroll = __webpack_require__(94);
 	
-	var _libPagewheel = __webpack_require__(76);
+	var _libPagewheel = __webpack_require__(95);
 	
 	page.ready().then(function ($pageRoot) {
 	    var $win = (0, _jquery2['default'])(window);
@@ -12189,15 +12189,35 @@
 		"./page_a": 63,
 		"./page_a.js": 63,
 		"./page_a.less": 64,
-		"./page_b": 66,
-		"./page_b.js": 66,
-		"./page_b.less": 67,
-		"./page_c": 69,
-		"./page_c.js": 69,
-		"./page_c.less": 70,
-		"./page_d": 72,
-		"./page_d.js": 72,
-		"./page_d.less": 73
+		"./page_aa": 66,
+		"./page_aa.js": 66,
+		"./page_aa.less": 67,
+		"./page_ab": 69,
+		"./page_ab.js": 69,
+		"./page_ac": 70,
+		"./page_ac.js": 70,
+		"./page_ac.less": 71,
+		"./page_ad": 73,
+		"./page_ad.js": 73,
+		"./page_ad.less": 74,
+		"./page_ae": 76,
+		"./page_ae.js": 76,
+		"./page_ae.less": 77,
+		"./page_af": 79,
+		"./page_af.js": 79,
+		"./page_af.less": 80,
+		"./page_ag": 82,
+		"./page_ag.js": 82,
+		"./page_ag.less": 83,
+		"./page_b": 85,
+		"./page_b.js": 85,
+		"./page_b.less": 86,
+		"./page_c": 88,
+		"./page_c.js": 88,
+		"./page_c.less": 89,
+		"./page_d": 91,
+		"./page_d.js": 91,
+		"./page_d.less": 92
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -14199,7 +14219,792 @@
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 	
-	__webpack_require__(67);
+	__webpack_require__(64);
+	
+	var _jquery = __webpack_require__(5);
+	
+	var jQuery = _interopRequireWildcard(_jquery);
+	
+	var _libPromise = __webpack_require__(6);
+	
+	var _libPage = __webpack_require__(19);
+	
+	var page = _interopRequireWildcard(_libPage);
+	
+	var _libUtil = __webpack_require__(22);
+	
+	__webpack_require__(27);
+	
+	var $ = jQuery.noConflict();
+	/*
+	
+	1641,1133,-20,-110
+	
+	car 1641 1133
+	
+	
+	(1641-1600)/2
+	 */
+	
+	function render() {
+	    var path = 'images/page_aa';
+	
+	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        \n        <div class="el car anime zoom" style="' + (0, _libUtil.elementRect)(1641, 1133, -20, -110) + '">\n            <img src="' + path + '/car-total.png"/>\n        </div>\n\n        <div class="el car-light-small anime flash" style="' + (0, _libUtil.elementRect)(120, 14, 744, 436) + '">\n            <img src="' + path + '/car-light.png"/>\n        </div>\n\n         <div class="el car-front anime box-unfold" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car-front.png"/>\n        </div>\n\n        <div class="el geshan anime box-unfold" style="' + (0, _libUtil.elementRect)(1096, 329, 256, 546) + '">\n            <img src="' + path + '/geshan.png"/>\n        </div>\n\n        <div class="el mask anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/mask.png"/>\n        </div>\n\n        \n\n        <div class="el car-light-big anime flash" style="' + (0, _libUtil.elementRect)(1520, 214, 46, 300) + '">\n            <img src="' + path + '/car-light.png"/>\n        </div>\n\n        \n        <div class="el text anime fly-in" style="' + (0, _libUtil.elementRect)(669, 154, 225, 104) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n\n\n    ';
+	}
+	
+	function show($page) {
+	    var animation = $page.animation();
+	
+	    return animation.then(function (item) {
+	        return animation.get('.car-light-small').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        $('.car-light-small').hide();
+	    }).then(function (item) {
+	        return animation.get('.car').animate({
+	            duration: 400,
+	            'zoom': {
+	                zoom: '10%'
+	            }
+	        });
+	    });
+	    // .then(function(item) {
+	    //     return animation.get('.mask').animate({
+	    //         duration: 400
+	    //     });
+	    // })
+	    // .then(function(item){
+	    //     return animation.get('.car-front').animate({
+	    //         duration:400,
+	    //         'box-unfold':{
+	    //             origin: [0, 0],
+	    //             angle: 0
+	    //         }
+	    //     });
+	
+	    // })
+	    // .then(function(item){
+	    //     return animation.get('.car-light-big').animate({
+	    //         duration:400
+	    //     });
+	    // })
+	    // .then(function(item){
+	    //     return animation.get('.geshan').animate({
+	    //         duration:400,
+	    //         'box-unfold':{
+	    //             origin: [0, 0],
+	    //             angle: 0
+	    //         }
+	    //     });
+	    // })
+	    // .then(function(item){
+	    //     return animation.get('.text').animate({
+	    //         duration:400,
+	    //         'fly-in':{
+	    //             direction: 'left'
+	    //         }
+	    //     });
+	    // })
+	}
+
+/***/ },
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(68);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_aa.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_aa.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 69 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.render = render;
+	exports.show = show;
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+	
+	__webpack_require__(64);
+	
+	var _jquery = __webpack_require__(5);
+	
+	var jQuery = _interopRequireWildcard(_jquery);
+	
+	var _libPromise = __webpack_require__(6);
+	
+	var _libPage = __webpack_require__(19);
+	
+	var page = _interopRequireWildcard(_libPage);
+	
+	var _libUtil = __webpack_require__(22);
+	
+	__webpack_require__(27);
+	
+	var $ = jQuery.noConflict();
+	/*
+	car 中间线811
+	车灯 218 1856
+	<div class="el mask anime fade-in" style="${elementRect(1600,900,0,0)}">
+	            <img src="${path}/mask.png"/>
+	        </div>
+	 */
+	
+	function render() {
+	    var path = 'images/page_ab';
+	
+	    return '\n        <div class="el car anime" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car.jpg"/>\n        </div>\n\n        <div class="el car-gray anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car-gray.jpg"/>\n        </div>\n\n        <div class="el logo anime box-unfold" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/logo.png"/>\n        </div>\n\n        <div class="el light anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car-light.jpg"/>\n        </div>\n\n        <div class="el light2 anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car-light2.jpg"/>\n        </div>\n\n        \n\n        <div class="el text anime fly-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n        \n\n    ';
+	}
+	
+	function show($page) {
+	    var animation = $page.animation();
+	
+	    return animation.then(function (item) {
+	        return animation.get('.car-gray').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.logo').animate({
+	            duration: 600,
+	            'box-unfold': {
+	                origin: [0, 0],
+	                angle: 0
+	            }
+	        });
+	    }).then(function (item) {
+	        return animation.get('.light').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.light2').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.text').animate({
+	            duration: 400,
+	            'fly-in': {
+	                direction: 'left'
+	            }
+	        });
+	    });
+	}
+
+/***/ },
+/* 70 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.render = render;
+	exports.show = show;
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+	
+	__webpack_require__(64);
+	
+	var _jquery = __webpack_require__(5);
+	
+	var jQuery = _interopRequireWildcard(_jquery);
+	
+	var _libPromise = __webpack_require__(6);
+	
+	var _libPage = __webpack_require__(19);
+	
+	var page = _interopRequireWildcard(_libPage);
+	
+	var _libUtil = __webpack_require__(22);
+	
+	__webpack_require__(27);
+	
+	var $ = jQuery.noConflict();
+	
+	function render() {
+	    var path = 'images/page_ac';
+	
+	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        \n\n         <div class="el zj anime box-unfold" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/zj.jpg"/>\n        </div>\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n\n       \n\n\n    ';
+	}
+	
+	function show($page) {
+	    var animation = $page.animation();
+	
+	    return animation.then(function (item) {
+	        return animation.get('.text').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.zj').animate({
+	            duration: 400,
+	            'zoom': {
+	                zoom: 1000
+	            }
+	        });
+	    }).then(function (item) {
+	        return animation.get('.mask').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.car-front').animate({
+	            duration: 400,
+	            'box-unfold': {
+	                origin: [0, 0],
+	                angle: 0
+	            }
+	        });
+	        // return Promise.all([
+	        //     animation.get('.car-front').animate({
+	        //         duration: 400,
+	        //         'box-unfold':{
+	        //             origin: [0, 0],
+	        //             angle: 0
+	        //         }
+	        //     }),
+	
+	        //     animation.get('.mask').animate({
+	        //         duration: 400
+	        //     })
+	        // ]);
+	    }).then(function (item) {
+	        return animation.get('.car-light-big').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.geshan').animate({
+	            duration: 400,
+	            'box-unfold': {
+	                origin: [0, 0],
+	                angle: 0
+	            }
+	        });
+	    }).then(function (item) {
+	        return animation.get('.text').animate({
+	            duration: 400,
+	            'fly-in': {
+	                direction: 'left'
+	            }
+	        });
+	    });
+	}
+
+/***/ },
+/* 71 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(72);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_ac.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_ac.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 72 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.render = render;
+	exports.show = show;
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+	
+	__webpack_require__(64);
+	
+	var _jquery = __webpack_require__(5);
+	
+	var jQuery = _interopRequireWildcard(_jquery);
+	
+	var _libPromise = __webpack_require__(6);
+	
+	var _libPage = __webpack_require__(19);
+	
+	var page = _interopRequireWildcard(_libPage);
+	
+	var _libUtil = __webpack_require__(22);
+	
+	__webpack_require__(27);
+	
+	var $ = jQuery.noConflict();
+	
+	function render() {
+	    var path = 'images/page_ad';
+	
+	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        \n\n         <div class="el zj anime box-unfold" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/zj.jpg"/>\n        </div>\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n\n       \n\n\n    ';
+	}
+	
+	function show($page) {
+	    var animation = $page.animation();
+	
+	    return animation.then(function (item) {
+	        return animation.get('.text').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.zj').animate({
+	            duration: 400,
+	            'zoom': {
+	                zoom: 1000
+	            }
+	        });
+	    }).then(function (item) {
+	        return animation.get('.mask').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.car-front').animate({
+	            duration: 400,
+	            'box-unfold': {
+	                origin: [0, 0],
+	                angle: 0
+	            }
+	        });
+	        // return Promise.all([
+	        //     animation.get('.car-front').animate({
+	        //         duration: 400,
+	        //         'box-unfold':{
+	        //             origin: [0, 0],
+	        //             angle: 0
+	        //         }
+	        //     }),
+	
+	        //     animation.get('.mask').animate({
+	        //         duration: 400
+	        //     })
+	        // ]);
+	    }).then(function (item) {
+	        return animation.get('.car-light-big').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.geshan').animate({
+	            duration: 400,
+	            'box-unfold': {
+	                origin: [0, 0],
+	                angle: 0
+	            }
+	        });
+	    }).then(function (item) {
+	        return animation.get('.text').animate({
+	            duration: 400,
+	            'fly-in': {
+	                direction: 'left'
+	            }
+	        });
+	    });
+	}
+
+/***/ },
+/* 74 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(75);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_ad.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_ad.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 75 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 76 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.render = render;
+	exports.show = show;
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+	
+	__webpack_require__(64);
+	
+	var _jquery = __webpack_require__(5);
+	
+	var jQuery = _interopRequireWildcard(_jquery);
+	
+	var _libPromise = __webpack_require__(6);
+	
+	var _libPage = __webpack_require__(19);
+	
+	var page = _interopRequireWildcard(_libPage);
+	
+	var _libUtil = __webpack_require__(22);
+	
+	__webpack_require__(27);
+	
+	var $ = jQuery.noConflict();
+	
+	function render() {
+	    var path = 'images/page_ae';
+	
+	    return '\n        <div class="bg"><img src="' + path + '/car.jpg"></div>\n        \n\n        <div class="el car anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car2.jpg"/>\n        </div>\n\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n\n       \n\n\n    ';
+	}
+	
+	function show($page) {
+	    var animation = $page.animation();
+	
+	    return animation.then(function (item) {
+	        return animation.get('.car').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.text').animate({
+	            duration: 400
+	        });
+	    });
+	}
+
+/***/ },
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(78);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_ae.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_ae.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 78 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 79 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.render = render;
+	exports.show = show;
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+	
+	__webpack_require__(64);
+	
+	var _jquery = __webpack_require__(5);
+	
+	var jQuery = _interopRequireWildcard(_jquery);
+	
+	var _libPromise = __webpack_require__(6);
+	
+	var _libPage = __webpack_require__(19);
+	
+	var page = _interopRequireWildcard(_libPage);
+	
+	var _libUtil = __webpack_require__(22);
+	
+	__webpack_require__(27);
+	
+	var $ = jQuery.noConflict();
+	
+	function render() {
+	    var path = 'images/page_af';
+	
+	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        \n\n        <div class="el car anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car.jpg"/>\n        </div>\n\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n\n       \n\n\n    ';
+	}
+	
+	function show($page) {
+	    var animation = $page.animation();
+	
+	    return animation.then(function (item) {
+	        return animation.get('.car').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.text').animate({
+	            duration: 400
+	        });
+	    });
+	}
+
+/***/ },
+/* 80 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(81);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_af.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_af.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 81 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 82 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.render = render;
+	exports.show = show;
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+	
+	__webpack_require__(64);
+	
+	var _jquery = __webpack_require__(5);
+	
+	var jQuery = _interopRequireWildcard(_jquery);
+	
+	var _libPromise = __webpack_require__(6);
+	
+	var _libPage = __webpack_require__(19);
+	
+	var page = _interopRequireWildcard(_libPage);
+	
+	var _libUtil = __webpack_require__(22);
+	
+	__webpack_require__(27);
+	
+	var $ = jQuery.noConflict();
+	
+	/**
+	 * text :周全呵护
+	 * text1: 五星认证
+	 */
+	
+	function render() {
+	    var path = 'images/page_ag';
+	
+	    return '\n        \n        <div class="el car" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car.jpg"/>\n        </div>\n\n        <div class="el car2 anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car2.jpg"/>\n        </div>\n\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n\n        <div class="el text_5star anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text_5star.png"/>\n        </div>\n\n\n    ';
+	}
+	
+	function show($page) {
+	
+	    return $page.animation([{
+	        '.car2': {
+	            duration: 400,
+	            delay: 200,
+	            timingFunction: 'bounceInOut'
+	        }
+	    }, {
+	        '.text_5star': {
+	            duration: 400
+	        }
+	    }, {
+	        '.text': {
+	            duration: 400
+	        }
+	    }]);
+	}
+
+/***/ },
+/* 83 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(84);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_ag.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page_ag.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 84 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 85 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.render = render;
+	exports.show = show;
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+	
+	__webpack_require__(86);
 	
 	var _jquery = __webpack_require__(5);
 	
@@ -14301,13 +15106,13 @@
 	}
 
 /***/ },
-/* 67 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(68);
+	var content = __webpack_require__(87);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -14327,7 +15132,7 @@
 	}
 
 /***/ },
-/* 68 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -14341,7 +15146,7 @@
 
 
 /***/ },
-/* 69 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14354,7 +15159,7 @@
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 	
-	__webpack_require__(70);
+	__webpack_require__(89);
 	
 	var _jquery = __webpack_require__(5);
 	
@@ -14393,13 +15198,13 @@
 	}
 
 /***/ },
-/* 70 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(71);
+	var content = __webpack_require__(90);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -14419,7 +15224,7 @@
 	}
 
 /***/ },
-/* 71 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -14433,7 +15238,7 @@
 
 
 /***/ },
-/* 72 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14446,7 +15251,7 @@
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 	
-	__webpack_require__(73);
+	__webpack_require__(92);
 	
 	var _jquery = __webpack_require__(5);
 	
@@ -14498,13 +15303,13 @@
 	}
 
 /***/ },
-/* 73 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(74);
+	var content = __webpack_require__(93);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -14524,7 +15329,7 @@
 	}
 
 /***/ },
-/* 74 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -14538,7 +15343,7 @@
 
 
 /***/ },
-/* 75 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14613,7 +15418,7 @@
 	}
 
 /***/ },
-/* 76 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14632,7 +15437,7 @@
 	
 	var _promise = __webpack_require__(6);
 	
-	var _mousewheel = __webpack_require__(77);
+	var _mousewheel = __webpack_require__(96);
 	
 	var _mousewheel2 = _interopRequireDefault(_mousewheel);
 	
@@ -14693,7 +15498,7 @@
 	}
 
 /***/ },
-/* 77 */
+/* 96 */
 /***/ function(module, exports) {
 
 	/*!
