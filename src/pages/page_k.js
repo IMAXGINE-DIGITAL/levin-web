@@ -4,6 +4,7 @@ import {Promise, defer} from '../lib/promise';
 import * as page from '../lib/page';
 import {elementRect} from '../lib/util';
 import '../lib/animation';
+import fa from '../lib/frameAnimation';
 
 var $ = jQuery.noConflict();
 
@@ -12,7 +13,7 @@ export function render() {
 
     return `
         <div class="bg"></div>
-        <div class="el road anime" style="${elementRect(1600,1590,0,-795)}">
+        <div class="el road anime" style="${elementRect(1600,1570,0,-785)}">
             <div style="width: 100%; height: 50%; top: 0; left: 0;">
                 <img src="${path}/road.jpg">
             </div>
@@ -23,7 +24,7 @@ export function render() {
         <div class="el car1 anime fade-in" style="${elementRect(214,470,837,158)}">
             <img src="${path}/car1.png">
         </div>
-        <div class="el car2 anime fade-in" style="${elementRect(214,492,837,-350)}">
+        <div class="el car2 anime" style="${elementRect(214,492,837,-492)}">
             <img src="${path}/car2.png">
         </div>
         <div class="el shift anime" style="${elementRect(1600,900,0,0)}">
@@ -44,6 +45,7 @@ export function render() {
 var shiftNumber = 0;
 var startDriving = false;
 var speedInterval = [0, 40, 35, 30, 25, 20, 15, 10, 5];
+
 function driving($road, originTop) {
     setTimeout(function() {
         var top = parseFloat($road[0].style.top);
@@ -54,6 +56,31 @@ function driving($road, originTop) {
         $road[0].style.top = top + '%';
         driving($road, originTop);
     }, speedInterval[shiftNumber]);
+}
+
+function overtaking($car1, $car2) {
+    var car1OriginLeft = $car1.origin.left;
+    var car2OriginTop = $car2.origin.top;
+
+    var car1DestLeft = 35.5;
+    var car2DestTop1 = -38.8;
+    var car2DestTop2 = 60;
+
+   return fa(400, 'linear', function(i1, i2) {
+        $car1.css({
+            left: (car1OriginLeft + (car1DestLeft - car1OriginLeft) * i2) + '%'
+        });
+
+        $car2.css({
+            top: (car2OriginTop + (car2DestTop1 - car2OriginTop) * i2) + '%'
+        });
+    }).play().then(function() {
+        return fa(2000, 'linear', function(i1, i2) {
+            $car2.css({
+                top: (car2DestTop1 + (car2DestTop2 - car2DestTop1) * i2) + '%'
+            });
+        }).play();
+    });
 }
 
 function chnageShift($page, count) {
@@ -81,7 +108,7 @@ function chnageShift($page, count) {
         $car2.origin = {
             top: parseFloat($car2[0].style.top),
             left: parseFloat($car2[0].style.left)
-        }; 
+        };
         overtaking($car1, $car2);
         return false;
     } else {
