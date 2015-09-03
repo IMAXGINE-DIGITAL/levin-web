@@ -5,7 +5,8 @@ import fa from '../frameAnimation';
 
 /*
 zoom: {
-    zoom: '150%' // 比例，从0~无限
+    from: '150%', // 相对于元素的初始比例，从0~无限，默认100%
+    to: '50%'     // 相对于元素的初始比例，从0~无限，默认100%
 }
 */
 export default function zoom($element, options) {
@@ -23,16 +24,27 @@ export default function zoom($element, options) {
             var originLeft = parseFloat(elStyle.left) / 100;
             var originTop = parseFloat(elStyle.top) / 100;
             var zoomOpt = options['zoom'] || {};
-            var zoom = parseFloat(zoomOpt.zoom || '200%') / 100;
+            var from = parseFloat(zoomOpt.from || '100%') / 100;
+            var to = parseFloat(zoomOpt.to || '100%') / 100;
+
+            var startWidth = originWidth * from;
+            var startHeight = originHeight * from;
+            var startLeft = originLeft * from;
+            var startTop = originTop * from;            
+
+            var endWidth = originWidth * to;
+            var endHeight = originHeight * to;
+            var endLeft = originLeft * to;
+            var endTop = originTop * to;
 
             return ready.then(function() {
                 return fa(options.duration, 
                     options.timingFunction || 'easeIn',
                     function(i1, i2) {
-                        var curWidth = originWidth * (1 + (zoom - 1) * i2);
-                        var curHeight = originHeight * (1 + (zoom - 1) * i2);
-                        var curLeft = originLeft - (curWidth - originWidth) / 2;
-                        var curTop = originTop - (curHeight - originHeight) / 2;
+                        var curWidth = startWidth + (endWidth - startWidth) * i2;
+                        var curHeight = startHeight + (endHeight - startHeight) * i2;
+                        var curLeft = endLeft - (curWidth - endWidth) / 2;
+                        var curTop = endTop - (curHeight - endHeight) / 2;
 
                         $element.css({
                             width: curWidth * 100 + '%',

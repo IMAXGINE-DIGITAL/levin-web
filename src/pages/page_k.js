@@ -87,7 +87,7 @@ function chnageShift($page, count) {
 
     if (count > 0 && shiftNumber === 8 ||
             count < 0 && shiftNumber === 1) {
-        return;
+        return true;
     }
 
     shiftNumber += count;
@@ -104,13 +104,15 @@ function chnageShift($page, count) {
             top: parseFloat($car1[0].style.top),
             left: parseFloat($car1[0].style.left)
         };
-        var $car2 = $page.find('.car2');
+        var $car2 = $page.find('.car2').css({
+            top: '-55%'
+        });
         $car2.origin = {
             top: parseFloat($car2[0].style.top),
             left: parseFloat($car2[0].style.left)
         };
         overtaking($car1, $car2);
-        return false;
+        return true;
     } else {
         return true;
     }

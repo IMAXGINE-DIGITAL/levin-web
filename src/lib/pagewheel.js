@@ -19,7 +19,7 @@ if (isFirefox) {
   flickDeltaY = 100;
 }
 
-export function listenWheel() {
+export function listen() {
   var wheeling;
   var deltaY = 0;
   var $body = $(document.body);
@@ -44,7 +44,7 @@ export function listenWheel() {
   });
 }
 
-export function wheelPage() {
+export function wheel() {
   var deferred = defer();
 
   var $body = $(document.body);

@@ -48,49 +48,53 @@ export default function boxUnfold($element, options) {
             var cosT = Math.cos(t).toFixed(5) + 0;
             var h = Math.max(elWidth / cosT, elHeight / sinT);
 
-            return ready.then(function() {
-                return fa(options.duration, 
-                    options.timingFunction || 'easeIn',
-                    function(i1, i2) {
-                        var width;
-                        var height;
+            function frame(i1, i2) {
+                var width;
+                var height;
 
-                        if (sinT == 0) {
-                            width = elWidth * i2;
-                            height = elHeight;
-                        } else if (cosT == 0) {
-                            width = elWidth;
-                            height = elHeight * i2;
-                        } else {
-                            width = Math.min(h * i2 * cosT, elWidth);
-                            height = Math.min(h * i2 * sinT, elHeight);
-                        }
-                        
-                        var left = originX - originX * i2;
-                        var top = originY - originY * i2;
+                if (sinT == 0) {
+                    width = elWidth * i2;
+                    height = elHeight;
+                } else if (cosT == 0) {
+                    width = elWidth;
+                    height = elHeight * i2;
+                } else {
+                    width = Math.min(h * i2 * cosT, elWidth);
+                    height = Math.min(h * i2 * sinT, elHeight);
+                }
+                
+                var left = originX - originX * i2;
+                var top = originY - originY * i2;
 
-                        $wrap.css({
-                            width: width + 'px',
-                            height: height + 'px',
-                            left: left + 'px',
-                            top: top + 'px'
-                        });
+                $wrap.css({
+                    width: width + 'px',
+                    height: height + 'px',
+                    left: left + 'px',
+                    top: top + 'px'
+                });
 
-                        $img.css({
-                            left: -left + 'px',
-                            top: -top + 'px'
-                        });
-                    }
-                ).play();
-            }).then(function() {
                 $img.css({
-                    width: '100%',
-                    height: '100%'
-                }).appendTo($element);
-                $wrap.remove();
-            });
+                    left: -left + 'px',
+                    top: -top + 'px'
+                });
+            }
 
-            return ready;
+            if (!!options.frame) {
+                return frame;
+            } else {
+                return ready.then(function() {
+                    return fa(options.duration, 
+                        options.timingFunction || 'easeIn',
+                        frame
+                    ).play();
+                }).then(function() {
+                    $img.css({
+                        width: '100%',
+                        height: '100%'
+                    }).appendTo($element);
+                    $wrap.remove();
+                });
+            }
         }
     )();
 }
