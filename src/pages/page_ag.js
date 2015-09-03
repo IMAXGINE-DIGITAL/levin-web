@@ -1,8 +1,14 @@
 import './page_a.less';
 import * as jQuery from 'jquery';
-import {Promise, defer} from '../lib/promise';
+import {
+    Promise, defer
+}
+from '../lib/promise';
 import * as page from '../lib/page';
-import {elementRect} from '../lib/util';
+import {
+    elementRect
+}
+from '../lib/util';
 import '../lib/animation';
 
 var $ = jQuery.noConflict();
@@ -25,12 +31,12 @@ export function render() {
             <img src="${path}/car2.jpg"/>
         </div>
 
-        <div class="el text anime slide-in" style="${elementRect(1600,900,0,0)}">
+        <div class="el text anime fade-in" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/text.png"/>
         </div>
-        <div class="el text2 anime slide-in" style="${elementRect(1600,900,0,0)}">
 
-            <img src="${path}/text2.png"/>
+        <div class="el text_5star anime fade-in" style="${elementRect(1600,900,0,0)}">
+            <img src="${path}/text_5star.png"/>
         </div>
 
 
@@ -39,66 +45,22 @@ export function render() {
 
 export function show($page) {
 
-    
-   var animation = $page.animation();
+    return $page.animation([{
+            '.car2': {
+                duration: 400,
+                delay: 200,
+                timingFunction: 'bounceInOut'
+            }
+        },{
+            '.text_5star': {
+                duration: 400
+            }
+        },{
+            '.text': {
+                duration: 400
+            }
+        }
 
-    return animation.then(function(item) {
-            return animation.get('.car2').animate({
-                duration:400
-            })
-        })
-        .then(function(item){
-
-            return animation.get('.text').animate({
-                duration:400,
-                timingFunction: 'bounceInOut',
-                'slide-in':{
-                  offset:'30%',
-                  direction:'left'
-                }
-            })
-        })
-        .then(function(item){
-
-            return animation.get('.text2').animate({
-                duration:400,
-                timingFunction: 'bounceInOut',
-                'slide-in': {
-                    offset: '30%',
-                    direction: 'left'
-                }
-
-            })
-        })
-        
-
-
-    // return $page.animation([
-    //     {
-    //         '.car2': {
-    //             duration: 400,
-    //             timingFunction: 'bounceInOut'
-    //         }
-    //     },
-    //     {
-    //         '.text': {
-    //             duration: 400,
-    //             'slide-in': {
-    //                 offset: '55%',
-    //                 direction: 'left'
-    //             }
-    //         }
-    //     },
-    //     {
-    //         '.text2': {
-    //             duration: 400,
-    //             'slide-in':{
-    //               direction: 'left',
-    //               offset: '45%'
-    //             }
-    //         }
-    //     }
-
-    // ]);
+    ]);
 
 }

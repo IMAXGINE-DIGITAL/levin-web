@@ -7,17 +7,24 @@ import '../lib/animation';
 
 var $ = jQuery.noConflict();
 /*
-car 中间线811
-车灯 218 1856
+
+1641,1133,-20,-110
+
+car 1641 1133
+
+
+(1641-1600)/2
  */
 export function render() {
     var path = 'images/page_aa';
 
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
-        <div class="el car anime zoom" style="${elementRect(160,90,720,410)}">
-            <img src="${path}/car2.png"/>
+        
+        <div class="el car anime zoom" style="${elementRect(1641,1133,-20,-110)}">
+            <img src="${path}/car-total.png"/>
         </div>
+
         <div class="el car-light-small anime flash" style="${elementRect(120,14,744,436)}">
             <img src="${path}/car-light.png"/>
         </div>
@@ -64,58 +71,46 @@ export function show($page) {
             return animation.get('.car').animate({
                 duration:400,
                 'zoom': {
-                    zoom: 1000
+                    zoom: '10%'
                 }
             })
         })
-        .then(function(item) {
-            return animation.get('.mask').animate({
-                duration: 400
-            });
-        })
-        .then(function(item){
-            return animation.get('.car-front').animate({
-                duration:400,
-                'box-unfold':{
-                    origin: [0, 0],
-                    angle: 0
-                }
-            });
-            // return Promise.all([
-            //     animation.get('.car-front').animate({
-            //         duration: 400,
-            //         'box-unfold':{
-            //             origin: [0, 0],
-            //             angle: 0
-            //         }
-            //     }),
-
-            //     animation.get('.mask').animate({
-            //         duration: 400
-            //     })
-            // ]);
-        })
-        .then(function(item){
-            return animation.get('.car-light-big').animate({
-                duration:400
-            });
-        })
-        .then(function(item){
-            return animation.get('.geshan').animate({
-                duration:400,
-                'box-unfold':{
-                    origin: [0, 0],
-                    angle: 0
-                }
-            });
-        })
-        .then(function(item){
-            return animation.get('.text').animate({
-                duration:400,
-                'fly-in':{
-                    direction: 'left'
-                }
-            });
-        })
+        // .then(function(item) {
+        //     return animation.get('.mask').animate({
+        //         duration: 400
+        //     });
+        // })
+        // .then(function(item){
+        //     return animation.get('.car-front').animate({
+        //         duration:400,
+        //         'box-unfold':{
+        //             origin: [0, 0],
+        //             angle: 0
+        //         }
+        //     });
+            
+        // })
+        // .then(function(item){
+        //     return animation.get('.car-light-big').animate({
+        //         duration:400
+        //     });
+        // })
+        // .then(function(item){
+        //     return animation.get('.geshan').animate({
+        //         duration:400,
+        //         'box-unfold':{
+        //             origin: [0, 0],
+        //             angle: 0
+        //         }
+        //     });
+        // })
+        // .then(function(item){
+        //     return animation.get('.text').animate({
+        //         duration:400,
+        //         'fly-in':{
+        //             direction: 'left'
+        //         }
+        //     });
+        // })
 
 }

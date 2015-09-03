@@ -14276,14 +14276,19 @@
 	
 	var $ = jQuery.noConflict();
 	/*
-	car 中间线811
-	车灯 218 1856
+	
+	1641,1133,-20,-110
+	
+	car 1641 1133
+	
+	
+	(1641-1600)/2
 	 */
 	
 	function render() {
 	    var path = 'images/page_aa';
 	
-	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <div class="el car anime zoom" style="' + (0, _libUtil.elementRect)(160, 90, 720, 410) + '">\n            <img src="' + path + '/car2.png"/>\n        </div>\n        <div class="el car-light-small anime flash" style="' + (0, _libUtil.elementRect)(120, 14, 744, 436) + '">\n            <img src="' + path + '/car-light.png"/>\n        </div>\n\n         <div class="el car-front anime box-unfold" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car-front.png"/>\n        </div>\n\n        <div class="el geshan anime box-unfold" style="' + (0, _libUtil.elementRect)(1096, 329, 256, 546) + '">\n            <img src="' + path + '/geshan.png"/>\n        </div>\n\n        <div class="el mask anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/mask.png"/>\n        </div>\n\n        \n\n        <div class="el car-light-big anime flash" style="' + (0, _libUtil.elementRect)(1520, 214, 46, 300) + '">\n            <img src="' + path + '/car-light.png"/>\n        </div>\n\n        \n        <div class="el text anime fly-in" style="' + (0, _libUtil.elementRect)(669, 154, 225, 104) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n\n\n    ';
+	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        \n        <div class="el car anime zoom" style="' + (0, _libUtil.elementRect)(1641, 1133, -20, -110) + '">\n            <img src="' + path + '/car-total.png"/>\n        </div>\n\n        <div class="el car-light-small anime flash" style="' + (0, _libUtil.elementRect)(120, 14, 744, 436) + '">\n            <img src="' + path + '/car-light.png"/>\n        </div>\n\n         <div class="el car-front anime box-unfold" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car-front.png"/>\n        </div>\n\n        <div class="el geshan anime box-unfold" style="' + (0, _libUtil.elementRect)(1096, 329, 256, 546) + '">\n            <img src="' + path + '/geshan.png"/>\n        </div>\n\n        <div class="el mask anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/mask.png"/>\n        </div>\n\n        \n\n        <div class="el car-light-big anime flash" style="' + (0, _libUtil.elementRect)(1520, 214, 46, 300) + '">\n            <img src="' + path + '/car-light.png"/>\n        </div>\n\n        \n        <div class="el text anime fly-in" style="' + (0, _libUtil.elementRect)(669, 154, 225, 104) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n\n\n    ';
 	}
 	
 	function show($page) {
@@ -14299,54 +14304,47 @@
 	        return animation.get('.car').animate({
 	            duration: 400,
 	            'zoom': {
-	                zoom: 1000
-	            }
-	        });
-	    }).then(function (item) {
-	        return animation.get('.mask').animate({
-	            duration: 400
-	        });
-	    }).then(function (item) {
-	        return animation.get('.car-front').animate({
-	            duration: 400,
-	            'box-unfold': {
-	                origin: [0, 0],
-	                angle: 0
-	            }
-	        });
-	        // return Promise.all([
-	        //     animation.get('.car-front').animate({
-	        //         duration: 400,
-	        //         'box-unfold':{
-	        //             origin: [0, 0],
-	        //             angle: 0
-	        //         }
-	        //     }),
-	
-	        //     animation.get('.mask').animate({
-	        //         duration: 400
-	        //     })
-	        // ]);
-	    }).then(function (item) {
-	        return animation.get('.car-light-big').animate({
-	            duration: 400
-	        });
-	    }).then(function (item) {
-	        return animation.get('.geshan').animate({
-	            duration: 400,
-	            'box-unfold': {
-	                origin: [0, 0],
-	                angle: 0
-	            }
-	        });
-	    }).then(function (item) {
-	        return animation.get('.text').animate({
-	            duration: 400,
-	            'fly-in': {
-	                direction: 'left'
+	                zoom: '10%'
 	            }
 	        });
 	    });
+	    // .then(function(item) {
+	    //     return animation.get('.mask').animate({
+	    //         duration: 400
+	    //     });
+	    // })
+	    // .then(function(item){
+	    //     return animation.get('.car-front').animate({
+	    //         duration:400,
+	    //         'box-unfold':{
+	    //             origin: [0, 0],
+	    //             angle: 0
+	    //         }
+	    //     });
+	
+	    // })
+	    // .then(function(item){
+	    //     return animation.get('.car-light-big').animate({
+	    //         duration:400
+	    //     });
+	    // })
+	    // .then(function(item){
+	    //     return animation.get('.geshan').animate({
+	    //         duration:400,
+	    //         'box-unfold':{
+	    //             origin: [0, 0],
+	    //             angle: 0
+	    //         }
+	    //     });
+	    // })
+	    // .then(function(item){
+	    //     return animation.get('.text').animate({
+	    //         duration:400,
+	    //         'fly-in':{
+	    //             direction: 'left'
+	    //         }
+	    //     });
+	    // })
 	}
 
 /***/ },
@@ -14423,39 +14421,42 @@
 	/*
 	car 中间线811
 	车灯 218 1856
+	<div class="el mask anime fade-in" style="${elementRect(1600,900,0,0)}">
+	            <img src="${path}/mask.png"/>
+	        </div>
 	 */
 	
 	function render() {
 	    var path = 'images/page_ab';
 	
-	    return '\n        <div class="el car anime" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car.jpg"/>\n        </div>\n\n        <div class="el logo anime box-unfold" style="' + (0, _libUtil.elementRect)(277, 59, 386, 172) + '">\n            <img src="' + path + '/logo.png"/>\n        </div>\n\n        <div class="el light anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/light.png"/>\n        </div>\n\n        <div class="el light2 anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/light2.png"/>\n        </div>\n\n        <div class="el mask anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/mask.png"/>\n        </div>\n\n        <div class="el text1 anime fly-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n        \n\n    ';
+	    return '\n        <div class="el car anime" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car.jpg"/>\n        </div>\n\n        <div class="el car-gray anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car-gray.jpg"/>\n        </div>\n\n        <div class="el logo anime box-unfold" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/logo.png"/>\n        </div>\n\n        <div class="el light anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car-light.jpg"/>\n        </div>\n\n        <div class="el light2 anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car-light2.jpg"/>\n        </div>\n\n        \n\n        <div class="el text anime fly-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n        \n\n    ';
 	}
 	
 	function show($page) {
 	    var animation = $page.animation();
 	
 	    return animation.then(function (item) {
-	        return animation.get('.mask').animate({
+	        return animation.get('.car-gray').animate({
 	            duration: 400
 	        });
 	    }).then(function (item) {
 	        return animation.get('.logo').animate({
-	            duration: 400,
+	            duration: 600,
 	            'box-unfold': {
 	                origin: [0, 0],
 	                angle: 0
 	            }
 	        });
 	    }).then(function (item) {
-	        return animation.get('.light2').animate({
-	            duration: 400
-	        });
-	    }).then(function (item) {
 	        return animation.get('.light').animate({
 	            duration: 400
 	        });
 	    }).then(function (item) {
-	        return animation.get('.text1').animate({
+	        return animation.get('.light2').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.text').animate({
 	            duration: 400,
 	            'fly-in': {
 	                direction: 'left'
@@ -14966,67 +14967,26 @@
 	function render() {
 	    var path = 'images/page_ag';
 	
-	    return '\n        \n        <div class="el car" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car.jpg"/>\n        </div>\n\n        <div class="el car2 anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car2.jpg"/>\n        </div>\n\n        <div class="el text anime slide-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n        <div class="el text2 anime slide-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n\n            <img src="' + path + '/text2.png"/>\n        </div>\n\n\n    ';
+	    return '\n        \n        <div class="el car" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car.jpg"/>\n        </div>\n\n        <div class="el car2 anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/car2.jpg"/>\n        </div>\n\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text.png"/>\n        </div>\n\n        <div class="el text_5star anime fade-in" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/text_5star.png"/>\n        </div>\n\n\n    ';
 	}
 	
 	function show($page) {
 	
-	    var animation = $page.animation();
-	
-	    return animation.then(function (item) {
-	        return animation.get('.car2').animate({
+	    return $page.animation([{
+	        '.car2': {
+	            duration: 400,
+	            delay: 200,
+	            timingFunction: 'bounceInOut'
+	        }
+	    }, {
+	        '.text_5star': {
 	            duration: 400
-	        });
-	    }).then(function (item) {
-	
-	        return animation.get('.text').animate({
-	            duration: 400,
-	            timingFunction: 'bounceInOut',
-	            'slide-in': {
-	                offset: '30%',
-	                direction: 'left'
-	            }
-	        });
-	    }).then(function (item) {
-	
-	        return animation.get('.text2').animate({
-	            duration: 400,
-	            timingFunction: 'bounceInOut',
-	            'slide-in': {
-	                offset: '30%',
-	                direction: 'left'
-	            }
-	
-	        });
-	    });
-	
-	    // return $page.animation([
-	    //     {
-	    //         '.car2': {
-	    //             duration: 400,
-	    //             timingFunction: 'bounceInOut'
-	    //         }
-	    //     },
-	    //     {
-	    //         '.text': {
-	    //             duration: 400,
-	    //             'slide-in': {
-	    //                 offset: '55%',
-	    //                 direction: 'left'
-	    //             }
-	    //         }
-	    //     },
-	    //     {
-	    //         '.text2': {
-	    //             duration: 400,
-	    //             'slide-in':{
-	    //               direction: 'left',
-	    //               offset: '45%'
-	    //             }
-	    //         }
-	    //     }
-	
-	    // ]);
+	        }
+	    }, {
+	        '.text': {
+	            duration: 400
+	        }
+	    }]);
 	}
 
 /***/ },
