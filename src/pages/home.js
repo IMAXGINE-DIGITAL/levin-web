@@ -50,7 +50,7 @@ export function show($page) {
             duration: 700,
             timingFunction: 'easeOut',
             zoom: {
-                zoom: '400%'
+                from: '400%'
             }
         });
     }).then(function() {
