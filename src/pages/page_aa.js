@@ -107,7 +107,7 @@ export function show($page) {
             return animation.get('.text').animate({
                 duration:400,
                 'fly-in':{
-                    direction: 'left'
+                    from: 'left'
                 }
             });
         })

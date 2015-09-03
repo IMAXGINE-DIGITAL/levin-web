@@ -1,8 +1,14 @@
 import './page_a.less';
 import * as jQuery from 'jquery';
-import {Promise, defer} from '../lib/promise';
+import {
+    Promise, defer
+}
+from '../lib/promise';
 import * as page from '../lib/page';
-import {elementRect} from '../lib/util';
+import {
+    elementRect
+}
+from '../lib/util';
 import '../lib/animation';
 
 var $ = jQuery.noConflict();
@@ -42,6 +48,9 @@ export function render() {
         <div class="el text anime fly-in" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/text.png"/>
         </div>
+
+        <div class="el number-text anime number" style="font-style:italic;font-size:35%;color:#fff;${elementRect(240,120,1010,592)}">
+        </div>
         
 
     `;
@@ -49,39 +58,50 @@ export function render() {
 
 export function show($page) {
     var animation = $page.animation();
-    
+
     return animation.then(function(item) {
             return animation.get('.car-gray').animate({
-                duration:400
+                duration: 400
             })
         })
-        .then(function(item){
+        .then(function(item) {
             return animation.get('.logo').animate({
-                duration:600,
-                'box-unfold':{
+                duration: 600,
+                'box-unfold': {
                     origin: [0, 0],
                     angle: 0
                 }
             });
         })
-        .then(function(item){
+        .then(function(item) {
             return animation.get('.light').animate({
-                duration:400
+                duration: 400
             });
         })
-        .then(function(item){
+        .then(function(item) {
             return animation.get('.light2').animate({
-                duration:400
+                duration: 400
             });
         })
-        
-        .then(function(item){
+        .then(function(item) {
             return animation.get('.text').animate({
-                duration:400,
-                'fly-in':{
-                    direction: 'left'
+                duration: 400,
+                'fly-in': {
+                    from: 'bottom'
                 }
             });
+        })
+        .then(function(item) {
+            $('.number-text').show();
+
+            return animation.get('.number-text').animate({
+                duration: 400,
+                'number': {
+                    from: 0,
+                    to: 51,
+                    format: '%02%01+' // %00代表输出一个0。%1为个位数，%2为十位数，以此类推，如果要补0，则为%01，%02等。
+                }
+            })
         })
 
 }

@@ -22,26 +22,19 @@ export default function zoom($element, options) {
             var originHeight = parseFloat(elStyle.height) / 100 ;
             var originLeft = parseFloat(elStyle.left) / 100;
             var originTop = parseFloat(elStyle.top) / 100;
-
             var zoomOpt = options['zoom'] || {};
             var zoom = parseFloat(zoomOpt.zoom || '200%') / 100;
-
-            var startWidth = originWidth * zoom;
-            var startHeight = originHeight * zoom;
-            var startLeft = originLeft * zoom;
-            var startTop = originTop * zoom;
 
             return ready.then(function() {
                 return fa(options.duration, 
                     options.timingFunction || 'easeIn',
                     function(i1, i2) {
-                        var curWidth = startWidth + (originWidth - startWidth) * i2;
-                        var curHeight = startHeight + (originHeight - startHeight) * i2;
+                        var curWidth = originWidth * (1 + (zoom - 1) * i2);
+                        var curHeight = originHeight * (1 + (zoom - 1) * i2);
                         var curLeft = originLeft - (curWidth - originWidth) / 2;
                         var curTop = originTop - (curHeight - originHeight) / 2;
 
                         $element.css({
-                            display: 'block',
                             width: curWidth * 100 + '%',
                             height: curHeight * 100 + '%',
                             left: curLeft * 100 + '%',
