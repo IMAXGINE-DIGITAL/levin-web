@@ -15,9 +15,6 @@ export function render() {
         <div class="el shadow anime fade-in" style="${elementRect(368,23,514,807)}">
             <img src="${path}/shadow.png">
         </div>
-        <div class="el seat anime fly-in" style="${elementRect(655,666,550,151)}">
-            <img src="${path}/seat.png">
-        </div>
         <div class="el text1 anime box-unfold" style="${elementRect(467,127,70,173)}">
             <img src="${path}/text1.png">
         </div>
@@ -35,6 +32,9 @@ export function render() {
         </div>
         <div class="el text4 anime fade-in" style="${elementRect(368,124,1029,681)}">
             <img src="${path}/text4.png">
+        </div>
+        <div class="el seat anime fly-in" style="${elementRect(655,666,550,151)}">
+            <img src="${path}/seat.png">
         </div>
     `;
 }

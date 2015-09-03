@@ -165,7 +165,7 @@
 	
 	
 	// module
-	exports.push([module.id, "html,\nbody {\n  width: 100%;\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  overflow: hidden;\n}\n", ""]);
+	exports.push([module.id, "html,\nbody {\n  width: 100%;\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  overflow: hidden;\n  font-size: 20px;\n}\n", ""]);
 	
 	// exports
 
@@ -12171,7 +12171,7 @@
 	
 	
 	// module
-	exports.push([module.id, "#pages {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n  overflow: visible;\n}\n.page {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: none;\n}\n.page img {\n  width: 100%;\n  height: 100%;\n  vertical-align: middle;\n}\n.page .bg {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  z-index: 1;\n}\n.page .el {\n  position: absolute;\n  overflow: hidden;\n  top: 0;\n  left: 0;\n  z-index: 2;\n  line-height: 0;\n}\n", ""]);
+	exports.push([module.id, "#pages {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n  overflow: visible;\n}\n.page {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: none;\n}\n.page img {\n  width: 100%;\n  height: 100%;\n  vertical-align: middle;\n}\n.page .bg {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  z-index: 1;\n  font-size: 0;\n}\n.page .el {\n  position: absolute;\n  overflow: hidden;\n  top: 0;\n  left: 0;\n  z-index: 2;\n  line-height: 0;\n  font-size: 0;\n}\n", ""]);
 	
 	// exports
 
@@ -15456,15 +15456,24 @@
 	function render() {
 	    var path = 'images/page_e';
 	
-	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(621, 154, 820, 712) + '">\n            <img src="' + path + '/text.png">\n        </div>\n    ';
+	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <div class="el wind anime box-unfold" style="' + (0, _libUtil.elementRect)(1600, 533, 0, 251) + '">\n            <img src="' + path + '/wind.png">\n        </div>\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(621, 154, 820, 712) + '">\n            <img src="' + path + '/text.png">\n        </div>\n    ';
 	}
 	
 	function show($page) {
 	    var animation = $page.animation();
 	
 	    return animation.then(function (item) {
+	        return animation.get('.wind').animate({
+	            duration: 600,
+	            'box-unfold': {
+	                origin: [0.36, 0],
+	                angle: 12
+	            }
+	        });
+	    }).then(function (item) {
 	        return animation.get('.text').animate({
-	            duration: 600
+	            duration: 600,
+	            delay: 300
 	        });
 	    });
 	}
@@ -15632,7 +15641,7 @@
 	function render() {
 	    var path = 'images/page_g';
 	
-	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <div class="el shadow anime fade-in" style="' + (0, _libUtil.elementRect)(368, 23, 514, 807) + '">\n            <img src="' + path + '/shadow.png">\n        </div>\n        <div class="el seat anime fly-in" style="' + (0, _libUtil.elementRect)(655, 666, 550, 151) + '">\n            <img src="' + path + '/seat.png">\n        </div>\n        <div class="el text1 anime box-unfold" style="' + (0, _libUtil.elementRect)(467, 127, 70, 173) + '">\n            <img src="' + path + '/text1.png">\n        </div>\n        <div class="el trigle1 anime box-unfold" style="' + (0, _libUtil.elementRect)(816, 250, 537, 192) + '">\n            <img src="' + path + '/trigle1.png">\n        </div>\n        <div class="el trigle2 anime box-unfold" style="' + (0, _libUtil.elementRect)(816, 535, 537, 192) + '">\n            <img src="' + path + '/trigle2.png">\n        </div>\n        <div class="el text2 anime fade-in" style="' + (0, _libUtil.elementRect)(352, 124, 323, 404) + '">\n            <img src="' + path + '/text2.png">\n        </div>\n        <div class="el text3 anime fade-in" style="' + (0, _libUtil.elementRect)(296, 122, 1165, 159) + '">\n            <img src="' + path + '/text3.png">\n        </div>\n        <div class="el text4 anime fade-in" style="' + (0, _libUtil.elementRect)(368, 124, 1029, 681) + '">\n            <img src="' + path + '/text4.png">\n        </div>\n    ';
+	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <div class="el shadow anime fade-in" style="' + (0, _libUtil.elementRect)(368, 23, 514, 807) + '">\n            <img src="' + path + '/shadow.png">\n        </div>\n        <div class="el text1 anime box-unfold" style="' + (0, _libUtil.elementRect)(467, 127, 70, 173) + '">\n            <img src="' + path + '/text1.png">\n        </div>\n        <div class="el trigle1 anime box-unfold" style="' + (0, _libUtil.elementRect)(816, 250, 537, 192) + '">\n            <img src="' + path + '/trigle1.png">\n        </div>\n        <div class="el trigle2 anime box-unfold" style="' + (0, _libUtil.elementRect)(816, 535, 537, 192) + '">\n            <img src="' + path + '/trigle2.png">\n        </div>\n        <div class="el text2 anime fade-in" style="' + (0, _libUtil.elementRect)(352, 124, 323, 404) + '">\n            <img src="' + path + '/text2.png">\n        </div>\n        <div class="el text3 anime fade-in" style="' + (0, _libUtil.elementRect)(296, 122, 1165, 159) + '">\n            <img src="' + path + '/text3.png">\n        </div>\n        <div class="el text4 anime fade-in" style="' + (0, _libUtil.elementRect)(368, 124, 1029, 681) + '">\n            <img src="' + path + '/text4.png">\n        </div>\n        <div class="el seat anime fly-in" style="' + (0, _libUtil.elementRect)(655, 666, 550, 151) + '">\n            <img src="' + path + '/seat.png">\n        </div>\n    ';
 	}
 	
 	function show($page) {
@@ -15869,18 +15878,23 @@
 	function render() {
 	    var path = 'images/page_i';
 	
-	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <!--\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(1036, 113, 98, 192) + '">\n            <img src="' + path + '/text.png">\n        </div>\n        -->\n    ';
+	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <div class="el bag anime fade-in" style="' + (0, _libUtil.elementRect)(893, 530, 359, 126) + '">\n            <img src="' + path + '/bag.jpg">\n        </div>\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(614, 84, 904, 713) + '">\n            <img src="' + path + '/text.png">\n        </div>\n    ';
 	}
 	
 	function show($page) {
 	    var animation = $page.animation();
 	
-	    // return animation.then(function(item) {
-	    //         return animation.get('.text').animate({
-	    //             duration: 600,
-	    //             delay: 300
-	    //         });
-	    //     });
+	    return animation.then(function (item) {
+	        return animation.get('.bag').animate({
+	            duration: 600,
+	            delay: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.text').animate({
+	            duration: 600,
+	            delay: 200
+	        });
+	    });
 	}
 
 /***/ },
@@ -15958,18 +15972,72 @@
 	function render() {
 	    var path = 'images/page_j';
 	
-	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <!--\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(1036, 113, 98, 192) + '">\n            <img src="' + path + '/text.png">\n        </div>\n        -->\n    ';
+	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <div class="el shadow anime fade-in" style="' + (0, _libUtil.elementRect)(612, 156, 926, 705) + '">\n            <img src="' + path + '/shadow.jpg">\n        </div>\n        <div class="el engine anime fly-in" style="' + (0, _libUtil.elementRect)(502, 494, 997, 284) + '">\n            <img src="' + path + '/engine.png">\n        </div>\n        <div class="el table anime fade-in" style="' + (0, _libUtil.elementRect)(893, 284, 44, 246) + '">\n            <img src="' + path + '/table.png">\n        </div>\n        <div class="el red-line1 anime box-unfold" style="' + (0, _libUtil.elementRect)(250, 35, 129, 343) + '">\n            <img src="' + path + '/red-line1.png">\n        </div>\n        <div class="el blue-line1 anime box-unfold" style="' + (0, _libUtil.elementRect)(247, 146, 133, 316) + '">\n            <img src="' + path + '/blue-line1.png">\n        </div>\n        <div class="el red-line2 anime box-unfold" style="' + (0, _libUtil.elementRect)(258, 40, 597, 320) + '">\n            <img src="' + path + '/red-line2.png">\n        </div>\n        <div class="el blue-line2 anime box-unfold" style="' + (0, _libUtil.elementRect)(259, 161, 597, 288) + '">\n            <img src="' + path + '/blue-line2.png">\n        </div>\n        <div class="el fue anime fade-in" style="' + (0, _libUtil.elementRect)(892, 169, 60, 558) + '">\n            <img src="' + path + '/fue.png">\n        </div>\n        <div class="el number1 anime number" style="' + (0, _libUtil.elementRect)(133, 91, 73, 614) + '">\n            5.9\n        </div>\n        <div class="el number2 anime number" style="' + (0, _libUtil.elementRect)(133, 91, 555, 614) + '">\n            6.1\n        </div>\n    ';
 	}
 	
 	function show($page) {
 	    var animation = $page.animation();
 	
-	    // return animation.then(function(item) {
-	    //         return animation.get('.text').animate({
-	    //             duration: 600,
-	    //             delay: 300
-	    //         });
-	    //     });
+	    return animation.then(function (item) {
+	        return animation.get('.shadow').animate({
+	            duration: 400
+	        });
+	    }).then(function (item) {
+	        return animation.get('.engine').animate({
+	            duration: 600,
+	            delay: 200,
+	            timeingFunction: 'easeOut',
+	            'fly-in': {
+	                from: 'bottom'
+	            }
+	        });
+	    }).then(function (item) {
+	        return animation.get('.table').animate({
+	            duration: 400,
+	            delay: 300
+	        });
+	    }).then(function (item) {
+	        return _libPromise.Promise.all([animation.get('.blue-line1').animate({
+	            duration: 600,
+	            delay: 300,
+	            timeingFunction: 'linear',
+	            'box-unfold': {
+	                origin: [0, 0],
+	                angle: 0
+	            }
+	        }), animation.get('.red-line1').animate({
+	            duration: 600,
+	            delay: 500,
+	            timeingFunction: 'linear',
+	            'box-unfold': {
+	                origin: [0, 0],
+	                angle: 0
+	            }
+	        })]);
+	    }).then(function (item) {
+	        return _libPromise.Promise.all([animation.get('.blue-line2').animate({
+	            duration: 600,
+	            delay: 300,
+	            timeingFunction: 'linear',
+	            'box-unfold': {
+	                origin: [0, 0],
+	                angle: 0
+	            }
+	        }), animation.get('.red-line2').animate({
+	            duration: 600,
+	            delay: 500,
+	            timeingFunction: 'linear',
+	            'box-unfold': {
+	                origin: [0, 0],
+	                angle: 0
+	            }
+	        })]);
+	    }).then(function (item) {
+	        return animation.get('.fue').animate({
+	            duration: 400,
+	            delay: 300
+	        });
+	    });
 	}
 
 /***/ },
@@ -16047,18 +16115,99 @@
 	function render() {
 	    var path = 'images/page_k';
 	
-	    return '\n        <div class="bg"><img src="' + path + '/bg.jpg"></div>\n        <!--\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(1036, 113, 98, 192) + '">\n            <img src="' + path + '/text.png">\n        </div>\n        -->\n    ';
+	    return '\n        <div class="bg"></div>\n        <div class="el road anime" style="' + (0, _libUtil.elementRect)(1600, 1590, 0, -795) + '">\n            <div style="width: 100%; height: 50%; top: 0; left: 0;">\n                <img src="' + path + '/road.jpg">\n            </div>\n            <div style="width: 100%; height: 50%; top: 50%; left: 0;}">\n                <img src="' + path + '/road.jpg">\n            </div>\n        </div>\n        <div class="el car1 anime fade-in" style="' + (0, _libUtil.elementRect)(214, 470, 837, 158) + '">\n            <img src="' + path + '/car1.png">\n        </div>\n        <div class="el car2 anime fade-in" style="' + (0, _libUtil.elementRect)(214, 492, 837, -350) + '">\n            <img src="' + path + '/car2.png">\n        </div>\n        <div class="el shift anime" style="' + (0, _libUtil.elementRect)(1600, 900, 0, 0) + '">\n            <img src="' + path + '/shift.png">\n        </div>\n        <div class="el shiftdown anime fade-in" style="' + (0, _libUtil.elementRect)(137, 214, 262, 415) + '">\n            <img src="' + path + '/shiftdown.png">\n        </div>\n        <div class="el shiftup anime fade-in" style="' + (0, _libUtil.elementRect)(141, 216, 1201, 413) + '">\n            <img src="' + path + '/shiftup.png">\n        </div>\n        <div class="el text anime fade-in" style="' + (0, _libUtil.elementRect)(422, 76, 98, 284) + '">\n            <img src="' + path + '/text.png">\n        </div>\n    ';
+	}
+	
+	var shiftNumber = 0;
+	var startDriving = false;
+	var speedInterval = [0, 40, 35, 30, 25, 20, 15, 10, 5];
+	function driving($road, originTop) {
+	    setTimeout(function () {
+	        var top = parseFloat($road[0].style.top);
+	        top -= originTop / 22;
+	        if (top >= 0) {
+	            top = originTop;
+	        }
+	        $road[0].style.top = top + '%';
+	        driving($road, originTop);
+	    }, speedInterval[shiftNumber]);
+	}
+	
+	function chnageShift($page, count) {
+	
+	    if (count > 0 && shiftNumber === 8 || count < 0 && shiftNumber === 1) {
+	        return;
+	    }
+	
+	    shiftNumber += count;
+	
+	    if (shiftNumber === 1 && !startDriving) {
+	        startDriving = true;
+	        var $road = $page.find('.road');
+	        var originTop = parseFloat($road[0].style.top);
+	        driving($road, originTop);
+	        return true;
+	    } else if (shiftNumber === 8) {
+	        var $car1 = $page.find('.car1');
+	        $car1.origin = {
+	            top: parseFloat($car1[0].style.top),
+	            left: parseFloat($car1[0].style.left)
+	        };
+	        var $car2 = $page.find('.car2');
+	        $car2.origin = {
+	            top: parseFloat($car2[0].style.top),
+	            left: parseFloat($car2[0].style.left)
+	        };
+	        overtaking($car1, $car2);
+	        return false;
+	    } else {
+	        return true;
+	    }
+	}
+	
+	function listenShift($page, type) {
+	    return new _libPromise.Promise(function (resolve, reject) {
+	        $page.on('click', '.shift' + type, function handler() {
+	            $page.off('click', '.shift' + type, handler);
+	            resolve(type === 'down' ? -1 : 1);
+	        });
+	    });
+	}
+	
+	function interactive($page) {
+	    _libPromise.Promise.race([listenShift($page, 'up'), listenShift($page, 'down')]).then(function (count) {
+	        return chnageShift($page, count);
+	    }).then(function (ret) {
+	        if (ret) {
+	            interactive($page);
+	        }
+	    });
 	}
 	
 	function show($page) {
 	    var animation = $page.animation();
 	
-	    // return animation.then(function(item) {
-	    //         return animation.get('.text').animate({
-	    //             duration: 600,
-	    //             delay: 300
-	    //         });
-	    //     });
+	    return animation.then(function (item) {
+	        return animation.get('.text').animate({
+	            duration: 600,
+	            delay: 300
+	        });
+	    }).then(function (item) {
+	        return animation.get('.car1').animate({
+	            duration: 600,
+	            delay: 300
+	        });
+	    }).then(function (item) {
+	        return _libPromise.Promise.all([animation.get('.shiftdown').animate({
+	            duration: 600,
+	            delay: 300
+	        }), animation.get('.shiftup').animate({
+	            duration: 600,
+	            delay: 300
+	        })]);
+	    }).then(function () {
+	        return interactive($page);
+	    });
 	}
 
 /***/ },
@@ -16096,7 +16245,7 @@
 	
 	
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, "#page_k .bg {\n  background-color: #000;\n}\n#page_k .road {\n  position: absolute;\n}\n#page_k .road > div {\n  position: absolute;\n}\n#page_k .shiftup,\n#page_k .shiftdow {\n  cursor: pointer;\n}\n", ""]);
 	
 	// exports
 
