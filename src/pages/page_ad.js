@@ -15,13 +15,15 @@ export function render() {
 
     return `        
 
-         <div class="el tianchuang anime zoom" style="${elementRect(1600,900,-30,-38)}">
+        <div class="el tianchuang anime zoom" style="${elementRect(1600,900,-30,-38)}">
             <img src="${path}/tianchuang.jpg"/>
         </div>
 
-        <div class="el text anime fade-in" style="${elementRect(1600,900,0,0)}">
-            <img src="${path}/text.png"/>
+        <div class="el kuang anime box-unfold" style="${elementRect(1600,900,50,-40)}">
+            <img src="${path}/kuang.png"/>
         </div>
+
+        
 
        
 
@@ -33,26 +35,36 @@ export function show($page) {
     var animation = $page.animation();
     
     return animation.then(function(item) {
-            return animation.get('.text').animate({
-                duration:400
+            return animation.get('.tianchuang').animate({
+                duration:400,
+                'zoom': {
+                    from: '100%',
+                    to: '110%'
+                }
             })
         })
         
         .then(function(item){
-            return animation.get('.tianchuang').animate({
+            return animation.get('.kuang').animate({
                 duration:400,
-                'zoom': {
-                    from: '90%',
-                    to: '100%'
+                'box-unfold':{
+                    origin: [0, 0],
+                    angle: 0
                 }
             })
         })
 
-        .then(function(item) {
-            return animation.get('.mask').animate({
-                duration: 400
-            });
-        })
+        // .then(function(item){
+        //     return animation.get('.kuang').animate({
+        //         duration:400,
+                
+        //     })
+        // })
+        // .then(function(item) {
+        //     return animation.get('.text').animate({
+        //         duration: 400
+        //     });
+        // })
 
         
 }
