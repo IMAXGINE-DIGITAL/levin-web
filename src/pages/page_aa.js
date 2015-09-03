@@ -33,7 +33,7 @@ export function render() {
             <img src="${path}/car-front.png"/>
         </div>
 
-        <div class="el geshan anime box-unfold" style="${elementRect(1096,329,256,546)}">
+        <div class="el geshan anime box-unfold" style="${elementRect(1096,329,256,549)}">
             <img src="${path}/geshan.png"/>
         </div>
 
@@ -42,7 +42,6 @@ export function render() {
         </div>
 
         
-
         <div class="el car-light-big anime flash" style="${elementRect(1520,214,46,300)}">
             <img src="${path}/car-light.png"/>
         </div>
@@ -75,42 +74,42 @@ export function show($page) {
                 }
             })
         })
-        // .then(function(item) {
-        //     return animation.get('.mask').animate({
-        //         duration: 400
-        //     });
-        // })
-        // .then(function(item){
-        //     return animation.get('.car-front').animate({
-        //         duration:400,
-        //         'box-unfold':{
-        //             origin: [0, 0],
-        //             angle: 0
-        //         }
-        //     });
+        .then(function(item) {
+            return animation.get('.mask').animate({
+                duration: 400
+            });
+        })
+        .then(function(item){
+            return animation.get('.car-front').animate({
+                duration:400,
+                'box-unfold':{
+                    origin: [0, 0],
+                    angle: 0
+                }
+            });
             
-        // })
-        // .then(function(item){
-        //     return animation.get('.car-light-big').animate({
-        //         duration:400
-        //     });
-        // })
-        // .then(function(item){
-        //     return animation.get('.geshan').animate({
-        //         duration:400,
-        //         'box-unfold':{
-        //             origin: [0, 0],
-        //             angle: 0
-        //         }
-        //     });
-        // })
-        // .then(function(item){
-        //     return animation.get('.text').animate({
-        //         duration:400,
-        //         'fly-in':{
-        //             direction: 'left'
-        //         }
-        //     });
-        // })
+        })
+        .then(function(item){
+            return animation.get('.car-light-big').animate({
+                duration:400
+            });
+        })
+        .then(function(item){
+            return animation.get('.geshan').animate({
+                duration:400,
+                'box-unfold':{
+                    origin: [0, 0],
+                    angle: 0
+                }
+            });
+        })
+        .then(function(item){
+            return animation.get('.text').animate({
+                duration:400,
+                'fly-in':{
+                    direction: 'left'
+                }
+            });
+        })
 
 }
