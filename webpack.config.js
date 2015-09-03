@@ -27,13 +27,14 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
-      { test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: 'babel-loader' } 
+      { test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: 'babel-loader' } ,
+      { test: /\.(jpg|gif|png)/, loader: 'url!img'}
     ]
   },
   plugins: [
     sourceMapPlugin
   ],
   resolve: {
-    extensions: ['', '.js', '.less']
+    extensions: ['', '.js', '.less', '.jpg', '.gif', '.png']
   }
 };

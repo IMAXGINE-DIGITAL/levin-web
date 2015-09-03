@@ -2,15 +2,15 @@ import './main.less';
 import $ from 'jquery';
 import {Promise, defer} from './lib/promise';
 import './lib/viewport';
-// import './lib/global';
+import * as nav from './lib/nav';
+import * as menu from './lib/menu';
 import * as page from './lib/page';
-import {scrollPage} from './lib/pagescroll';
-import {listenWheel, wheelPage} from './lib/pagewheel';
+import * as pagescroll from './lib/pagescroll';
+import * as pagewheel from './lib/pagewheel';
 
 page.ready().then(function ($pageRoot) {
     var $win = $(window);
     var $doc = $(window.document);
-
 
     function getHashName() {
         var hash = location.hash.replace('#', '');
@@ -41,30 +41,34 @@ page.ready().then(function ($pageRoot) {
         return deferred.promise;
     }
 
+
     function circle(curName) {
-        Promise.race([hashchange(), pagechange(), wheelPage()])
+        if (curName === 'home') {
+            nav.hide();
+        } else {
+            nav.show();
+        }
+
+        Promise.race([hashchange(), pagechange(), menu.navto(), pagewheel.wheel()])
             .then(function(ret) {
-                var direction;
                 var name;
                 if (['next', 'prev'].indexOf(ret) > -1) {
-                    direction = ret;
+                    name = page[ret](curName);
+                } else if (typeof ret === 'number'){
+                    name = page.fromIndex(ret);
                 } else {
                     name = ret;
                 }
 
-                if (!name) {
-                    name = page[direction](curName);
-                }
                 if (name) {
-                    return scrollPage($pageRoot, name);
+                    return pagescroll.scroll($pageRoot, name);
                 }
             }).then(function(name) {
-                // location.replace('#' + name);
                 return circle(name);
             });
     }
 
-    listenWheel();
+    pagewheel.listen();
     var name = getHashName();
-    scrollPage($pageRoot, name).then(circle);
+    pagescroll.scroll($pageRoot, name).then(circle);
 });

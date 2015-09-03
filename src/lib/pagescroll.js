@@ -3,7 +3,7 @@ import * as page from './page';
 
 var queue = Promise.resolve();
 
-export function scrollPage($pageRoot, name) {
+export function scroll($pageRoot, name) {
     var init = Promise.resolve();
 
     if (!page.has(name)) {
