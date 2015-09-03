@@ -47,7 +47,6 @@ export default function boxUnfold($element, options) {
             var sinT = Math.sin(t).toFixed(5) + 0;
             var cosT = Math.cos(t).toFixed(5) + 0;
             var h = Math.max(elWidth / cosT, elHeight / sinT);
-            console.log(t, sinT, cosT, h);
 
             return ready.then(function() {
                 return fa(options.duration, 
@@ -66,8 +65,6 @@ export default function boxUnfold($element, options) {
                             width = Math.min(h * i2 * cosT, elWidth);
                             height = Math.min(h * i2 * sinT, elHeight);
                         }
-
-                        console.log(width, height)
                         
                         var left = originX - originX * i2;
                         var top = originY - originY * i2;

@@ -113,5 +113,28 @@ export function show($page) {
                 duration: 400,
                 delay: 300
             });
+        }).then(function(item) {
+            return Promise.all([
+                animation.get('.number1').animate({
+                    duration: 400,
+                    delay: 300,
+                    timeingFunction: 'linear',
+                    'number': {
+                        from: 10,
+                        to: 59,
+                        format: '%02.%01'
+                    }
+                }),
+                animation.get('.number2').animate({
+                    duration: 400,
+                    delay: 300,
+                    timeingFunction: 'linear',
+                    'number': {
+                        from: 10,
+                        to: 61,
+                        format: '%02.%01'
+                    }
+                })
+            ]);
         });
 }

@@ -15,8 +15,8 @@ export function render() {
         <div class="el text anime fade-in" style="${elementRect(568,178,390,293)}">
             <img src="${path}/text.png">
         </div>
-        <div class="el number anime fade-in" style="${elementRect(180,240,221,188)}">
-            <img src="${path}/number.png">
+        <div class="el number1 anime number" style="${elementRect(180,240,221,188)}">
+            0
         </div>
         <div class="el shift anime box-unfold" style="${elementRect(499,182,556,685)}">
             <img src="${path}/shift.png">
@@ -57,8 +57,14 @@ export function show($page) {
                 duration: 400
             });
         }).then(function() {
-            return animation.get('.number').animate({
-                duration: 400
+            return animation.get('.number1').animate({
+                duration: 200,
+                delay: 200,
+                number: {
+                    from: 0,
+                    to: 8,
+                    format: '%01'
+                }
             });
         }).then(function(item) {
             return animation.get('.text').animate({

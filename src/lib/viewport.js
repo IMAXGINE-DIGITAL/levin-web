@@ -25,6 +25,10 @@ function resize(e) {
     var width = $win.width();
     var height = $win.height();
 
+    $body.css({
+        fontSize: width / 10 + 'px'
+    });
+
     var wRatio = vw / width;
     var hRatio = vh / height;
     var ratio;
