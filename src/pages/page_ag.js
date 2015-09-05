@@ -53,10 +53,12 @@ export function show($page) {
             }
         },{
             '.text_5star': {
+                delay:200,
                 duration: 400
             }
         },{
             '.text': {
+                delay: 200,
                 duration: 400
             }
         }
