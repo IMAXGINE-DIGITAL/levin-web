@@ -16,7 +16,7 @@ function webpackBundle(watch) {
         .pipe(gulp.dest('./'));
 }
 
-gulp.task('webpack', function () {
+gulp.task('webpack', ['imagelist'], function () {
     return webpackBundle(false);
 });
 

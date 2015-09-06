@@ -26,7 +26,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.less$/, loader: 'style-loader!raw-loader!less-loader' },
+      { test: /\.(less|css)$/, loader: 'style-loader!raw-loader!less-loader' },
       { test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: 'babel-loader' } ,
       { test: /\.(jpg|gif|png)/, loader: 'url!img'}
     ]

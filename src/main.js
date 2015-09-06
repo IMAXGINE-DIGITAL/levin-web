@@ -70,5 +70,11 @@ page.ready().then(function ($pageRoot) {
 
     pagewheel.listen();
     var name = getHashName();
-    pagescroll.scroll($pageRoot, name).then(circle);
+    pagescroll.scroll($pageRoot, 'home').then(function() {
+        if (name !== 'home') {
+            return pagescroll.scroll($pageRoot, name);
+        } else {
+            return name;
+        }
+    }).then(circle);
 });
