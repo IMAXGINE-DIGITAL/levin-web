@@ -49,7 +49,7 @@ export function render() {
             <img src="${path}/text.png"/>
         </div>
 
-        <div class="el number-text anime number" style="font-style:italic;font-size:35%;color:#fff;${elementRect(240,120,1010,592)}">
+        <div class="el number-text anime number" style="font-style:italic;font-size:65%;color:#fff;${elementRect(304,144,998,620)}">
         </div>
         
 
