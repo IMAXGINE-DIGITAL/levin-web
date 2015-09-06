@@ -1,44 +1,29 @@
-import './page_a.less';
-import * as jQuery from 'jquery';
-import {
-    Promise, defer
-}
-from '../lib/promise';
+import './page_ad.less';
+import $ from 'jquery';
+import { Promise, defer} from '../lib/promise';
 import * as page from '../lib/page';
-import {
-    elementRect
-}
-from '../lib/util';
+import {elementRect} from '../lib/util';
 import '../lib/animation';
 
-var $ = jQuery.noConflict();
-/**
- * 1760 × 977
-
- */
 export function render() {
     var path = 'images/page_ad';
 
     return `        
-
-        <div class="el bg" style="${elementRect(1600,900,0,0)}">
-            <img src="${path}/tianchuang.jpg"/>
+        <div class="el bg"">
+            <img src="${path}/bg.jpg"/>
         </div>
-
-        <div class="el tianchuang2 anime box-unfold" style="${elementRect(1600,900,0,0)}">
-            <img src="${path}/tianchuang2.jpg"/>
-        </div>
-
-        <div class="el kuang anime box-unfold" style="${elementRect(1600,900,0,0)}">
+        <div class="el kuang anime box-unfold" style="${elementRect(1420,655,0,161)}">
             <img src="${path}/kuang.png"/>
         </div>
-
-        <div class="el text anime zoom" style="${elementRect(1400,787.5,0,0)}">
+        <div class="el blue1 anime box-unfold" style="${elementRect(1444,768,0,86)};">
+            <img src="${path}/blue1.jpg"/>
+        </div>
+        <div class="el text anime box-unfold" style="${elementRect(609,155,410,483)}">
             <img src="${path}/text.png"/>
         </div>
-
-        
-
+        <div class="el blue2 anime fade-in" style="${elementRect(1444,768,0,86)}">
+            <img src="${path}/blue2.png"/>
+        </div>
     `;
 }
 
@@ -50,32 +35,39 @@ export function show($page) {
             duration: 400,
             delay: 200,
             'box-unfold': {
-                origin: [0, 0],
-                angle: 0
+                origin: ['20%', 0],
+                angle: 15
             }
         })
-    })
-
-    .then(function(item) {
-        return animation.get('.tianchuang2').animate({
-            duration: 400,
-            delay: 600,
+    }).then(function(item) {
+        return animation.get('.blue1').animate({
+            duration: 600,
+            delay: 300,
             'box-unfold': {
-                origin: [0.5, 0.5],
-                angle: 0
+                origin: ['30%', '20%'],
+                angle: 15
             }
         })
-    })
-
-    .then(function(item) {
+    }).then(function(item) {
         return animation.get('.text').animate({
             duration: 400,
-            'zoom': {
-                from: '100%',
-                to: '114%'
+            delay: 200,
+            'box-unfold': {
+                origin: ['50%', '50%'],
+                angle: 15
             }
+        });
+    }).then(function(item) {
+        return animation.get('.blue2').animate({
+            duration: 300,
+            delay: 300
+        }).then(function() {
+            $page.find('.blue2').toggleClass('fade-in fade-out');
         })
-    })
-
-
+    }).then(function(item) {
+        return animation.get('.blue2').animate({
+            duration: 300,
+            delay: 100
+        });
+    });
 }
