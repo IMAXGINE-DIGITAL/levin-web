@@ -21,7 +21,7 @@ export function render() {
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
         
-        <div class="el car anime zoom" style="${elementRect(1641,1133,-20,-110)}">
+        <div class="el car anime zoom" style="${elementRect(164.1,113.3,724,442)}">
             <img src="${path}/car-total.png"/>
         </div>
 
@@ -59,22 +59,25 @@ export function show($page) {
     var animation = $page.animation();
     
     return animation.then(function(item) {
+            $page.find('.car').show();
+            return animation.get('.car').animate({
+                duration:400,
+                'zoom': {
+                    from: '100%',
+                    to: '1000%'
+                }
+            })
+        })
+        .then(function(item){
             return animation.get('.car-light-small').animate({
                 duration:400
             })
         })
+
         .then(function(item){
             $('.car-light-small').hide();
         })
-        .then(function(item){
-            return animation.get('.car').animate({
-                duration:400,
-                'zoom': {
-                    from: '10%',
-                    to: '100%'
-                }
-            })
-        })
+
         .then(function(item) {
             return animation.get('.mask').animate({
                 duration: 400
