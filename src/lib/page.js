@@ -111,6 +111,7 @@ var seq = [
     'page_d', // 外观
     'page_aa', // 大灯前脸
     'page_ab', // 尾灯
+    'page_ah',
     // 内饰组
     'page_b',  // 内饰
     'page_a', // 变速器
