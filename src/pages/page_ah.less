@@ -1,0 +1,41 @@
+#page_ah {
+    
+    @-moz-keyframes rotatelg {
+        from {
+            -moz-transform: rotate(0);
+        }
+        to {
+            -moz-transform: rotate(360deg);
+        }
+    }
+    @-webkit-keyframes rotatelg {
+        from {
+            -webkit-transform: rotate(0);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    @keyframes rotatelg {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    .lg {
+        -webkit-animation-name: rotatelg;
+        -webkit-animation-duration: .3s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        -moz-animation-name: rotatelg;
+        -moz-animation-duration: .3s;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-timing-function: linear;
+        animation-name: rotatelg;
+        animation-duration: .3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+}
