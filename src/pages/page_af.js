@@ -11,7 +11,6 @@ export function render() {
     var path = 'images/page_af';
 
     return `
-        <div class="bg"><img src="${path}/bg.jpg"></div>
         
 
         <div class="el car anime fade-in" style="${elementRect(1600,900,0,0)}">

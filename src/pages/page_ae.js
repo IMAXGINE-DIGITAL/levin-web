@@ -33,11 +33,13 @@ export function show($page) {
     
     return animation.then(function(item) {
             return animation.get('.car').animate({
+                delay: 200,
                 duration:400
             })
         })
         .then(function(item){
             return animation.get('.text').animate({
+                delay: 400,
                 duration:400
             })
         })
