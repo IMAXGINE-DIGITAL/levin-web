@@ -21,19 +21,19 @@ export function render() {
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
         
-        <div class="el car anime zoom" style="${elementRect(164.1,113.3,724,442)}">
+        <div class="el car anime zoom" style="${elementRect(164.1,113.3,724,372)}">
             <img src="${path}/car-total.png"/>
         </div>
 
-        <div class="el car-light-small anime flash" style="${elementRect(120,14,744,436)}">
+        <div class="el car-light-small anime flash" style="${elementRect(158,20,726,412)}">
             <img src="${path}/car-light.png"/>
         </div>
 
-         <div class="el car-front anime box-unfold" style="${elementRect(1600,900,0,0)}">
+         <div class="el car-front anime box-unfold" style="${elementRect(1600,900,3,66)}">
             <img src="${path}/car-front.png"/>
         </div>
 
-        <div class="el geshan anime box-unfold" style="${elementRect(1096,329,256,549)}">
+        <div class="el geshan anime box-unfold" style="${elementRect(1096,329,256,616)}">
             <img src="${path}/geshan.png"/>
         </div>
 
@@ -42,7 +42,7 @@ export function render() {
         </div>
 
         
-        <div class="el car-light-big anime flash" style="${elementRect(1520,214,46,300)}">
+        <div class="el car-light-big anime flash" style="${elementRect(1520,214,46,362)}">
             <img src="${path}/car-light.png"/>
         </div>
 
@@ -60,18 +60,24 @@ export function show($page) {
     
     return animation.then(function(item) {
             $page.find('.car').show();
-            return animation.get('.car').animate({
+            return animation.get('.car-light-small').animate({
+                duration:400
+            }).then(function() {
+                $page.find('.car-light-small').hide();
+            });
+            
+        })
+
+        .then(function(item){
+           return animation.get('.car').animate({
+                delay: 400,
                 duration:400,
                 'zoom': {
                     from: '100%',
                     to: '1000%'
                 }
             })
-        })
-        .then(function(item){
-            return animation.get('.car-light-small').animate({
-                duration:400
-            })
+             
         })
 
         .then(function(item){
