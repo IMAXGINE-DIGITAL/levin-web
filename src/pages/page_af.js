@@ -24,6 +24,11 @@ export function render() {
             <img src="${path}/text.png"/>
         </div>
 
+        <div class="el goa anime fade-in" style="${elementRect(1600,900,0,0)}">
+            <img src="${path}/goa.png"/>
+        </div>
+
+
 
     `;
 }
@@ -39,6 +44,12 @@ export function show($page) {
         })
         .then(function(item){
             return animation.get('.text').animate({
+                delay:200,
+                duration:400
+            })
+        })
+        .then(function(item){
+            return animation.get('.goa').animate({
                 delay:200,
                 duration:400
             })
