@@ -29,13 +29,13 @@ export default function zoom($element, options) {
 
             var startWidth = originWidth * from;
             var startHeight = originHeight * from;
-            var startLeft = originLeft * from;
-            var startTop = originTop * from;            
+            var startLeft = originLeft - (startWidth - originWidth) / 2;
+            var startTop = originTop - (startHeight - originHeight) / 2;        
 
             var endWidth = originWidth * to;
             var endHeight = originHeight * to;
-            var endLeft = originLeft * to;
-            var endTop = originTop * to;
+            var endLeft = originLeft - (endWidth - originWidth) / 2;
+            var endTop = originTop - (endWidth - originWidth) / 2;
 
             return ready.then(function() {
                 return fa(options.duration, 
@@ -43,8 +43,10 @@ export default function zoom($element, options) {
                     function(i1, i2) {
                         var curWidth = startWidth + (endWidth - startWidth) * i2;
                         var curHeight = startHeight + (endHeight - startHeight) * i2;
-                        var curLeft = endLeft - (curWidth - endWidth) / 2;
-                        var curTop = endTop - (curHeight - endHeight) / 2;
+                        // var curLeft = originLeft - (curWidth - startWidth) / 2;
+                        // var curTop = originTop - (curHeight - originHeight) / 2;
+                        var curLeft = startLeft + (endLeft - startLeft) * i2;
+                        var curTop = startTop + (endTop - startTop) * i2;
 
                         $element.css({
                             display: 'block',
