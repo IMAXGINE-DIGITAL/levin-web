@@ -21,8 +21,6 @@ export function render() {
             <img src="${path}/text.png"/>
         </div>
 
-       
-
 
     `;
 }
