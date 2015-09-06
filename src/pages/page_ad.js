@@ -8,7 +8,7 @@ import '../lib/animation';
 var $ = jQuery.noConflict();
 /**
  * 1760 × 977
- * 
+
  */
 export function render() {
     var path = 'images/page_ad';
