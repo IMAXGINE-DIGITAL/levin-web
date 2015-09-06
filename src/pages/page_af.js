@@ -12,7 +12,10 @@ export function render() {
 
     return `
         
-
+        <div class="el bg" style="${elementRect(1600,900,0,0)}">
+            <img src="${path}/bg.jpg"/>
+        </div>
+        
         <div class="el car anime fade-in" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/car.jpg"/>
         </div>
@@ -30,11 +33,13 @@ export function show($page) {
     
     return animation.then(function(item) {
             return animation.get('.car').animate({
+                delay: 200,
                 duration:400
             })
         })
         .then(function(item){
             return animation.get('.text').animate({
+                delay:200,
                 duration:400
             })
         })
