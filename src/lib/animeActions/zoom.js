@@ -35,7 +35,7 @@ export default function zoom($element, options) {
             var endWidth = originWidth * to;
             var endHeight = originHeight * to;
             var endLeft = originLeft - (endWidth - originWidth) / 2;
-            var endTop = originTop - (endWidth - originWidth) / 2;
+            var endTop = originTop - (endHeight - originHeight) / 2;
 
             return ready.then(function() {
                 return fa(options.duration, 

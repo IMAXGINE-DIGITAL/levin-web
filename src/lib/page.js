@@ -114,10 +114,10 @@ var seq = [
     'page_ah',
     // 内饰组
     'page_b',  // 内饰
+    'page_ad', // 天窗
     'page_a', // 变速器
     'page_e', // 空调
     // 空间组
-    'page_ad', // 天窗
     'page_ac', // 轴距
     'page_f', // 后排
     'page_g', // 座椅
