@@ -5,6 +5,10 @@ import * as viewport from './viewport';
 import {elementRect} from './util';
 import * as menu from './menu';
 
+var _elementRect = function(w, h, l, t) {
+    return elementRect(w, h, l, t, [1600, 121]);
+}
+
 var $ = jQuery.noConflict();
 var deferred = defer();
 
@@ -28,14 +32,14 @@ var path = 'images/nav';
 
 function render() {
     return `
-        <div id="nav">
-            <div class="el toyota-logo" style="${elementRect(292,23,35,25)}">
+        <div id="nav" style="${elementRect(1600,121,0,0)}">
+            <div class="el toyota-logo" style="${_elementRect(292,23,35,25)}">
                 <img src="${path}/toyota-logo.png">
             </div>
-            <div class="el levin-logo" style="${elementRect(242,121,1331,36)}">
+            <div class="el levin-logo" style="${_elementRect(242,121,1331,36)}">
                 <img src="${path}/levin-logo.png">
             </div>
-            <div class="el top-menu" style="${elementRect(148,72,722,0)}">
+            <div class="el top-menu" style="${_elementRect(148,72,722,0)}">
                 <img src="${path}/top-menu.png">
             </div>
         </div>
@@ -44,7 +48,7 @@ function render() {
 
 viewport.ready().then(function ($viewport) {
     var $nav = $(render());
-    $viewport.append($nav);
+    $(document.body).append($nav);
 
     $nav.on('click', '.top-menu', function() {
         hide();

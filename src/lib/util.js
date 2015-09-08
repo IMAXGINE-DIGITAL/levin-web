@@ -1,11 +1,13 @@
 const WIDTH = 1600;
 const HEIGHT = 900;
 
-export function elementRect(width, height, left, top) {
+export function elementRect(width, height, left, top, vp) {
+    var w = vp && vp[0] || WIDTH;
+    var h = vp && vp[1] || HEIGHT
     return `
-        width:${width/WIDTH*100}%;
-        height:${height/HEIGHT*100}%;
-        left:${left/WIDTH*100}%;
-        top:${top/HEIGHT*100}%;
+        width:${width/w*100}%;
+        height:${height/h*100}%;
+        left:${left/w*100}%;
+        top:${top/h*100}%;
     `
 }

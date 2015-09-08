@@ -46,6 +46,10 @@ function resize(e) {
     var rLeft = ((width - rWidth) / 2).toFixed(3);
     var rTop = ((height - rHeight) / 2).toFixed(3);
 
+    if (size === 'cover') {
+        rTop *= 1.8;
+    } 
+
     $viewport.css({
         width: rWidth + 'px',
         height: rHeight + 'px',
@@ -69,7 +73,12 @@ domReady().then(function () {
     vw = vp[0];
     vh = vp[1];
 
-    size = $body.attr('size') || 'contain';
+    var match;
+    if ((match = location.search.match(/^\?(contain|cover)/))) {
+        size = match[1];
+    } else {
+        size = $body.attr('size') || 'contain';
+    }
 
     $(window).on('resize', resize);
     resize(false);

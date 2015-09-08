@@ -66,7 +66,7 @@ export function navto() {
 
 viewport.ready().then(function ($viewport) {
     var $menu = $(render());
-    $viewport.append($menu);
+    $(document.body).append($menu);
 
     $menu.on('click', '.top-menu-close', function() {
         hide();
