@@ -31,7 +31,7 @@ export function render() {
             <img src="${path}/car-gray.jpg"/>
         </div>
 
-        <div class="el logo anime box-unfold" style="${elementRect(1600,900,0,0)}">
+        <div class="el logo anime box-unfold" style="${elementRect(314,61,487,127)}">
             <img src="${path}/logo.png"/>
         </div>
 
@@ -42,8 +42,6 @@ export function render() {
         <div class="el light2 anime fade-in" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/car-light2.jpg"/>
         </div>
-
-        
 
         <div class="el text anime fly-in" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/text.png"/>
@@ -66,7 +64,8 @@ export function show($page) {
         })
         .then(function(item) {
             return animation.get('.logo').animate({
-                duration: 600,
+                duration: 800,
+                delay: 200,
                 'box-unfold': {
                     origin: [0, 0],
                     angle: 0

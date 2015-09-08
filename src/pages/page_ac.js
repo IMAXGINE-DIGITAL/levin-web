@@ -29,6 +29,9 @@ export function render() {
         <div class="el number1 anime fade-in" style="${elementRect(568,288,29,105)}">
             1660mm
         </div>
+        <div class="el rule anime fade-in" style="${elementRect(1115,86,247,776)}">
+            <img src="${path}/rule.png"/>
+        </div>
         <div class="el range anime fade-in" style="${elementRect(554,68,783,754)}">
             <input type="range" value="0" min="0" max="100"/>
             <img src="${path}/circle.png" />
@@ -56,19 +59,27 @@ export function show($page) {
                 }
             });
         }).then(function(item) {
+            return animation.get('.rule').animate({
+                duration: 600,
+                delay: 200
+            });
+        }).then(function(item) {
+            var car1Action;
+
             var car2Action = animation.get('.car2')
-                .action('box-unfold', {
-                    origin: [0, 0],
-                    angle: 0
-                });
+                    .action('box-unfold', {
+                        origin: [0, 0],
+                        angle: 0
+                    });
 
             var number1Action = animation.get('.number1')
-                .action('number', {
-                    from: 1660,
-                    to: 2700,
-                    format: '%04%03%02%01mm'
-                });
+                    .action('number', {
+                        from: 1660,
+                        to: 2700,
+                        format: '%04%03%02%01mm'
+                    });
 
+            var slideCompelte = false;
             $page.find('.range input[type="range"]').rangeslider({
                 polyfill: false,
                 rangeClass: 'rangeslider',
@@ -78,24 +89,30 @@ export function show($page) {
                 // Callback function
                 onSlide: function(position, value) {
                     ready.promise.then(function() {
-                        car2Action.frame(value / 100, value / 100);
+                        if (!slideCompelte) {
+                            car2Action.frame(value / 100, value / 100);
+                        } else {
+                            car1Action.frame(1 - value / 100, 1 - value / 100);
+                        }
                         number1Action.frame(value / 100, value / 100);
                     });
                 },
 
                 // Callback function
                 onSlideEnd: function(position, value) {
+                    if (slideCompelte) return;
+                    slideCompelte = true;
+
                     ready.promise.then(function() {
                         if (value === 100) {
                             car2Action.done();
-                            number1Action.done();
 
-                            $page.find('.car1, .range').hide();
+                            $page.find('.car1').hide();                            
 
                             $page.find('.car2')
                                 .removeClass('box-unfold')
                                 .addClass('box-fold');
-
+                        
                             animation.get('.car2').animate({
                                 duration: 800,
                                 delay: 400,
@@ -104,7 +121,14 @@ export function show($page) {
                                     angle: 0
                                 }
                             }).then(function() {
+                                $page.find('.car1').show();
                                 $page.find('.car2').hide();
+
+                                car1Action = animation.get('.car1')
+                                    .action('box-unfold', {
+                                        origin: ['100%', 0],
+                                        angle: 0
+                                    });
                             });
                         }
                     });

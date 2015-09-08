@@ -66,7 +66,7 @@ function overtaking($car1, $car2) {
     var car2DestTop1 = -38.8;
     var car2DestTop2 = 60;
 
-   return fa(400, 'linear', function(i1, i2) {
+   return fa(100, 'linear', function(i1, i2) {
         $car1.css({
             left: (car1OriginLeft + (car1DestLeft - car1OriginLeft) * i2) + '%'
         });
@@ -75,7 +75,7 @@ function overtaking($car1, $car2) {
             top: (car2OriginTop + (car2DestTop1 - car2OriginTop) * i2) + '%'
         });
     }).play().then(function() {
-        return fa(2000, 'linear', function(i1, i2) {
+        return fa(300, 'linear', function(i1, i2) {
             $car2.css({
                 top: (car2DestTop1 + (car2DestTop2 - car2DestTop1) * i2) + '%'
             });
