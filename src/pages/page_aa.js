@@ -21,33 +21,35 @@ export function render() {
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
         
-        <div class="el car anime zoom" style="${elementRect(164.1,113.3,724,372)}">
+        <div class="el car anime zoom" style="${elementRect(164.1,113.3,724,400)}">
             <img src="${path}/car-total.png"/>
         </div>
 
-        <div class="el car-light-small anime flash" style="${elementRect(158,20,726,412)}">
+        <div class="el car-light-small anime flash" style="${elementRect(158,51,726,440)}">
             <img src="${path}/car-light.png"/>
-        </div>
-
-         <div class="el car-front anime box-unfold" style="${elementRect(1600,900,3,66)}">
-            <img src="${path}/car-front.png"/>
-        </div>
-
-        <div class="el geshan anime box-unfold" style="${elementRect(1096,329,256,616)}">
-            <img src="${path}/geshan.png"/>
         </div>
 
         <div class="el mask anime fade-in" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/mask.png"/>
         </div>
-
         
-        <div class="el car-light-big anime flash" style="${elementRect(1520,214,46,362)}">
+        <div class="el car-light-big anime flash" style="${elementRect(1600,505,0,296)}">
             <img src="${path}/car-light.png"/>
         </div>
 
+        <div class="el car-front anime box-unfold" style="${elementRect(1600,900,3,0)}">
+            <img src="${path}/car-front.png"/>
+        </div>
+
+        <div class="el geshan anime box-unfold" style="${elementRect(1096,329,250,554)}">
+            <img src="${path}/geshan.png"/>
+        </div>
         
+<<<<<<< HEAD
         <div class="el text anime fly-in" style="${elementRect(669,154,225,134)}">
+=======
+        <div class="el text anime fly-in" style="${elementRect(669,154,225,160)}">
+>>>>>>> f416abd09ba3d32a61d344cd90c04fa8e581e38d
             <img src="${path}/text.png"/>
         </div>
 

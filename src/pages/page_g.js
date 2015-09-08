@@ -33,8 +33,14 @@ export function render() {
         <div class="el text4 anime fade-in" style="${elementRect(368,124,1029,681)}">
             <img src="${path}/text4.png">
         </div>
-        <div class="el seat anime fly-in" style="${elementRect(655,666,550,151)}">
+        <div class="el seat anime fly-in" style="${elementRect(503,675,520,144)}">
             <img src="${path}/seat.png">
+        </div>
+        <div class="el seat-back1 anime fade-in" style="${elementRect(286,530,776,175)}">
+            <img src="${path}/seat-back1.png">
+        </div>
+        <div class="el seat-back2 anime fade-in" style="${elementRect(333,487,800,219)}">
+            <img src="${path}/seat-back2.png">
         </div>
     `;
 }
@@ -81,6 +87,16 @@ export function show($page) {
             return animation.get('.text2').animate({
                 duration: 400,
                 delay: 500
+            });
+        }).then(function(item) {
+            return animation.get('.seat-back1').animate({
+                duration: 400,
+                delay: 100
+            });
+        }).then(function(item) {
+            return animation.get('.seat-back2').animate({
+                duration: 400,
+                delay: 100
             });
         }).then(function(item) {
             return animation.get('.trigle1').animate({

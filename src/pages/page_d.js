@@ -17,10 +17,10 @@ export function render() {
         <div class="el car anime slide-in" style="${elementRect(1045,425,475,369)}">
             <img src="${path}/car.png" />
         </div>
-        <div class="el eagle anime fly-in" style="${elementRect(643,200,149,112)}">
+        <div class="el eagle anime fly-in" style="${elementRect(643,200,149,162)}">
             <img src="${path}/eagle.png" />
         </div>
-        <div class="el text anime fade-in" style="${elementRect(627,153,83,299)}">
+        <div class="el text anime fade-in" style="${elementRect(627,153,83,349)}">
             <img src="${path}/text.png" />
         </div>
     `;
