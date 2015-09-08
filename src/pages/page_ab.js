@@ -64,12 +64,8 @@ export function show($page) {
         })
         .then(function(item) {
             return animation.get('.logo').animate({
-<<<<<<< HEAD
                 duration: 1600,
-=======
-                duration: 800,
                 delay: 200,
->>>>>>> f416abd09ba3d32a61d344cd90c04fa8e581e38d
                 'box-unfold': {
                     origin: [0, 0],
                     angle: 0

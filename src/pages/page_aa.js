@@ -45,11 +45,7 @@ export function render() {
             <img src="${path}/geshan.png"/>
         </div>
         
-<<<<<<< HEAD
-        <div class="el text anime fly-in" style="${elementRect(669,154,225,134)}">
-=======
         <div class="el text anime fly-in" style="${elementRect(669,154,225,160)}">
->>>>>>> f416abd09ba3d32a61d344cd90c04fa8e581e38d
             <img src="${path}/text.png"/>
         </div>
 

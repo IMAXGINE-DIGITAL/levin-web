@@ -9,7 +9,7 @@ export function render() {
     var path = 'images/page_ad';
 
     return `        
-        <div class="el bg"">
+        <div class="el bg">
             <img src="${path}/bg.jpg"/>
         </div>
         <div class="el kuang anime box-unfold" style="${elementRect(1420,655,0,161)}">
