@@ -47,7 +47,7 @@ export function render() {
         </div>
 
         
-        <div class="el text anime fly-in" style="${elementRect(669,154,225,104)}">
+        <div class="el text anime fly-in" style="${elementRect(669,154,225,134)}">
             <img src="${path}/text.png"/>
         </div>
 

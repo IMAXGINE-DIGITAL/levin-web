@@ -47,19 +47,19 @@ export function show($page) {
 
     return $page.animation([{
             '.car2': {
-                duration: 400,
-                delay: 200,
+                duration: 600,
+                delay: 300,
                 timingFunction: 'bounceInOut'
             }
         },{
             '.text_5star': {
-                delay:200,
-                duration: 400
+                delay:300,
+                duration: 600
             }
         },{
             '.text': {
-                delay: 200,
-                duration: 400
+                delay: 300,
+                duration: 600
             }
         }
 

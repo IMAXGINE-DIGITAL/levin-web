@@ -35,7 +35,7 @@ export function render() {
             <img src="${path}/dl.png"/>
         </div>
 
-        <div class="el text anime fade-in" style="${elementRect(1600,900,0,0)}">
+        <div class="el text anime fade-in" style="${elementRect(1600,900,0,30)}">
             <img src="${path}/text.png"/>
         </div>
 
