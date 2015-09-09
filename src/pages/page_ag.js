@@ -26,20 +26,15 @@ export function render() {
         <div class="el car" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/car.jpg"/>
         </div>
-
         <div class="el car2 anime fade-in" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/car2.jpg"/>
         </div>
-
         <div class="el text anime fade-in" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/text.png"/>
         </div>
-
         <div class="el text_5star anime fade-in" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/text_5star.png"/>
         </div>
-
-
     `;
 }
 

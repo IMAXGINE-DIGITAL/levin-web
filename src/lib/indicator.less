@@ -1,0 +1,19 @@
+#indicator {
+    position: absolute;
+    right: 20px;
+    z-index: 1000;
+    visibility: hidden;
+
+    .item {
+        width: 15px;
+        height: 15px;
+        margin: 9px 0;
+        background-image: url(images/indicator/item.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+
+        &.highlight {
+            background-image: url(images/indicator/item-highlight.png);
+        }
+    }
+}

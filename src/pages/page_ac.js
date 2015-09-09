@@ -14,19 +14,19 @@ export function render() {
         <div class="bg">
             <img src="${path}/bg.jpg">
         </div>
-        <div class="el text anime fade-in" style="${elementRect(762,95,31,189)}">
-            <img src="${path}/text.png"/>
-        </div>
         <div class="el car1 anime box-unfold" style="${elementRect(1450,577,140,323)}">
             <img src="${path}/car1.jpg"/>
         </div>
         <div class="el car2 anime box-unfold" style="${elementRect(1344,452,140,323)}">
             <img src="${path}/car2.jpg"/>
         </div>
-        <div class="el light anime fade-in" style="${elementRect(355,82,255,177)}">
+        <div class="el text anime fade-in" style="${elementRect(762,95,31,239)}">
+            <img src="${path}/text.png"/>
+        </div>
+        <div class="el light anime fade-in" style="${elementRect(355,82,255,237)}">
             <img src="${path}/light.png"/>
         </div>
-        <div class="el number1 anime fade-in" style="${elementRect(568,288,29,105)}">
+        <div class="el number1 anime fade-in" style="${elementRect(568,288,29,155)}">
             1660mm
         </div>
         <div class="el rule anime fade-in" style="${elementRect(1115,86,247,776)}">

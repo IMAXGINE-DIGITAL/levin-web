@@ -140,6 +140,10 @@ export function fromIndex(i) {
     return seq[i];
 }
 
+export function length() {
+    return seq.length;
+}
+
 function render() {
     return `
         <div id="pages"></div>

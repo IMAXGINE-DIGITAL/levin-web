@@ -5,6 +5,7 @@ import './lib/viewport';
 import * as nav from './lib/nav';
 import * as menu from './lib/menu';
 import * as page from './lib/page';
+import * as indicator from './lib/indicator';
 import * as pagescroll from './lib/pagescroll';
 import * as pagewheel from './lib/pagewheel';
 
@@ -45,8 +46,10 @@ page.ready().then(function ($pageRoot) {
     function circle(curName) {
         if (curName === 'home') {
             nav.hide();
+            indicator.hide();
         } else {
             nav.show();
+            indicator.show();
         }
 
         Promise.race([hashchange(), pagechange(), menu.navto(), pagewheel.wheel()])
@@ -60,7 +63,9 @@ page.ready().then(function ($pageRoot) {
                     name = ret;
                 }
 
-                if (name) {
+                if (name && name !== curName) {
+                    var index = page.indexOf(name);
+                    indicator.highlight(index);
                     return pagescroll.scroll($pageRoot, name);
                 }
             }).then(function(name) {
@@ -69,12 +74,17 @@ page.ready().then(function ($pageRoot) {
     }
 
     pagewheel.listen();
+    indicator.init(page.length() - 1);
+
     var name = getHashName();
-    pagescroll.scroll($pageRoot, 'home').then(function() {
-        if (name !== 'home') {
-            return pagescroll.scroll($pageRoot, name);
-        } else {
-            return name;
-        }
-    }).then(circle);
+    pagescroll.scroll($pageRoot, 'home')
+        .then(function() {
+            if (name !== 'home') {
+                var index = page.indexOf(name);
+                indicator.highlight(index);
+                return pagescroll.scroll($pageRoot, name);
+            } else {
+                return name;
+            }
+        }).then(circle);
 });
