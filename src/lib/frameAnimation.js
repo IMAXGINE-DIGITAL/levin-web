@@ -61,6 +61,12 @@ function Frame(fun) {
     var tick;
     var isCancel =false;
 
+    var nextFrame;
+    this.next = function(frame) {
+        nextFrame = frame;
+        return this;
+    }
+
     /**
      * 执行帧
      * @method request
@@ -77,6 +83,13 @@ function Frame(fun) {
 
         tick = requestAnimationFrame(function() {
             if (isCancel) return;
+            if (nextFrame) {
+                if (typeof nextFrame === 'function') {
+                    nextFrame();
+                } else if (nextFrame instanceof Frame) {
+                    nextFrame.request();
+                }
+            }
             defer && defer.resolve(fun.apply(null, args));
         });
 
@@ -201,19 +214,25 @@ function Animation(duration, timingFunction, frames) {
         function request() {
             var percent = framePercent * (frameIndex + 1).toFixed(10);
             var currentFrame = frameQueue[frameIndex];
+            var isFinish;
 
             currentFrame
+                .next(function() {
+                    if (frameIndex === frameQueue.length - 1) {
+                        isFinish = true;
+                    } else {
+                        frameIndex++;
+                        request();
+                    }
+                })
                 .request(percent.toFixed(10), bezier(percent).toFixed(10))
                 .then(function() {
                     if (!isPlaying) return;
 
-                    if (frameIndex === frameQueue.length - 1) {
+                    if (isFinish) {
                         isPlaying = false;
                         defer && defer.resolve('FINISH');
                         defer = null;
-                    } else {
-                        frameIndex++;
-                        request();
                     }
                 }, function() {
                     // CANCEL
