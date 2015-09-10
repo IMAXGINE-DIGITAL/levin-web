@@ -4,13 +4,16 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <script>
-var navigator = window.navigator;
-if (navigator.userAgent.match(/iPhone|Android/ig)) {
-    location.href = './mobile';
+var ua = window.navigator.userAgent;
+if (ua.match(/iPhone|Android/ig)) {
+    location.href = './mobile/index.html';
 }
 </script>
 <!--[if lt IE 9]>
-<script src="dist/iefix.js"></script>
+<script src="src/iefix/json2.js" type="text/javascript"></script>
+<script src="src/iefix/es5-shim.js" type="text/javascript"></script>
+<script src="src/iefix/es5-sham.js" type="text/javascript"></script>
+<script src="src/iefix/event.js" type="text/javascript"></script>
 <![endif]-->
 <script src="dist/levin.js"></script>
 </head>
