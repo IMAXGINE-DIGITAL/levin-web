@@ -33,7 +33,7 @@ export function render() {
             <img src="${path}/rule.png"/>
         </div>
         <div class="el range anime fade-in" style="${elementRect(554,68,783,754)}">
-            <input type="range" value="0" min="0" max="100"/>
+            <input type="range" value="0" min="0" max="100" class="range-input"/>
             <img src="${path}/circle.png" />
         </div>
     `;
@@ -80,7 +80,7 @@ export function show($page) {
                     });
 
             var slideCompelte = false;
-            $page.find('.range input[type="range"]').rangeslider({
+            $page.find('.range .range-input').rangeslider({
                 polyfill: false,
                 rangeClass: 'rangeslider',
                 fillClass: 'rangeslider__fill',

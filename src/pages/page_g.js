@@ -15,22 +15,22 @@ export function render() {
         <div class="el shadow anime fade-in" style="${elementRect(368,23,514,807)}">
             <img src="${path}/shadow.png">
         </div>
-        <div class="el text1 anime box-unfold" style="${elementRect(467,127,70,173)}">
+        <div class="el text1 anime box-unfold" style="${elementRect(467,127,70,223)}">
             <img src="${path}/text1.png">
         </div>
-        <div class="el trigle1 anime box-unfold" style="${elementRect(816,250,537,192)}">
+        <div class="el trigle1 anime box-unfold" style="${elementRect(816,250,537,242)}">
             <img src="${path}/trigle1.png">
         </div>
-        <div class="el trigle2 anime box-unfold" style="${elementRect(816,535,537,192)}">
+        <div class="el trigle2 anime box-unfold" style="${elementRect(816,535,537,242)}">
             <img src="${path}/trigle2.png">
         </div>
-        <div class="el text2 anime fade-in" style="${elementRect(352,124,323,404)}">
+        <div class="el text2 anime fade-in" style="${elementRect(352,124,323,454)}">
             <img src="${path}/text2.png">
         </div>
-        <div class="el text3 anime fade-in" style="${elementRect(296,122,1165,159)}">
+        <div class="el text3 anime fade-in" style="${elementRect(296,122,1165,209)}">
             <img src="${path}/text3.png">
         </div>
-        <div class="el text4 anime fade-in" style="${elementRect(368,124,1029,681)}">
+        <div class="el text4 anime fade-in" style="${elementRect(368,124,1029,731)}">
             <img src="${path}/text4.png">
         </div>
         <div class="el seat anime fly-in" style="${elementRect(503,675,520,144)}">
