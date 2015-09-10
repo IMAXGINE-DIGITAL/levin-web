@@ -27,7 +27,7 @@ export function listen() {
   $body.on('mousewheel', function(e) {
     e.preventDefault();
 
-    var y = e.originalEvent.deltaY;
+    var y = e.originalEvent.deltaY || -e.originalEvent.wheelDelta;
     if (y * deltaY >= 0) {
       deltaY += y;
     } else {

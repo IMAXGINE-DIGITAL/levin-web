@@ -54,7 +54,12 @@ gulp.task('imagelist', function () {
 });
 
 gulp.task('iefix', function() {
-    return gulp.src(['./src/iefix/*'])
+    return gulp.src([
+            './src/iefix/json2.js',
+            './src/iefix/es5-shim.js', 
+            './src/iefix/es5-sham.js',
+            './src/iefix/event.js'
+        ])
         .pipe(concat('iefix.js'))
         .pipe(uglifyjs())
         .pipe(gulp.dest('dist/'));
