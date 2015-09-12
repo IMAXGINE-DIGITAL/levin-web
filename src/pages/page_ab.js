@@ -1,4 +1,4 @@
-import './page_a.less';
+import './page_ab.less';
 import * as jQuery from 'jquery';
 import {
     Promise, defer
@@ -23,34 +23,34 @@ export function render() {
     var path = 'images/page_ab';
 
     return `
-        <div class="el car anime" style="${elementRect(1600,900,0,0)}">
-            <img src="${path}/car.jpg"/>
-        </div>
+        <div class="wrap">
+            <div class="el car anime" style="${elementRect(1600,900,0,0)}">
+                <img src="${path}/car.jpg"/>
+            </div>
 
-        <div class="el car-gray anime fade-in" style="${elementRect(1600,900,0,0)}">
-            <img src="${path}/car-gray.jpg"/>
-        </div>
+            <div class="el car-gray anime fade-in" style="${elementRect(1600,900,0,0)}">
+                <img src="${path}/car-gray.jpg"/>
+            </div>
 
-        <div class="el logo anime box-unfold" style="${elementRect(314,61,487,127)}">
-            <img src="${path}/logo.png"/>
-        </div>
+            <div class="el logo anime box-unfold" style="${elementRect(314,61,487,127)}">
+                <img src="${path}/logo.png"/>
+            </div>
 
-        <div class="el light anime fade-in" style="${elementRect(1600,900,0,0)}">
-            <img src="${path}/car-light.jpg"/>
-        </div>
+            <div class="el light anime fade-in" style="${elementRect(1600,900,0,0)}">
+                <img src="${path}/car-light.jpg"/>
+            </div>
 
-        <div class="el light2 anime fade-in" style="${elementRect(1600,900,0,0)}">
-            <img src="${path}/car-light2.jpg"/>
-        </div>
+            <div class="el light2 anime fade-in" style="${elementRect(1600,900,0,0)}">
+                <img src="${path}/car-light2.jpg"/>
+            </div>
 
-        <div class="el text anime fly-in" style="${elementRect(1600,900,0,0)}">
-            <img src="${path}/text.png"/>
-        </div>
+            <div class="el text anime fly-in" style="${elementRect(1600,900,0,0)}">
+                <img src="${path}/text.png"/>
+            </div>
 
-        <div class="el number-text anime number" style="font-style:italic;font-size:65%;color:#fff;${elementRect(304,144,998,620)}">
+            <div class="el number-text anime number" style="font-style:italic;font-size:65%;color:#fff;${elementRect(304,144,998,620)}">
+            </div>
         </div>
-        
-
     `;
 }
 

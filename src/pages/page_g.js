@@ -12,7 +12,7 @@ export function render() {
 
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
-        <div class="el shadow anime fade-in" style="${elementRect(368,23,514,807)}">
+        <div class="el shadow anime fade-in" style="${elementRect(368,23,514,857)}">
             <img src="${path}/shadow.png">
         </div>
         <div class="el text1 anime box-unfold" style="${elementRect(467,127,70,223)}">
@@ -33,13 +33,13 @@ export function render() {
         <div class="el text4 anime fade-in" style="${elementRect(368,124,1029,731)}">
             <img src="${path}/text4.png">
         </div>
-        <div class="el seat anime fly-in" style="${elementRect(503,675,520,144)}">
+        <div class="el seat anime fly-in" style="${elementRect(503,675,520,194)}">
             <img src="${path}/seat.png">
         </div>
-        <div class="el seat-back1 anime fade-in" style="${elementRect(286,530,776,175)}">
+        <div class="el seat-back1 anime fade-in" style="${elementRect(286,530,776,225)}">
             <img src="${path}/seat-back1.png">
         </div>
-        <div class="el seat-back2 anime fade-in" style="${elementRect(333,487,800,219)}">
+        <div class="el seat-back2 anime fade-in" style="${elementRect(333,487,800,269)}">
             <img src="${path}/seat-back2.png">
         </div>
     `;

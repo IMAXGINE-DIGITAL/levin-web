@@ -9,7 +9,7 @@ import * as indicator from './lib/indicator';
 import * as pagescroll from './lib/pagescroll';
 import * as pagewheel from './lib/pagewheel';
 
-page.ready().then(function ($pageRoot) {
+page.ready().then(function ($pageRoot) {    
     var $win = $(window);
     var $doc = $(window.document);
 
@@ -66,9 +66,16 @@ page.ready().then(function ($pageRoot) {
                 if (name && name !== curName) {
                     var index = page.indexOf(name);
                     indicator.highlight(index);
+                    if (location.search.indexOf('debug') > 0) {
+                        console.debug(name);
+                        location.replace('#' + name);
+                    }
                     return pagescroll.scroll($pageRoot, name);
+                } else {
+                    return curName;
                 }
             }).then(function(name) {
+
                 return circle(name);
             });
     }
