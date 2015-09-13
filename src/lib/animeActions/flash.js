@@ -2,6 +2,7 @@ import './flash.less';
 import $ from 'jquery';
 import {Promise, delay} from '../promise';
 import fa from '../frameAnimation';
+import {transferEeasing} from '../util';
 
 /*
 'flash': {
@@ -23,24 +24,55 @@ export default function flash($element, options) {
             var interval = flashOpt.interval || 200;
 
             function blink() {
-                return fa(interval / 2, 
-                    options.timingFunction || 'easeIn',
-                    function(i1, i2) {
-                        $element.css({
-                            opacity: 1 * i2
-                        });
-                    }
-                ).play()
-                .then(function() {
-                    return fa(interval / 2, 
-                        options.timingFunction || 'easeIn',
-                        function(i1, i2) {
-                            $element.css({
-                                opacity: 1 * (1 - i2)
-                            });
-                        }
-                    ).play();
+                $element.css({
+                    display: 'block',
+                    opacity: 0
                 });
+
+                return (new Promise(function(resolve, reject) {
+                    $element.animate({
+                        opacity: 1
+                    }, {
+                        duration: interval / 2,
+                        easing: transferEeasing(options.timingFunction),
+                        complete: resolve
+                    });
+                })).then(function() {
+                    $element.css({
+                        display: 'block',
+                        opacity: 1
+                    });
+
+                    return (new Promise(function(resolve, reject) {
+                        $element.animate({
+                            opacity: 0
+                        }, {
+                            duration: interval / 2,
+                            easing: transferEeasing(options.timingFunction),
+                            complete: resolve
+                        });
+                    }));
+                });
+
+
+                // return fa(interval / 2, 
+                //     options.timingFunction || 'easeIn',
+                //     function(i1, i2) {
+                //         $element.css({
+                //             opacity: 1 * i2
+                //         });
+                //     }
+                // ).play()
+                // .then(function() {
+                //     return fa(interval / 2, 
+                //         options.timingFunction || 'easeIn',
+                //         function(i1, i2) {
+                //             $element.css({
+                //                 opacity: 1 * (1 - i2)
+                //             });
+                //         }
+                //     ).play();
+                // });
             }
 
             return ready.then(function() {

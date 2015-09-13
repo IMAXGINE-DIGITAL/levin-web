@@ -11,3 +11,19 @@ export function elementRect(width, height, left, top, vp) {
         top:${top/h*100}%;
     `
 }
+
+export function transferEeasing(type) {
+    switch(type) {
+        case 'easeIn':
+            return 'easeInQuart';
+        case 'easeOut':
+            return 'easeOutQuart';
+        case 'easeInOut':
+            return 'easeInOutQuart';
+        case 'linear':
+            return 'linear';
+        case 'swing':
+        default:
+            return 'swing';
+    }
+}

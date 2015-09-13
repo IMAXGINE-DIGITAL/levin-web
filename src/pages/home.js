@@ -5,11 +5,12 @@ import * as page from '../lib/page';
 import {elementRect} from '../lib/util';
 import '../lib/animation';
 import preloadImags from '../lib/preload';
+import {isIE8} from '../lib/env';
 
 var path = 'images/home';
-var logoImg = require(`../../images/logo`);
-var lightGrayImg = require(`../../images/light_gray.gif`);
-var lightImg = require(`../../images/light.jpg`);
+var logoImg = require(`../../images/logo.jpg`);
+var lightImg = isIE8 ? 'images/light.jpg' : require(`../../images/light.jpg`);
+var lazystr = isIE8 ? 'lazyload="true"': '';
 
 export function render() {
     return `
@@ -20,14 +21,11 @@ export function render() {
         <div class="el eagle anime slide-in" style="${elementRect(796,335,0,536)}">
             <img src="${path}/eagle.png" lazyload="true"/>
         </div>
-        <div class="el light-gray anime fade-in" style="${elementRect(1236,197,166,258)}">
-            <img src="${lightGrayImg}" />
+        <div class="el logo anime zoom" style="${elementRect(1031,168,278,201)}">
+            <img src="${logoImg}"/>
         </div>
         <div class="el light anime box-unfold" style="${elementRect(1236,197,166,258)}">
-            <img src="${lightImg}" />
-        </div>
-        <div class="el logo anime zoom" style="${elementRect(1031,168,278,201)}">
-            <img src="${logoImg}" />
+            <img src="${lightImg}" ${lazystr}/>
         </div>
         <div class="el text anime fade-in" style="${elementRect(408,59,594,527)}">
             <img src="${path}/text.gif" lazyload="true"/>
@@ -53,10 +51,6 @@ export function show($page) {
                 from: '400%',
                 to: '100%'
             }
-        });
-    }).then(function() {
-        return animation.get('.light-gray').animate({
-            duration: 50
         });
     }).then(function() {
         var {frame, done} = animation.get('.light')

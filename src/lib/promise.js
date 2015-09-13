@@ -185,7 +185,11 @@ function PromiseUtilities() {
         if(document.readyState === 'complete') {
             resolve();
         } else {
-            document.addEventListener('DOMContentLoaded', resolve);
+            if (document.addEventListener) {
+                document.addEventListener('DOMContentLoaded', resolve);
+            } else {
+                window.attachEvent('onload', resolve);
+            }
         }
     });
     this.domReady = function() {
@@ -200,7 +204,11 @@ function PromiseUtilities() {
      * @return {Promise} a Promise object
      */
     var pageLoadPromise = new Promise(function(resolve, reject) {
-        window.addEventListener('load', resolve);
+        if (window.addEventListener) {
+            window.addEventListener('load', resolve);
+        } else {
+            window.attachEvent('onload', resolve);
+        }
     });
     this.pageLoad = function() {
         return pageLoadPromise;
@@ -233,10 +241,19 @@ function PromiseUtilities() {
     this.waitForEvent = function (element, eventName, useCapture){
         return new Promise(function(resolve, reject) {
             function handler(e) {
-                element.removeEventListener(eventName, handler);
+                if (element.removeEventListener) {
+                    element.removeEventListener(eventName, handler);
+                } else {
+                    element.detachEvent('on' + eventName, handler);
+                }
                 resolve(e);
             }
-            element.addEventListener(eventName, handler, useCapture);
+
+            if (element.addEventListener) {
+                element.addEventListener(eventName, handler, useCapture);
+            } else {
+                element.attachEvent('on' + eventName, handler);
+            }
         });
     }
 

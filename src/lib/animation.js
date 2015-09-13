@@ -1,5 +1,7 @@
 import './animation.less';
 import $ from 'jquery';
+import easing from './easing';
+easing($);
 import {Promise, delay} from './promise';
 import ACTIONS from './animeActions';
 
