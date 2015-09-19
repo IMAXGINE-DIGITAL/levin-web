@@ -9,20 +9,29 @@ export function render() {
     var path = 'images/page_ah';
 
     return `
-        <div class="el car" style="${elementRect(1600,900,0,0)}">
-            <img src="${path}/car.jpg"/>
+        <div class="bg"><img src="${path}/bg.jpg"></div>
+        <div class="el car anime slide-in" style="${elementRect(1281,431,110,348)}">
+            <img src="${path}/car.png"/>
         </div>
-        <div class="el lg rotate" style="${elementRect(196,189,225,581)}">
+        <div class="el car1" style="${elementRect(1600,900,0,0)}">
+            <img src="${path}/car1.jpg"/>
+        </div>
+        <div class="el lg1 anime slide-in rotate" style="${elementRect(196,189,225,581)}">
             <img src="${path}/lg.png"/>
         </div>
-        <div class="el lg rotate" style="${elementRect(196,189,1019,585)}">
+        <div class="el lg2 anime slide-in rotate" style="${elementRect(196,189,1019,585)}">
             <img src="${path}/lg.png"/>
         </div>
         <div class="el dl anime box-unfold" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/dl.png"/>
         </div>
-        <div class="el text anime fade-in text-wrap" style="${elementRect(570,113,90,220)}">
-            <span class="text_a" style="${elementRect(570,113,0,0,[570,113])}">F1空气动力学</span>
+        <div class="el text anime fade-in text-wrap" style="${elementRect(750,113,90,220)}">
+            <span class="text_a" style="${elementRect(750,113,0,0,[750,113])}">
+                与其追风，不如破风而行
+            </span>
+            <span class="text_b" style="${elementRect(750,30,0,83,[750,113])}">
+                F1空气动力学设计，风阻系数只有0.29
+            </span>
         </div>
     `;
 }
@@ -33,19 +42,45 @@ export function show($page) {
     var animation = $page.animation();
     
     return animation.then(function(item) {
-        return animation.get('.dl').animate({
+        return Promise.all([
+                    animation.get('.car').animate({
+                        duration: 600,
+                        'slide-in': {
+                            from: 'left',
+                            offset: '50%'
+                        }
+                    }),
+                    animation.get('.lg1').animate({
+                        duration: 600,
+                        'slide-in': {
+                            from: 'left',
+                            offset: '50%'
+                        }
+                    }),
+                    animation.get('.lg2').animate({
+                        duration: 600,
+                        'slide-in': {
+                            from: 'left',
+                            offset: '50%'
+                        }
+                    })
+                ]).then(function() {
+                    $page.find('.car1').show();
+                });
+    }).then(function(item){
+       return Promise.all([
+            animation.get('.dl').animate({
                 delay: 400,
                 duration:400,
                 'box-unfold':{
                     origin: ['100%', 0], 
-                    angle:0
+                    angle: 0
                 }
-            }) 
-        })
-        .then(function(item){
-           return animation.get('.text').animate({
+            }), 
+            animation.get('.text').animate({
                 delay: 400,
                 duration:400
             })
-        });
+        ]);
+    });
 }

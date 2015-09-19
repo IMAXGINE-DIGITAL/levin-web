@@ -56,6 +56,8 @@ page.ready().then(function ($pageRoot) {
         var cat = page.catFromPageIndex(pageIndex);
         if (cat) {
             nav.setMenuText(cat.name);
+        } else {
+            nav.setMenuText('首页');
         }
     }
 
@@ -72,12 +74,13 @@ page.ready().then(function ($pageRoot) {
 
     function circle(curName) {
         if (curName === 'home') {
-            nav.hide();
+            // nav.hide();
             indicator.hide();
         } else {
-            nav.show();
+            // nav.show();
             indicator.show();
         }
+        nav.show();
 
         Promise.race([
                 hashchange(), 

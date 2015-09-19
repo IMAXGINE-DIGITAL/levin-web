@@ -25,7 +25,9 @@ export function render() {
             <img src="${path}/light.png">
             <span class="text_a" style="${elementRect(429,130,0,0,[571,178])}">高质感</span>
             <span class="text_b" style="${elementRect(113,48,412,82,[571,178])}">内饰</span>
-            <span class="text_c" style="${elementRect(311,34,0,144,[571,178])}">宽适乘坐质感，无需妥协</span>
+            <span class="text_c" style="${elementRect(571,34,0,144,[571,178])}">
+                前卫直切式中控台，宽适乘坐质感，无需妥协
+            </span>
         </div>
     `;
 }
@@ -35,7 +37,7 @@ export function show($page) {
 
     return animation.then(function() {
         return animation.get('.line1').animate({
-            duration: 800,
+            duration: 300,
             'box-unfold': {
                 origin: [0, 0],
                 angle: 0
@@ -47,7 +49,7 @@ export function show($page) {
         });
     }).then(function() {
         return animation.get('.line1').animate({
-            duration: 800,
+            duration: 300,
             delay: 200,
             'box-fold': {
                 origin: ['100%', 0],
@@ -58,7 +60,7 @@ export function show($page) {
         });
     }).then(function() {
         return animation.get('.line2').animate({
-            duration: 600,
+            duration: 200,
             'box-unfold': {
                 origin: ['100%', '100%'],
                 angle: 0
@@ -70,7 +72,7 @@ export function show($page) {
         });
     }).then(function() {
         return animation.get('.line3').animate({
-            duration: 600,
+            duration: 200,
             delay: 200,
             'box-unfold': {
                 origin: [0, 0],
@@ -83,7 +85,7 @@ export function show($page) {
         });
     }).then(function() {
         return animation.get('.line2').animate({
-            duration: 600,
+            duration: 200,
             'box-fold': {
                 origin: [0, 0],
                 angle: 0
@@ -93,7 +95,7 @@ export function show($page) {
         })
     }).then(function() {
         return animation.get('.line3').animate({
-            duration: 600,
+            duration: 200,
             delay: 200,
             'box-fold': {
                 origin: ['100%', 0],

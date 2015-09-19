@@ -15,7 +15,7 @@ export function render() {
         <div class="el car anime slide-in" style="${elementRect(1045,425,475,369)}">
             <img src="${path}/car.png" />
         </div>
-        <div class="el eagle anime fly-in" style="${elementRect(643,200,149,162)}">
+        <div class="el eagle anime slide-in" style="${elementRect(643,200,149,162)}">
             <img src="${path}/eagle.png" />
         </div>
         <div class="el text anime fade-in text-wrap" style="${elementRect(627,153,83,349)}">
@@ -41,9 +41,10 @@ export function show($page) {
         });
     }).then(function() {
         return animation.get('.eagle').animate({
-            duration: 1000,
+            duration: 800,
             timingFunction: [0,0,0,1],
-            'fly-in': {
+            'slide-in': {
+                offset: '100%',
                 from: 'right'
             }
         });

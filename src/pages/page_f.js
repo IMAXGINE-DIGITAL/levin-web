@@ -12,8 +12,13 @@ export function render() {
 
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
-        <div class="el text anime fade-in" style="${elementRect(581,87,106,222)}">
-            <img src="${path}/text.png">
+        <div class="el text anime fade-in text-wrap" style="${elementRect(581,117,106,222)}">
+            <span class="text_a" style="${elementRect(581,80,0,0,[581,117])}">
+                媲美B级后车排
+            </span>
+            <span class="text_b" style="${elementRect(581,30,0,87,[581,117])}">
+                地台平整化设计，身心尽情舒展
+            </span>
         </div>
     `;
 }

@@ -32,17 +32,15 @@ export function show($page) {
     var animation = $page.animation();
     
     return animation.then(function(item) {
-            return animation.get('.car').animate({
-                delay: 200,
-                duration:400
-            })
-        })
-        .then(function(item){
-            return animation.get('.text').animate({
-                delay: 400,
-                duration:400
-            })
-        })
-        
-
+            return Promise.all([
+                animation.get('.car').animate({
+                    delay: 400,
+                    duration:400
+                }),
+                animation.get('.text').animate({
+                    delay: 400,
+                    duration:400
+                })
+            ]);
+        });
 }

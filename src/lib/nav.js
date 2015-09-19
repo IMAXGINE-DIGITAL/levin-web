@@ -39,7 +39,7 @@ var path = 'images/nav';
 function render() {
     return `
         <div id="nav" style="${elementRect(1600,121,0,0)}">
-            <div class="el toyota-logo" style="${_elementRect(292,23,35,25)}">
+            <div class="el toyota-logo" style="${_elementRect(291,25,35,25)}">
                 <img src="${path}/toyota-logo.png">
             </div>
             <div class="el levin-logo" style="${_elementRect(242,121,1331,36)}">
@@ -47,7 +47,7 @@ function render() {
             </div>
             <div class="el top-menu text-wrap" style="${_elementRect(148,72,722,0)}">
                 <img src="${path}/top-menu.png">
-                <span></span>
+                <span>首页</span>
             </div>
         </div>
     `;

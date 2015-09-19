@@ -17,17 +17,22 @@ export function render() {
         <div class="el car1 anime box-unfold" style="${elementRect(1450,577,140,323)}">
             <img src="${path}/car1.jpg"/>
         </div>
-        <div class="el car2 anime box-unfold" style="${elementRect(1344,452,140,323)}">
+        <div class="el car2 anime box-unfold" style="${elementRect(1450,577,140,323)}">
             <img src="${path}/car2.jpg"/>
         </div>
-        <div class="el text anime fade-in" style="${elementRect(762,95,31,239)}">
-            <img src="${path}/text.png"/>
+        <div class="el text anime fade-in text-wrap" style="${elementRect(762,95,31,239)}">
+            <span class="text_a" style="${elementRect(762,60,0,0,[762,95])}">
+                超长轴距
+            </span>
+            <span class="text_b" style="${elementRect(762,35,0,60,[762,95])}">
+                媲美B级车，在车里尽情舒展
+            </span>
         </div>
         <div class="el light anime fade-in" style="${elementRect(355,82,255,237)}">
             <img src="${path}/light.png"/>
         </div>
-        <div class="el number1 anime fade-in" style="${elementRect(568,288,29,155)}">
-            1660mm
+        <div class="el number1 anime fade-in number-text" style="${elementRect(568,288,29,155)}">
+            2700mm
         </div>
         <div class="el rule anime fade-in" style="${elementRect(1115,86,247,776)}">
             <img src="${path}/rule.png"/>
@@ -72,12 +77,12 @@ export function show($page) {
                         angle: 0
                     });
 
-            var number1Action = animation.get('.number1')
-                    .action('number', {
-                        from: 1660,
-                        to: 2700,
-                        format: '%04%03%02%01mm'
-                    });
+            // var number1Action = animation.get('.number1')
+            //         .action('number', {
+            //             from: 1660,
+            //             to: 2700,
+            //             format: '%04%03%02%01mm'
+            //         });
 
             var slideCompelte = false;
             $page.find('.range .range-input').rangeslider({
@@ -94,7 +99,7 @@ export function show($page) {
                         } else {
                             car1Action.frame(1 - value / 100, 1 - value / 100);
                         }
-                        number1Action.frame(value / 100, value / 100);
+                        // number1Action.frame(value / 100, value / 100);
                     });
                 },
 

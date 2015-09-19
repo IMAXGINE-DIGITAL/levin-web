@@ -1,6 +1,31 @@
 #page_ah {
     
-    @-moz-keyframes rotatelg {
+    @-moz-keyframes rotatelg-rear {
+        from {
+            -moz-transform: rotate(360deg);
+        }
+        to {
+            -moz-transform: rotate(0);
+        }
+    }
+    @-webkit-keyframes rotatelg-rear {
+        from {
+            -webkit-transform: rotate(360deg);
+        }
+        to {
+            -webkit-transform: rotate(0);
+        }
+    }
+    @keyframes rotatelg-rear {
+        from {
+            transform: rotate(360deg);
+        }
+        to {
+            transform: rotate(0);
+        }
+    }
+
+    @-moz-keyframes rotatelg-front {
         from {
             -moz-transform: rotate(0);
         }
@@ -8,7 +33,7 @@
             -moz-transform: rotate(360deg);
         }
     }
-    @-webkit-keyframes rotatelg {
+    @-webkit-keyframes rotatelg-front {
         from {
             -webkit-transform: rotate(0);
         }
@@ -16,16 +41,21 @@
             -webkit-transform: rotate(360deg);
         }
     }
-    @keyframes rotatelg {
+    @keyframes rotatelg-front {
         from {
-            transform: rotate(0deg);
+            transform: rotate(0);
         }
         to {
             transform: rotate(360deg);
         }
     }
 
-    .lg {
+
+    .car1 {
+        display: none;
+    }
+
+    .lg1,.lg2 {
         -webkit-animation-name: rotatelg;
         -webkit-animation-duration: .03s;
         -webkit-animation-iteration-count: infinite;
@@ -40,8 +70,25 @@
         animation-timing-function: linear;
     }
 
+    .lg1 {
+        -webkit-animation-name: rotatelg-front;
+        -moz-animation-name: rotatelg-front;
+        animation-name: rotatelg-front;
+    }
+
+    .lg2 {
+        -webkit-animation-name: rotatelg-front;
+        -moz-animation-name: rotatelg-front;
+        animation-name: rotatelg-front;
+    }
+
     .text_a {
-        font-size: 55%;
+        font-size: 40%;
+        color: #FFF;
+    }
+
+    .text_b {
+        font-size: 15%;
         color: #FFF;
     }
 }

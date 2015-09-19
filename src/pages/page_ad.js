@@ -21,11 +21,13 @@ export function render() {
         <div class="el text anime box-unfold text-wrap" style="${elementRect(609,155,410,483)}">
             <img src="${path}/light.png"/>
             <span class="text_a" style="${elementRect(263,52,0,62,[609,155])}">比普通天窗大</span>
-            <span class="text_b" style="${elementRect(294,114,263,0,[609,155])}">15%</span>
             <span class="text_c" style="${elementRect(608,34,0,129,[609,155])}">窄边框设计,采光充足,增强通透感和车辆空间感。</span>
         </div>
         <div class="el blue2 anime fade-in" style="${elementRect(1444,768,0,86)}">
             <img src="${path}/blue2.png"/>
+        </div>
+        <div class="el number1 anime number number-text" style="${elementRect(281,105,680,483)}">
+            15%
         </div>
     `;
 }
@@ -61,10 +63,21 @@ export function show($page) {
             }
         });
     }).then(function(item) {
-        return animation.get('.blue2').animate({
-            duration: 300,
-            delay: 300
-        }).then(function() {
+        return Promise.all([
+            animation.get('.blue2').animate({
+                duration: 300,
+                delay: 300
+            }),
+            animation.get('.number1').animate({
+                duration: 300,
+                delay: 300,
+                number: {
+                    from: 0,
+                    to: 15,
+                    format: '%02%01%'
+                }
+            })
+        ]).then(function() {
             $page.find('.blue2').toggleClass('fade-in fade-out');
         })
     }).then(function(item) {

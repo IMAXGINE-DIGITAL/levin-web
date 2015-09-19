@@ -20,37 +20,35 @@ export function render() {
 
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
-
-        <div class="el car anime zoom" style="${elementRect(164.1,113.3,724,400)}">
-            <img src="${path}/car-total.png"/>
+        <div class="el car anime zoom" style="${elementRect(166,114,715,402)}">
+            <img src="${path}/car.png"/>
         </div>
-
-        <div class="el car-light-small anime flash" style="${elementRect(158,51,726,440)}">
-            <img src="${path}/car-light.png"/>
+        <div class="el light-small anime flash" style="${elementRect(160,18.6,720,442)}">
+            <img src="${path}/light.png"/>
         </div>
-
         <div class="el mask anime fade-in" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/mask.png"/>
         </div>
-        
-        <div class="el car-light-big anime flash" style="${elementRect(1600,505,0,296)}">
-            <img src="${path}/car-light.png"/>
+        <div class="el four-light anime fade-in" style="${elementRect(1600,532,0,298)}">
+            <img src="${path}/four-light.png"/>
         </div>
-
-        <div class="el car-front anime box-unfold" style="${elementRect(1600,900,3,0)}">
-            <img src="${path}/car-front.png"/>
+        <div class="el grid anime box-unfold" style="${elementRect(1088,326,250,553)}">
+            <img src="${path}/grid.png"/>
         </div>
-
-        <div class="el geshan anime box-unfold" style="${elementRect(1096,329,250,554)}">
-            <img src="${path}/geshan.png"/>
+        <div class="el line anime box-unfold" style="${elementRect(1438,277,75,248)}">
+            <img src="${path}/line.png"/>
         </div>
-        
-        <div class="el text anime fly-in text-wrap" style="${elementRect(669,154,225,160)}">
-            <span class="text_a" style="${elementRect(669,95,0,0,[669,154])}">我的型，我的范</span>
-            <span class="text_b" style="${elementRect(491,36,0,118,[669,154])}">够前卫，才能成为路上的焦点！</span>
+        <div class="el light anime flash" style="${elementRect(1600,186,0,298)}">
+            <img src="${path}/light.png"/>
         </div>
-
-
+        <div class="el text anime text-wrap slide-in" style="${elementRect(669,154,300,209)}">
+            <span class="text_a" style="${elementRect(667,100,0,0,[669,154])}">
+                我的型，我的范
+            </span>
+            <span class="text_b" style="${elementRect(520,39,0,115,[669,154])}">
+                够前卫，才能成为路上的焦点！
+            </span>
+        </div>
     `;
 }
 
@@ -59,66 +57,75 @@ export function show($page) {
     
     return animation.then(function(item) {
             $page.find('.car').show();
-            return animation.get('.car-light-small').animate({
-                duration:400
-            }).then(function() {
-                $page.find('.car-light-small').hide();
-            });
-            
-        })
-
-        .then(function(item){
-           return animation.get('.car').animate({
-                delay: 400,
-                duration:400,
-                'zoom': {
-                    from: '100%',
-                    to: '1000%'
-                }
-            })
-             
-        })
-
-        .then(function(item){
-            $('.car-light-small').hide();
-        })
-
-        .then(function(item) {
-            return animation.get('.mask').animate({
-                duration: 400
-            });
-        })
-        .then(function(item){
-            return animation.get('.car-front').animate({
-                duration:400,
-                'box-unfold':{
-                    origin: [0, 0],
-                    angle: 0
-                }
-            });
-            
-        })
-        .then(function(item){
-            return animation.get('.car-light-big').animate({
-                duration:400
-            });
-        })
-        .then(function(item){
-            return animation.get('.geshan').animate({
-                duration:400,
-                'box-unfold':{
-                    origin: [0, 0],
-                    angle: 0
-                }
-            });
-        })
-        .then(function(item){
-            return animation.get('.text').animate({
-                duration:400,
-                'fly-in':{
-                    from: 'left'
-                }
-            });
-        })
-
+            return animation.get('.light-small')
+                .animate({
+                    flash: {
+                        loop: 1,
+                        interval: 600
+                    }
+                }).then(function() {
+                    $page.find('.light-small').hide();
+                })
+        }).then(function(item){
+            return animation.get('.car')
+                    .animate({
+                        duration: 400,
+                        delay: 300,
+                        zoom: {
+                            from: '100%',
+                            to: '1000%'
+                        }
+                    });
+        }).then(function(item) {
+            return Promise.all([
+                    animation.get('.mask')
+                        .animate({
+                            duration: 200
+                        }),
+                    animation.get('.four-light')
+                        .animate({
+                            duration: 300,
+                            delay: 200,
+                        }),
+                    animation.get('.grid')
+                        .animate({
+                            duration: 300,
+                            'box-unfold': {
+                                origin: [0,0],
+                                angle: 0
+                            }
+                        })
+                ]);
+        }).then(function() {
+            return animation.get('.line')
+                        .animate({
+                            duration: 500,
+                            delay: 100,
+                            'box-unfold': {
+                                origin: [0,0],
+                                angle: 0
+                            }
+                        });
+        }).then(function() {
+            return Promise.all([
+                        animation.get('.light')
+                            .animate({
+                                flash: {
+                                    loop: 3,
+                                    interval: 500
+                                }
+                            }),
+                        animation.get('.text')
+                            .animate({
+                                duration: 400,
+                                delay: 600,
+                                timingFunction: 'easeOut',
+                                'slide-in': {
+                                    from: 'left',
+                                    offset: '50%'
+                                }
+                            })
+                    ]);
+        });
+        
 }

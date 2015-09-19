@@ -66,14 +66,15 @@ export function scroll($pageRoot, name) {
                     return animation(name, ret[1], $pageRoot);
                 });
         }).then(function() {
-            page.show(name);
-            return name;
+            var promise = page.show(name);
+            if (name === 'home') {
+                return promise.then(function() {
+                    return name;
+                });
+            } else {
+                return name;
+            }
         });
-        // .then(function() {
-        //     return page.show(name);
-        // }).then(function() {
-        //     return name;
-        // });
 
     return queue;
 }

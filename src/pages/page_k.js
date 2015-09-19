@@ -30,10 +30,10 @@ export function render() {
         <div class="el shift anime" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/shift.png">
         </div>
-        <div class="el shiftdown anime fade-in" style="${elementRect(137,214,262,415)}">
+        <div class="el shiftdown anime flash" style="${elementRect(137,214,262,415)}">
             <img src="${path}/shiftdown.png">
         </div>
-        <div class="el shiftup anime fade-in" style="${elementRect(141,216,1201,413)}">
+        <div class="el shiftup anime flash" style="${elementRect(141,216,1201,413)}">
             <img src="${path}/shiftup.png">
         </div>
         <div class="el text anime fade-in" style="${elementRect(422,76,98,284)}">
@@ -78,6 +78,12 @@ function overtaking($car1, $car2) {
         return fa(300, 'linear', function(i1, i2) {
             $car2.css({
                 top: (car2DestTop1 + (car2DestTop2 - car2DestTop1) * i2) + '%'
+            });
+        }).play();
+    }).then(function() {
+        return fa(300, 'linear', function(i1, i2) {
+            $car1.css({
+                left: (car1DestLeft + (car1OriginLeft - car1DestLeft) * i2) + '%'
             });
         }).play();
     });
@@ -154,17 +160,26 @@ export function show($page) {
                     delay: 300
                 });
         }).then(function(item) {
-            return Promise.all([
+            Promise.all([
                 animation.get('.shiftdown').animate({
-                    duration: 600,
-                    delay: 300
+                    delay: 300,
+                    flash: {
+                        loop: 3,
+                        interval: 1000
+                    }
                 }),
                 animation.get('.shiftup').animate({
-                    duration: 600,
-                    delay: 300
-                }),
-            ]);
+                    delay: 300,
+                    flash: {
+                        loop: 3,
+                        interval: 1000
+                    }
+                })
+            ]).then(function() {
+                $page.find('.shiftup, .shiftdown').find('img').remove();
+            });
         }).then(function() {
-            return interactive($page);
+            interactive($page);
+            $page.find('.shiftup').trigger('click');
         });
 }

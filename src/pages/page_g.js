@@ -65,52 +65,44 @@ export function show($page) {
                     .addClass('slide-out')
             });
         }).then(function(item) {
-            return animation.get('.seat').animate({
-                duration: 700,
-                delay: 400,
-                timingFunction: 'easeOut',
-                'slide-out': {
-                    to: 'left',
-                    offset: '3%'
-                }
-            });
+            return Promise.all([
+                animation.get('.seat').animate({
+                    duration: 700,
+                    delay: 400,
+                    timingFunction: 'easeOut',
+                    'slide-out': {
+                        to: 'left',
+                        offset: '3%'
+                    }
+                }),
+                animation.get('.text2').animate({
+                    duration: 700,
+                    delay: 400
+                })
+            ]);
         }).then(function(item) {
-            return animation.get('.text1').animate({
-                duration: 400,
-                delay: 300,
-                'box-unfold': {
-                    origin: ['50%', '50%'],
-                    angle: 0
-                }
-            });
-        }).then(function(item) {
-            return animation.get('.text2').animate({
-                duration: 400,
-                delay: 500
-            });
-        }).then(function(item) {
-            return animation.get('.seat-back1').animate({
-                duration: 400,
-                delay: 100
-            });
-        }).then(function(item) {
-            return animation.get('.seat-back2').animate({
-                duration: 400,
-                delay: 100
-            });
-        }).then(function(item) {
-            return animation.get('.trigle1').animate({
-                duration: 400,
-                delay: 300,
-                'box-unfold': {
-                    origin: [0, '100%'],
-                    angle: 20
-                }
-            });
-        }).then(function(item) {
-            return animation.get('.text3').animate({
-                duration: 400
-            });
+            return Promise.all([
+                animation.get('.seat-back1').animate({
+                    duration: 400,
+                    delay: 100
+                }),
+                animation.get('.seat-back2').animate({
+                    duration: 400,
+                    delay: 500
+                }),
+                animation.get('.trigle1').animate({
+                    duration: 400,
+                    delay: 100,
+                    'box-unfold': {
+                        origin: [0, '100%'],
+                        angle: 20
+                    }
+                }),
+                animation.get('.text3').animate({
+                    duration: 400,
+                    delay: 500
+                })
+            ]);
         }).then(function(item) {
             return animation.get('.trigle2').animate({
                 duration: 600,
@@ -121,8 +113,19 @@ export function show($page) {
                 }
             });
         }).then(function(item) {
-            return animation.get('.text4').animate({
-                duration: 400
-            });
+            return Promise.all([
+                animation.get('.text4').animate({
+                    duration: 400,
+                    delay: 100
+                }),
+                animation.get('.text1').animate({
+                    duration: 400,
+                    delay: 100,
+                    'box-unfold': {
+                        origin: ['50%', '50%'],
+                        angle: 0
+                    }
+                })
+            ]);
         });
 }

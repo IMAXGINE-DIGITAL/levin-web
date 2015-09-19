@@ -42,7 +42,7 @@ export function show($page) {
 
     return $page.animation([{
             '.car2': {
-                duration: 600,
+                duration: 1000,
                 delay: 300,
                 timingFunction: 'bounceInOut'
             }

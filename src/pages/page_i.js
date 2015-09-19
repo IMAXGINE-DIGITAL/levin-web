@@ -25,14 +25,15 @@ export function show($page) {
     var animation = $page.animation();
     
     return animation.then(function(item) {
-            return animation.get('.bag').animate({
-                duration: 600,
-                delay: 400
-            });
-        }).then(function(item) {
-            return animation.get('.text').animate({
-                duration: 600,
-                delay: 200
-            });
+            return Promise.all([
+                animation.get('.bag').animate({
+                    duration: 600,
+                    delay: 400
+                }),
+                animation.get('.text').animate({
+                    duration: 600,
+                    delay: 400
+                })
+            ]);
         });
 }
