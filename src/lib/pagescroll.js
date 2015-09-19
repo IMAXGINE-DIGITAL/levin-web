@@ -3,24 +3,17 @@ import * as page from './page';
 
 var queue = Promise.resolve();
 
-export function scroll($pageRoot, name) {
-    var init = Promise.resolve();
+function animation(curname, lastname, $pageRoot) {
+    var curpage = page.get(curname);
+    var lastpage = page.get(lastname);
 
-    if (!page.has(name)) {
-        init = page.add(name);
-    }
+    if (lastpage) {
+        var top = page.indexOf(curname) > page.indexOf(lastname) ? 100 : -100;
 
-    queue = Promise.all([init, queue])
-        .then(function(ret) {
-            var curpage = page.get(name);
-
-            var lastname = ret[1];
-            if (lastname) {
-                var lastpage = page.get(lastname);
-
-                var top = page.indexOf(name) > page.indexOf(lastname) ? 100 : -100;
-
-                curpage.$root.css({
+        return Promise
+            .all([curpage.root(), lastpage.root()])
+            .then(function([$curRoot, $lastRoot]) {
+                $curRoot.css({
                     display: 'block',
                     top: top + '%'
                 });
@@ -31,10 +24,10 @@ export function scroll($pageRoot, name) {
                     }, {
                         duration: 400,
                         complete: function() {
-                            lastpage.$root.css({
+                            $lastRoot.css({
                                 display: 'none'
                             });
-                            curpage.$root.css({
+                            $curRoot.css({
                                 top: 0
                             });
                             $pageRoot.css({
@@ -44,17 +37,43 @@ export function scroll($pageRoot, name) {
                         }
                     });
                 });
-            } else {
-                curpage.$root.css({
+            });
+    } else {
+        return curpage.root()
+            .then(function($root) {
+                $root.css({
                     display: 'block'
                 });
-            }
-        })
-        .then(function() {
-            return page.show(name);
+            });
+    }   
+}
+
+
+export function scroll($pageRoot, name) {
+    var init = Promise.resolve();
+
+    if (!page.has(name)) {
+        init = page.add(name);
+    }
+
+    queue = Promise.all([init, queue])
+        .then(function(ret) {
+            var curpage = page.get(name);
+            var lastpage = page.get(ret[1]);
+
+            return curpage.render()
+                .then(function() {
+                    return animation(name, ret[1], $pageRoot);
+                });
         }).then(function() {
+            page.show(name);
             return name;
         });
+        // .then(function() {
+        //     return page.show(name);
+        // }).then(function() {
+        //     return name;
+        // });
 
     return queue;
 }

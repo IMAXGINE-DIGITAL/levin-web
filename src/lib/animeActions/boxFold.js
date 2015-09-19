@@ -16,12 +16,20 @@ export default function boxfold($element, options) {
             var elHeight = $element.height();
 
             var $wrap = $('<div></div>');
-            var $img = $element.find('img').css({
-                width: elWidth + 'px',
-                height: elHeight + 'px'
-            });
+            var $childwrap = $('<div></div>');
 
-            $wrap.append($img).appendTo($element);
+            $childwrap.css({
+                position: 'absolute',
+                width: elWidth + 'px',
+                height: elHeight + 'px'  
+            }).append($element.children());
+
+            // var $img = $element.find('img').css({
+            //     width: elWidth + 'px',
+            //     height: elHeight + 'px'
+            // });
+
+            $wrap.append($childwrap).appendTo($element);
 
             var ready = Promise.resolve();
 
@@ -74,17 +82,17 @@ export default function boxfold($element, options) {
                             top: top + 'px'
                         });
 
-                        $img.css({
+                        $childwrap.css({
                             left: -left + 'px',
                             top: -top + 'px'
                         });
                     }
                 ).play();
             }).then(function() {
-                $img.css({
-                    width: '',
-                    height: ''
-                }).appendTo($element);
+                $childwrap
+                    .remove()
+                    .children()
+                    .appendTo($element);
                 $wrap.remove();
             });
 

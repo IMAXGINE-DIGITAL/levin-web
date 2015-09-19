@@ -42,6 +42,33 @@ page.ready().then(function ($pageRoot) {
         return deferred.promise;
     }
 
+    const INDICATOR_LENGHT = page.catLength();
+    function highlightIndicator(name) {
+        var pageIndex = page.indexOf(name);
+        var cat = page.catFromPageIndex(pageIndex);
+        if (cat) {
+            indicator.highlight(cat.index);
+        }
+    }
+
+    function setMenuText(name) {
+        var pageIndex = page.indexOf(name);
+        var cat = page.catFromPageIndex(pageIndex);
+        if (cat) {
+            nav.setMenuText(cat.name);
+        }
+    }
+
+    function toPageIndex(catIndex) {
+        return page.pageFromCatIndex(catIndex);
+    }
+
+    function debuggerLog(name) {
+        if (location.search.indexOf('debug') > 0) {
+            console.debug(name);
+            location.replace('#' + name);
+        }
+    }
 
     function circle(curName) {
         if (curName === 'home') {
@@ -52,7 +79,13 @@ page.ready().then(function ($pageRoot) {
             indicator.show();
         }
 
-        Promise.race([hashchange(), pagechange(), menu.navto(), pagewheel.wheel()])
+        Promise.race([
+                hashchange(), 
+                pagechange(), 
+                menu.navto().then(toPageIndex), 
+                indicator.navto().then(toPageIndex),
+                pagewheel.wheel()
+            ])
             .then(function(ret) {
                 var name;
                 if (['next', 'prev'].indexOf(ret) > -1) {
@@ -64,31 +97,28 @@ page.ready().then(function ($pageRoot) {
                 }
 
                 if (name && name !== curName) {
-                    var index = page.indexOf(name);
-                    indicator.highlight(index);
-                    if (location.search.indexOf('debug') > 0) {
-                        console.debug(name);
-                        location.replace('#' + name);
-                    }
+                    highlightIndicator(name);
+                    setMenuText(name);
+                    debuggerLog(name);
                     return pagescroll.scroll($pageRoot, name);
                 } else {
                     return curName;
                 }
             }).then(function(name) {
-
                 return circle(name);
             });
     }
 
     pagewheel.listen();
-    indicator.init(page.length() - 1);
+    indicator.init(INDICATOR_LENGHT);
 
     var name = getHashName();
     pagescroll.scroll($pageRoot, 'home')
         .then(function() {
             if (name !== 'home') {
-                var index = page.indexOf(name);
-                indicator.highlight(index);
+                highlightIndicator(name);
+                setMenuText(name);
+                debuggerLog(name);
                 return pagescroll.scroll($pageRoot, name);
             } else {
                 return name;

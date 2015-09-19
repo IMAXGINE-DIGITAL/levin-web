@@ -1,4 +1,4 @@
-import './page_a.less';
+import './page_aa.less';
 import * as jQuery from 'jquery';
 import {Promise, defer} from '../lib/promise';
 import * as page from '../lib/page';
@@ -20,7 +20,7 @@ export function render() {
 
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
-        
+
         <div class="el car anime zoom" style="${elementRect(164.1,113.3,724,400)}">
             <img src="${path}/car-total.png"/>
         </div>
@@ -45,8 +45,9 @@ export function render() {
             <img src="${path}/geshan.png"/>
         </div>
         
-        <div class="el text anime fly-in" style="${elementRect(669,154,225,160)}">
-            <img src="${path}/text.png"/>
+        <div class="el text anime fly-in text-wrap" style="${elementRect(669,154,225,160)}">
+            <span class="text_a" style="${elementRect(669,95,0,0,[669,154])}">我的型，我的范</span>
+            <span class="text_b" style="${elementRect(491,36,0,118,[669,154])}">够前卫，才能成为路上的焦点！</span>
         </div>
 
 

@@ -22,9 +22,9 @@ export default function flyIn($element, options) {
             var elWidth = $element.width();
             var elHeight = $element.height();
 
-            var $img = $element.find('img');
+            var $children = $element.children();
             var $wrap = $('<div></div>')
-                    .append($img)
+                    .append($children)
                     .appendTo($element);
 
             var ready = Promise.resolve();
@@ -52,19 +52,8 @@ export default function flyIn($element, options) {
                         complete: resolve
                     });
                 });
-
-                // return fa(options.duration, 
-                //     options.timingFunction || 'easeIn',
-                //     function(i1, i2) {
-                //         var [prop, sign] = POS_MAP[from];
-                //         $wrap.css({
-                //             display: 'block',
-                //             [prop]: (1 - i2) * sign * 100 + '%'
-                //         });
-                //     }
-                // ).play();
             }).then(function() {
-                $img.css({
+                $children.css({
                     display: 'block'
                 }).appendTo($element);
                 $wrap.remove();

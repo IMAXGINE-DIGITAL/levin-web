@@ -1,15 +1,13 @@
 import './page_d.less';
-import * as jQuery from 'jquery';
+import $ from 'jquery';
 import {Promise, defer} from '../lib/promise';
 import * as page from '../lib/page';
 import {elementRect} from '../lib/util';
 import '../lib/animation';
 
-var $ = jQuery.noConflict();
+var path = 'images/page_d';
 
 export function render() {
-    var path = 'images/page_d';
-
     return `
         <div class="bg">
             <img src="${path}/bg.jpg" />
@@ -20,8 +18,11 @@ export function render() {
         <div class="el eagle anime fly-in" style="${elementRect(643,200,149,162)}">
             <img src="${path}/eagle.png" />
         </div>
-        <div class="el text anime fade-in" style="${elementRect(627,153,83,349)}">
+        <div class="el text anime fade-in text-wrap" style="${elementRect(627,153,83,349)}">
             <img src="${path}/text.png" />
+            <span class="text_a" style="${elementRect(445,111,0,0,[627,153])}">新锐领潮</span>
+            <span class="text_b" style="${elementRect(139,53,435,58,[627,153])}">的造型</span>
+            <span class="text_c" style="${elementRect(320,41,0,111,[627,153])}">极具辨识度与独特存在感</span>
         </div>
     `;
 }

@@ -33,7 +33,7 @@ function repeat(data, tpl) {
 }
 
 function renderItem(val, index) {
-    return `<div class="item" index="${index}"></div>`;
+    return `<div class="item" cat-id="${index}"></div>`;
 }
 
 function render(length) {
@@ -48,7 +48,18 @@ function render(length) {
 export function highlight(index) {
     ready().then(function($indicator) {
         $indicator.find('.highlight').removeClass('highlight');
-        $indicator.find('.item:nth-child(' + index + ')').addClass('highlight');
+        $indicator.find('.item[cat-id="' + index + '"]').addClass('highlight');
+    });
+}
+
+export function navto() {
+    return ready().then(function($indicator) {
+        return new Promise(function(resolve, reject) {
+            $indicator.on('click', '[cat-id]', function handler() {
+                $indicator.off('click', '[cat-id]', handler);
+                resolve(parseInt($(this).attr('cat-id')));
+            });
+        });
     });
 }
 

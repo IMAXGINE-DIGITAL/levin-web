@@ -29,7 +29,7 @@ function imagelist(filepath) {
             return;
         }
         
-        if (file.stat.isFile()) {
+        if (file.stat.isFile() && !file.path.match(/\.ignore$/)) {
             list.push(path.relative(cwd, file.path));
         }
 
@@ -66,7 +66,9 @@ gulp.task('iefix', function() {
 });
 
 gulp.task('watch', function() {
-    return webpackBundle(true);
+    var bundle = webpackBundle(true);
+    var images = gulp.watch(['./images/**/*'], ['imagelist']);
+    return Promise.all([bundle, images]);
 });
 
 gulp.task('dist', ['imagelist', 'webpack', 'iefix'], function() {

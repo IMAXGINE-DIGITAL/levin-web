@@ -28,7 +28,7 @@ export function render() {
             <img src="${lightImg}" ${lazystr}/>
         </div>
         <div class="el text anime fade-in" style="${elementRect(408,59,594,527)}">
-            <img src="${path}/text.gif" lazyload="true"/>
+            时尚家庭中级车
         </div>
         <div class="el arrow-down anime flash" style="${elementRect(140,71,730,735)}">
             <img src="${path}/arrow-down.gif" lazyload="true"/>

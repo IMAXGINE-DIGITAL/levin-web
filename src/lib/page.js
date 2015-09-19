@@ -28,52 +28,69 @@ export function add(name) {
         return;
     }
 
-    var $root = $(`<div id="${name}" class="page"></div>`);
-    var $html = $(page.render());
-    var renderPromise = [];
+    function render() {
+        return ready().then(function($pages) {
+            $pages.find(`#${name}`).remove();
+            var $root = $(`<div id="${name}" class="page"></div>`);
+            var $html = $(page.render());
 
-    $html.find('img').each(function() {
-        var $img = $(this);
-        var src = getUrl($img.attr('src'));
-        if (!src.match(/^data:image/) && 
-            $img.attr('preload') !== 'false') {
+            var promises = [];
 
-            $img.attr('src', placeHolderImg);
+            $html.find('img').each(function() {
+                var $img = $(this);
+                var src = getUrl($img.attr('src'));
+                if (!src.match(/^data:image/) && 
+                    $img.attr('preload') !== 'false') {
 
-            var promise = preloadImags.done().then(function(images) {
-                if (images[src]) {
-                    $img.replace(images[src]);
-                } else {
-                    $img.attr('src', src);
+                    $img.attr('src', placeHolderImg);
+
+                    var promise = preloadImags.done().then(function(images) {
+                        if (images[src]) {
+                            $img.replace(images[src]);
+                        } else {
+                            $img.attr('src', src);
+                        }
+                    });
+
+                    if ($img.attr('lazyload') !== 'true') {
+                        promises.push(promise);
+                    }
                 }
             });
 
-            if ($img.attr('lazyload') !== 'true') {
-                renderPromise.push(promise);
-            }
-        }
-    });
+            $root.append($html);
+            $pages.append($root);
 
-    $root.append($html);
+            return Promise.all(promises).then(function() {
+                return $root;
+            });
+        });
+    }
 
-    var shown;
+    // var shown;
+    var rootDeferred;
     pages[name] = {
-        $root: $root,
+        root: function() {
+            return rootDeferred.promise;
+        },
+        render: function() {
+            rootDeferred = defer();
+
+            return render().then(function($root) {
+                rootDeferred.resolve($root);
+            });
+
+            return rootDeferred.promise;
+        },
         show: function() {
-            if (!shown) {
-                shown = Promise.all(renderPromise).then(function(){
+            return rootDeferred.promise
+                .then(function($root) {
                     return page.show($root);
                 });
-            }
-            return shown;
         }
     };
 
-    ready().then(function($pages) {
-        $pages.append($root);
-        deferred.resolve();
-    });
-
+    deferred.resolve();
     return deferred.promise;
 }
 
@@ -83,15 +100,15 @@ export function get(name) {
 
 export function prev(name) {
     var i = indexOf(name);
-    if (i > 0 && seq[i - 1]) {
-        return seq[i - 1];
+    if (i > 0 && pageSeq[i - 1]) {
+        return pageSeq[i - 1];
     }
 }
 
 export function next(name) {
     var i = indexOf(name);
-    if (i > -1 && seq[i + 1]) {
-        return seq[i + 1];
+    if (i > -1 && pageSeq[i + 1]) {
+        return pageSeq[i + 1];
     }
 }
 
@@ -104,7 +121,7 @@ export function show(name) {
     return page.show();
 }
 
-var seq = [
+var pageSeq = [
     'home',   // 0: 加载
     // 外观组
     'page_c', // 1:首页
@@ -130,18 +147,56 @@ var seq = [
     'page_af', // GOA车身
     'page_ae', // 主动安全配置
     'page_h' // 主动安全系统
+];
 
-]
+var catSeq = [
+    {name: '外观', period: [1, 5], index: 0},
+    {name: '内饰', period: [6, 8], index: 1},
+    {name: '轴距', period: [9, 12], index: 2},
+    {name: '操控', period: [13, 15], index: 3},
+    {name: '安全', period: [16, 19], index: 4}
+];
 export function indexOf(name) {
-    return seq.indexOf(name);
+    return pageSeq.indexOf(name);
 }
 
-export function fromIndex(i) {
-    return seq[i];
+export function fromIndex(index) {
+    return pageSeq[index];
 }
 
 export function length() {
-    return seq.length;
+    return pageSeq.length;
+}
+
+export function catFromPageIndex(index) {
+    for (var i = 0; i < catSeq.length; i++) {
+        if (index >= catSeq[i].period[0] && 
+                index <= catSeq[i].period[1]) {
+            return catSeq[i];
+        }
+    } 
+}
+
+export function pageFromCatIndex(index) {
+    if (catSeq[index]) {
+        return catSeq[index].period[0];
+    }
+}
+
+export function IndexOfCat(name) {
+    for (var i = 0; i < catSeq.length; i++) {
+        if (catSeq[i].name === name) {
+            return catSeq[i];
+        }
+    }
+}
+
+export function fromCatIndex(index) {
+    return catSeq[index];
+}
+
+export function catLength() {
+    return catSeq.length;
 }
 
 function render() {

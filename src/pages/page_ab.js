@@ -44,11 +44,14 @@ export function render() {
                 <img src="${path}/car-light2.jpg"/>
             </div>
 
-            <div class="el text anime fly-in" style="${elementRect(1600,900,0,0)}">
-                <img src="${path}/text.png"/>
+            <div class="el text anime fly-in text-wrap" style="${elementRect(478,157,1012,602)}">
+                <img src="${path}/light.png"/>
+                <span class="text_a" style="${elementRect(190,56,246,58,[478,157])}">LED灯泡</span>
+                <span class="text_b" style="${elementRect(311,30,0,127,[478,157])}">即便是背影，也是范儿！</span>
             </div>
 
-            <div class="el number-text anime number" style="font-style:italic;font-size:65%;color:#fff;${elementRect(304,144,998,620)}">
+            <div class="el number-text anime number" 
+                style="${elementRect(304,144,998,580)}">
             </div>
         </div>
     `;
@@ -97,7 +100,7 @@ export function show($page) {
                 duration: 400,
                 'number': {
                     from: 0,
-                    to: 51,
+                    to: 50,
                     format: '%02%01+' // %00代表输出一个0。%1为个位数，%2为十位数，以此类推，如果要补0，则为%01，%02等。
                 }
             })

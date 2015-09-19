@@ -21,8 +21,11 @@ export function render() {
         <div class="el line3 anime box-unfold" style="${elementRect(489,186,722,411)}">
             <img src="${path}/line3.png">
         </div>
-        <div class="el text anime fly-in" style="${elementRect(571,178,957,501)}">
-            <img src="${path}/text.png">
+        <div class="el text anime fly-in text-wrap" style="${elementRect(571,178,957,501)}">
+            <img src="${path}/light.png">
+            <span class="text_a" style="${elementRect(429,130,0,0,[571,178])}">高质感</span>
+            <span class="text_b" style="${elementRect(113,48,412,82,[571,178])}">内饰</span>
+            <span class="text_c" style="${elementRect(311,34,0,144,[571,178])}">宽适乘坐质感，无需妥协</span>
         </div>
     `;
 }
