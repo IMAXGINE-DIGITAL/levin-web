@@ -15,8 +15,11 @@ export function render() {
         <div class="el shadow anime fade-in" style="${elementRect(368,23,514,857)}">
             <img src="${path}/shadow.png">
         </div>
-        <div class="el text1 anime box-unfold" style="${elementRect(467,127,70,223)}">
-            <img src="${path}/text1.png">
+        <div class="el text1 anime box-unfold text-wrap" style="${elementRect(467,187,70,223)}">
+            <img src="${path}/light.png">
+            <span class="text_c number-text" style="${elementRect(467,120,0,0,[467,187])}">6</span>
+            <span class="text_d" style="${elementRect(467,120,70,50,[467,187])}">向电动调节座椅</span>
+            <span class="text_e" style="${elementRect(467,60,0,127,[467,187])}">不同身高，一样惬意</span>
         </div>
         <div class="el trigle1 anime box-unfold" style="${elementRect(816,250,537,242)}">
             <img src="${path}/trigle1.png">
@@ -24,14 +27,17 @@ export function render() {
         <div class="el trigle2 anime box-unfold" style="${elementRect(816,535,537,242)}">
             <img src="${path}/trigle2.png">
         </div>
-        <div class="el text2 anime fade-in" style="${elementRect(352,124,323,454)}">
-            <img src="${path}/text2.png">
+        <div class="el text2 anime fade-in text-wrap" style="${elementRect(352,164,323,454)}">
+            <span class="text_a number-text" style="${elementRect(352,120,0,0,[352,164])}">260mm</span>
+            <span class="text_b" style="${elementRect(352,40,0,110,[352,164])}">前后滑动&nbsp;&nbsp;</span>
         </div>
-        <div class="el text3 anime fade-in" style="${elementRect(296,122,1165,209)}">
-            <img src="${path}/text3.png">
+        <div class="el text3 anime fade-in text-wrap" style="${elementRect(296,162,1165,209)}">
+            <span class="text_a number-text" style="${elementRect(296,120,0,0,[296,162])}">83mm</span>
+            <span class="text_b" style="${elementRect(296,40,0,110,[296,162])}">垂直调节&nbsp;&nbsp;</span>
         </div>
-        <div class="el text4 anime fade-in" style="${elementRect(368,124,1029,731)}">
-            <img src="${path}/text4.png">
+        <div class="el text4 anime fade-in text-wrap" style="${elementRect(368,164,1029,731)}">
+            <span class="text_a number-text" style="${elementRect(368,120,0,0,[368,164])}">10mm/<b>个</b></span>
+            <span class="text_b" style="${elementRect(368,40,0,110,[368,164])}">滑动锁点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </div>
         <div class="el seat anime fly-in" style="${elementRect(503,675,520,194)}">
             <img src="${path}/seat.png">

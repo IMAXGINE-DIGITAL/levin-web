@@ -12,8 +12,14 @@ export function render() {
 
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
-        <div class="el text anime fade-in" style="${elementRect(1036,113,98,232)}">
-            <img src="${path}/text.png">
+        <div class="el text anime fade-in text-wrap" style="${elementRect(1036,113,98,232)}">
+            <img src="${path}/bar.gif">
+            <span class="text_a" style="${elementRect(1036,60,0,5,[1036,113])}">
+                博世第9代ABS+EBD+EBA+TRC+VSC主动安全系统
+            </span>
+            <span class="text_b" style="${elementRect(1036,60,0,70,[1036,113])}">
+                先进的安全驾驶系统，并对刹车系统定向调教，实现最佳制动感。
+            </span>
         </div>
     `;
 }

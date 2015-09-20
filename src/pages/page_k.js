@@ -36,8 +36,9 @@ export function render() {
         <div class="el shiftup anime flash" style="${elementRect(141,216,1201,413)}">
             <img src="${path}/shiftup.png">
         </div>
-        <div class="el text anime fade-in" style="${elementRect(422,76,98,284)}">
-            <img src="${path}/text.png">
+        <div class="el text anime fade-in text-wrap" style="${elementRect(422,116,98,284)}">
+            <span class="text_a" style="${elementRect(422,70,0,0,[422,116])}">运动换挡拨片</span>
+            <span class="text_b" style="${elementRect(422,40,0,76,[422,116])}">换挡时间0.35秒，比心跳还快</span>
         </div>
     `;
 }

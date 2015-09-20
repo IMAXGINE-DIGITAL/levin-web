@@ -36,11 +36,15 @@ export function render() {
         <div class="el fue anime fade-in" style="${elementRect(892,169,60,558)}">
             <img src="${path}/fue.png">
         </div>
-        <div class="el number1 anime number" style="${elementRect(133,91,73,614)}">
+        <div class="el number1 anime number number-text" style="${elementRect(133,91,73,614)}">
             5.9
         </div>
-        <div class="el number2 anime number" style="${elementRect(133,91,555,614)}">
+        <div class="el number2 anime number number-text" style="${elementRect(133,91,555,614)}">
             6.1
+        </div>
+        <div class="el text anime fade-in text-wrap" style="${elementRect(614,134,300,743)}">
+            <span class="text_a" style="${elementRect(614,80,0,0,[614,134])}">超低油耗</span>
+            <span class="text_b" style="${elementRect(614,40,0,104,[614,134])}">说走就走，没有后顾之忧</span>
         </div>
     `;
 }
@@ -115,6 +119,10 @@ export function show($page) {
             });
         }).then(function(item) {
             return Promise.all([
+                animation.get('.text').animate({
+                    duration: 400,
+                    delay: 200
+                }),
                 animation.get('.number1').animate({
                     duration: 400,
                     delay: 300,

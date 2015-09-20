@@ -12,10 +12,13 @@ export function render() {
 
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
-        <div class="el text anime fade-in" style="${elementRect(568,178,390,293)}">
-            <img src="${path}/text.png">
+        <div class="el text anime fade-in text-wrap" style="${elementRect(568,178,390,293)}">
+            <img src="${path}/light.png">
+            <span class="text_a" style="${elementRect(568,178,0,0,[568,178])}">速激情</span>
+            <span class="text_b" style="${elementRect(568,60,410,86,[568,178])}">操控</span>
+            <span class="text_c" style="${elementRect(568,40,0,138,[568,178])}">无穷驾驶乐趣，应手，得心</span>        
         </div>
-        <div class="el number1 anime number" style="${elementRect(180,240,221,188)}">
+        <div class="el number1 anime number number-text" style="${elementRect(180,240,221,188)}">
             0
         </div>
         <div class="el shift anime box-unfold" style="${elementRect(499,182,556,685)}">
