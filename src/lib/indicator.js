@@ -33,46 +33,49 @@ function repeat(data, tpl) {
 }
 
 function renderItem(val, index) {
-    return `<div class="item" cat-id="${index}"></div>`;
+    return `<div class="item" index="${index}"></div>`;
 }
 
-function render(length) {
-    var data = new Array(length).join(',').split(',');
-    return `
-        <div id="indicator">
-            ${repeat(data, renderItem)}
-        </div>
-    `;
+export function render(catId, length) {
+    return ready().then(function($indicator) {
+        if (catId === parseInt($indicator.attr('cat-id'))) {
+            return;
+        }
+
+        var data = new Array(length).join(',').split(',');
+        var items = `${repeat(data, renderItem)}`;
+
+        $indicator.attr('cat-id', catId).html('').append(items);
+        var elementHeight = $indicator.height();
+        var windowHeight = $(window).height();
+        $indicator.css({
+            top: (windowHeight - elementHeight) / 2 + 'px'
+        });
+    });
 }
 
 export function highlight(index) {
-    ready().then(function($indicator) {
+    return ready().then(function($indicator) {
         $indicator.find('.highlight').removeClass('highlight');
-        $indicator.find('.item[cat-id="' + index + '"]').addClass('highlight');
+        $indicator.find('.item:nth-child(' + (index + 1) + ')').addClass('highlight');
     });
 }
 
 export function navto() {
     return ready().then(function($indicator) {
         return new Promise(function(resolve, reject) {
-            $indicator.on('click', '[cat-id]', function handler() {
-                $indicator.off('click', '[cat-id]', handler);
-                resolve(parseInt($(this).attr('cat-id')));
+            $indicator.on('click', '[index]', function handler() {
+                $indicator.off('click', '[index]', handler);
+                var catId = parseInt($indicator.attr('cat-id'));
+                var index = parseInt($(this).attr('index'));
+                resolve([catId, index]);
             });
         });
     });
 }
 
 export function init(length) {
-    var $indicator = $(render(length));
-    
+    var $indicator = $('<div id="indicator"></div>');
     $(document.body).append($indicator);
-
-    var elementHeight = $indicator.height();
-    var windowHeight = $(window).height();
-    $indicator.css({
-        top: (windowHeight - elementHeight) / 2 + 'px'
-    });
-
     deferred.resolve($indicator);
 }

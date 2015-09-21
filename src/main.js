@@ -47,7 +47,10 @@ page.ready().then(function ($pageRoot) {
         var pageIndex = page.indexOf(name);
         var cat = page.catFromPageIndex(pageIndex);
         if (cat) {
-            indicator.highlight(cat.index);
+            indicator.render(cat.index, cat.period[1] - cat.period[0] + 1)
+                .then(function() {
+                    indicator.highlight(pageIndex - cat.period[0]);
+                });
         }
     }
 

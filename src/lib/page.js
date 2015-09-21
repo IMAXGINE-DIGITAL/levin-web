@@ -151,7 +151,7 @@ var pageSeq = [
 var catSeq = [
     {name: '外观', period: [1, 4], index: 0},
     {name: '内饰', period: [5, 7], index: 1},
-    {name: '轴距', period: [8, 11], index: 2},
+    {name: '空间', period: [8, 11], index: 2},
     {name: '操控', period: [12, 14], index: 3},
     {name: '安全', period: [15, 18], index: 4}
 ];

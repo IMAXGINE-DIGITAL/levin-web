@@ -30,11 +30,14 @@ export function render() {
         <div class="el shift anime" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/shift.png">
         </div>
+        <!--
         <div class="el shiftdown anime flash" style="${elementRect(137,214,262,415)}">
             <img src="${path}/shiftdown.png">
         </div>
-        <div class="el shiftup anime flash" style="${elementRect(141,216,1201,413)}">
-            <img src="${path}/shiftup.png">
+        -->
+        <div class="el shiftup anime flash text-wrap" style="${elementRect(141,216,1201,413)}">
+            <img src="${path}/speedup.png">
+            <span class="text_c" style="${elementRect(141,30,0,10,[141,216])}">点击超车</span>
         </div>
         <div class="el text anime fade-in text-wrap" style="${elementRect(422,116,98,284)}">
             <span class="text_a" style="${elementRect(422,70,0,0,[422,116])}">运动换挡拨片</span>
@@ -92,12 +95,15 @@ function overtaking($car1, $car2) {
 
 function chnageShift($page, count) {
 
-    if (count > 0 && shiftNumber === 8 ||
-            count < 0 && shiftNumber === 1) {
-        return true;
-    }
+    // if (count > 0 && shiftNumber === 8 ||
+    //         count < 0 && shiftNumber === 1) {
+    //     return true;
+    // }
 
     shiftNumber += count;
+
+    shiftNumber = Math.min(shiftNumber, 8);
+    shiftNumber = Math.max(shiftNumber, 1);
 
     if (shiftNumber === 1 && !startDriving) {
         startDriving = true;
@@ -125,19 +131,19 @@ function chnageShift($page, count) {
     }
 }
 
-function listenShift($page, type) {
+function listenShift($page, type, offset) {
     return new Promise(function(resolve, reject) {
         $page.on('click', '.shift' + type, function handler() {
             $page.off('click', '.shift' + type, handler);
-            resolve(type === 'down' ? -1 : 1);
+            resolve(offset);
         });
     });
 }
 
 function interactive($page) {
     Promise.race([
-        listenShift($page, 'up'),
-        listenShift($page, 'down')
+        listenShift($page, 'up', 7)
+        // listenShift($page, 'down')
     ]).then(function(count) {
         return chnageShift($page, count)
     }).then(function(ret) {
@@ -148,6 +154,9 @@ function interactive($page) {
 }
 
 export function show($page) {
+    shiftNumber = 0;
+    startDriving = false;
+    
     var animation = $page.animation();
     
     return animation.then(function(item) {
@@ -162,13 +171,13 @@ export function show($page) {
                 });
         }).then(function(item) {
             Promise.all([
-                animation.get('.shiftdown').animate({
-                    delay: 300,
-                    flash: {
-                        loop: 3,
-                        interval: 1000
-                    }
-                }),
+                // animation.get('.shiftdown').animate({
+                //     delay: 300,
+                //     flash: {
+                //         loop: 3,
+                //         interval: 1000
+                //     }
+                // }),
                 animation.get('.shiftup').animate({
                     delay: 300,
                     flash: {
@@ -177,10 +186,11 @@ export function show($page) {
                     }
                 })
             ]).then(function() {
-                $page.find('.shiftup, .shiftdown').find('img').remove();
+                $page.find('.shiftup, .shiftdown').children().remove();
             });
         }).then(function() {
             interactive($page);
-            $page.find('.shiftup').trigger('click');
+            chnageShift($page, 1);
+            // $page.find('.shiftup').trigger('click');
         });
 }

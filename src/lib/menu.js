@@ -43,13 +43,23 @@ function render() {
 
 export function show() {
     ready().then(function($menu) {
-        $menu.fadeIn();
+        $menu.fadeIn(function() {
+            $menu.css({
+                opacity: '',
+                display: 'block'
+            });
+        })
     });
 }
 
 export function hide() {
     ready().then(function($menu) {
-        $menu.fadeOut();
+        $menu.fadeOut(function() {
+            $menu.css({
+                opacity: '',
+                display: 'none'
+            });
+        });
     });
 }
 

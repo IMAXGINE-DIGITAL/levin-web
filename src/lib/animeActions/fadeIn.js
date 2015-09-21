@@ -25,20 +25,14 @@ export default function fadeIn($element, options) {
                     }, {
                         duration: options.duration,
                         easing: transferEeasing(options.timingFunction),
-                        complete: resolve
+                        complete: function() {
+                            $element.css({
+                                opacity: ''
+                            }).removeClass('fade-in');
+                            resolve();
+                        }
                     });
                 });
-
-
-                // return fa(options.duration, 
-                //     options.timingFunction || 'easeIn',
-                //     function(i1, i2) {
-                //         $element.css({
-                //             display: 'block',
-                //             opacity: 1 * i2
-                //         });
-                //     }
-                // ).play();
             });
         }
     )();

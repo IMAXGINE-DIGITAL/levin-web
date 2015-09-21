@@ -41,6 +41,9 @@ export function render() {
             <input type="range" value="0" min="0" max="100" class="range-input"/>
             <img src="${path}/circle.png" />
         </div>
+        <div class="el number2 anime fade-in text-wrap" style="${elementRect(554,30,770,704)}">
+            <span class="anime number-text" style="${elementRect(120,30,0,0,[554,30])}">1600mm</span>
+        </div>
     `;
 }
 
@@ -69,20 +72,18 @@ export function show($page) {
                 delay: 200
             });
         }).then(function(item) {
-            var car1Action;
-
-            var car2Action = animation.get('.car2')
+            var carAction = animation.get('.car2')
                     .action('box-unfold', {
                         origin: [0, 0],
                         angle: 0
                     });
 
-            // var number1Action = animation.get('.number1')
-            //         .action('number', {
-            //             from: 1660,
-            //             to: 2700,
-            //             format: '%04%03%02%01mm'
-            //         });
+            var numberAction = animation.get('.number2 span')
+                    .action('number', {
+                        from: 1660,
+                        to: 2700,
+                        format: '%04%03%02%01mm'
+                    });
 
             var slideCompelte = false;
             $page.find('.range .range-input').rangeslider({
@@ -95,24 +96,29 @@ export function show($page) {
                 onSlide: function(position, value) {
                     ready.promise.then(function() {
                         if (!slideCompelte) {
-                            car2Action.frame(value / 100, value / 100);
+                            carAction.frame(value / 100, value / 100);
+                            numberAction.frame(value / 100, value / 100);
+                            $page.find('.number2 span').css({
+                                left: value + '%'
+                            });
                         } else {
-                            car1Action.frame(1 - value / 100, 1 - value / 100);
+                            carAction.frame(1 - value / 100, 1 - value / 100);
                         }
-                        // number1Action.frame(value / 100, value / 100);
                     });
                 },
 
                 // Callback function
                 onSlideEnd: function(position, value) {
                     if (slideCompelte) return;
-                    slideCompelte = true;
 
                     ready.promise.then(function() {
                         if (value === 100) {
-                            car2Action.done();
+                            slideCompelte = true;
 
-                            $page.find('.car1').hide();                            
+                            carAction.done();
+                            numberAction.done();
+
+                            $page.find('.car1').hide();                           
 
                             $page.find('.car2')
                                 .removeClass('box-unfold')
@@ -126,10 +132,11 @@ export function show($page) {
                                     angle: 0
                                 }
                             }).then(function() {
-                                $page.find('.car1').show();
-                                $page.find('.car2').hide();
+                                $page.find('.car2')
+                                    .removeClass('box-fold')
+                                    .addClass('box-unfold');
 
-                                car1Action = animation.get('.car1')
+                                carAction = animation.get('.car2')
                                     .action('box-unfold', {
                                         origin: ['100%', 0],
                                         angle: 0
@@ -143,10 +150,16 @@ export function show($page) {
             $page.find('.range .rangeslider__handle')
                 .append($page.find('.range img'));
 
-            return animation.get('.range').animate({
-                duration: 600,
-                delay: 200
-            });
+            return Promise.all([
+                animation.get('.range').animate({
+                    duration: 600,
+                    delay: 200
+                }),
+                animation.get('.number2').animate({
+                    duration: 600,
+                    delay: 200
+                })
+            ]);
         }).then(function(item) {
             return Promise.all([
                 animation.get('.number1').animate({
