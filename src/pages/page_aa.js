@@ -1,20 +1,10 @@
 import './page_aa.less';
-import * as jQuery from 'jquery';
+import $ from 'jquery';
 import {Promise, defer} from '../lib/promise';
 import * as page from '../lib/page';
 import {elementRect} from '../lib/util';
 import '../lib/animation';
 
-var $ = jQuery.noConflict();
-/*
-
-1641,1133,-20,-110
-
-car 1641 1133
-
-
-(1641-1600)/2
- */
 export function render() {
     var path = 'images/page_aa';
 
