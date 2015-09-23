@@ -37,7 +37,9 @@ export function render() {
         -->
         <div class="el shiftup anime flash text-wrap" style="${elementRect(141,216,1201,413)}">
             <img src="${path}/speedup.png">
+            <!--
             <span class="text_c" style="${elementRect(141,30,0,10,[141,216])}">点击超车</span>
+            -->
         </div>
         <div class="el text anime fade-in text-wrap" style="${elementRect(422,116,98,284)}">
             <span class="text_a" style="${elementRect(422,70,0,0,[422,116])}">运动换挡拨片</span>
@@ -186,7 +188,9 @@ export function show($page) {
                     }
                 })
             ]).then(function() {
-                $page.find('.shiftup, .shiftdown').children().remove();
+                $page.find('.shiftup, .shiftdown').children().css({
+                    opacity: 0
+                });
             });
         }).then(function() {
             interactive($page);

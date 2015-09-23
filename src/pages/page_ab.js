@@ -100,7 +100,7 @@ export function show($page) {
                 duration: 400,
                 'number': {
                     from: 0,
-                    to: 50,
+                    to: 51,
                     format: '%02%01+' // %00代表输出一个0。%1为个位数，%2为十位数，以此类推，如果要补0，则为%01，%02等。
                 }
             })

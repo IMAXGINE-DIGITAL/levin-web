@@ -64,8 +64,12 @@ page.ready().then(function ($pageRoot) {
         }
     }
 
-    function toPageIndex(catIndex) {
+    function toCatIndex(catIndex) {
         return page.pageFromCatIndex(catIndex);
+    }
+
+    function toPageIndex([catIndex, index]) {
+        return page.pageFromCatIndex(catIndex) + index;
     }
 
     function debuggerLog(name) {
@@ -88,7 +92,7 @@ page.ready().then(function ($pageRoot) {
         Promise.race([
                 hashchange(), 
                 pagechange(), 
-                menu.navto().then(toPageIndex), 
+                menu.navto().then(toCatIndex), 
                 indicator.navto().then(toPageIndex),
                 pagewheel.wheel()
             ])

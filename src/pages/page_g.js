@@ -15,11 +15,11 @@ export function render() {
         <div class="el shadow anime fade-in" style="${elementRect(368,23,514,857)}">
             <img src="${path}/shadow.png">
         </div>
-        <div class="el text1 anime box-unfold text-wrap" style="${elementRect(467,187,70,223)}">
+        <div class="el text1 anime box-unfold text-wrap" style="${elementRect(467,190,70,223)}">
             <img src="${path}/light.png">
-            <span class="text_c number-text" style="${elementRect(467,120,0,0,[467,187])}">6</span>
-            <span class="text_d" style="${elementRect(467,120,70,50,[467,187])}">向电动调节座椅</span>
-            <span class="text_e" style="${elementRect(467,60,0,127,[467,187])}">不同身高，一样惬意</span>
+            <span class="text_c number-text" style="${elementRect(467,120,0,0,[467,190])}">6</span>
+            <span class="text_d" style="${elementRect(467,120,70,50,[467,190])}">向电动调节座椅</span>
+            <span class="text_e" style="${elementRect(467,60,0,127,[467,190])}">不同身高，一样惬意</span>
         </div>
         <div class="el trigle1 anime box-unfold" style="${elementRect(816,250,537,242)}">
             <img src="${path}/trigle1.png">
