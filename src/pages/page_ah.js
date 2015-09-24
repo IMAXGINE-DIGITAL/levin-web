@@ -13,14 +13,11 @@ export function render() {
         <div class="el car anime slide-in" style="${elementRect(1281,431,110,348)}">
             <img src="${path}/car.png"/>
         </div>
-        <div class="el car1" style="${elementRect(1600,900,0,0)}">
-            <img src="${path}/car1.jpg"/>
-        </div>
-        <div class="el lg1 anime slide-in rotate" style="${elementRect(196,189,225,581)}">
+        <div class="el lg1 anime slide-in rotate" style="${elementRect(130,130,255,613)}">
             <img src="${path}/lg.png"/>
         </div>
-        <div class="el lg2 anime slide-in rotate" style="${elementRect(196,189,1019,585)}">
-            <img src="${path}/lg.png"/>
+        <div class="el lg2 anime slide-in rotate" style="${elementRect(138,138,1040,621)}">
+            <img src="${path}/lg1.png"/>
         </div>
         <div class="el dl anime box-unfold" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/dl.png"/>

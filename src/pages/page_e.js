@@ -12,7 +12,7 @@ export function render() {
 
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
-        <div class="el wind anime box-unfold" style="${elementRect(1600,533,0,251)}">
+        <div class="el wind anime box-unfold" style="${elementRect(1568,454,0,300)}">
             <img src="${path}/wind.png">
         </div>
         <div class="el text anime fade-in text-wrap" style="${elementRect(621,154,820,712)}">
