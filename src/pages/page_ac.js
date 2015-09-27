@@ -97,13 +97,13 @@ export function show($page) {
                     ready.promise.then(function() {
                         if (!slideCompelte) {
                             carAction.frame(value / 100, value / 100);
-                            numberAction.frame(value / 100, value / 100);
-                            $page.find('.number2 span').css({
-                                left: value + '%'
-                            });
                         } else {
                             carAction.frame(1 - value / 100, 1 - value / 100);
                         }
+                        numberAction.frame(value / 100, value / 100);
+                        $page.find('.number2 span').css({
+                            left: value + '%'
+                        });
                     });
                 },
 

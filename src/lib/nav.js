@@ -38,16 +38,18 @@ var path = 'images/nav';
 
 function render() {
     return `
-        <div id="nav" style="${elementRect(1600,121,0,0)}">
-            <div class="el toyota-logo" style="${_elementRect(291,25,35,25)}">
-                <img src="${path}/toyota-logo.png">
-            </div>
-            <div class="el levin-logo" style="${_elementRect(242,121,1331,36)}">
-                <img src="${path}/levin-logo.png">
-            </div>
-            <div class="el top-menu text-wrap" style="${_elementRect(148,72,722,0)}">
-                <img src="${path}/top-menu.png">
-                <span>首页</span>
+        <div id="nav">
+            <div class="wrap">
+                <div class="el toyota-logo" style="${_elementRect(291,25,35,25)}">
+                    <img src="${path}/toyota-logo.png">
+                </div>
+                <div class="el levin-logo" style="${_elementRect(242,121,1331,36)}">
+                    <img src="${path}/levin-logo.png">
+                </div>
+                <div class="el top-menu text-wrap" style="${_elementRect(148,72,722,0)}">
+                    <img src="${path}/top-menu.png">
+                    <span>首页</span>
+                </div>
             </div>
         </div>
     `;
@@ -61,12 +63,12 @@ function resizeHandler($nav) {
     var height = window.innerHeight;
 
     var wRatio = WIDTH / width;
-    var hRatio = HEIGHT / height;
-    var ratio = Math.max(wRatio, hRatio);
+    // var hRatio = HEIGHT / height;
+    // var ratio = Math.max(wRatio, hRatio);
 
-    var rWidth = WIDTH / ratio;
-    var rHeight = HEIGHT / ratio;
-    $nav.css({
+    var rWidth = WIDTH / wRatio;
+    var rHeight = HEIGHT / wRatio;
+    $nav.find('.wrap').css({
         width: rWidth,
         height: rHeight
     });

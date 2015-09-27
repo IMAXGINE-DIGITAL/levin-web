@@ -83,11 +83,11 @@ function resizeHandler($menu) {
     var height = window.innerHeight;
 
     var wRatio = WIDTH / width;
-    var hRatio = HEIGHT / height;
-    var ratio = Math.max(wRatio, hRatio);
+    // var hRatio = HEIGHT / height;
+    // var ratio = Math.max(wRatio, hRatio);
 
-    var rWidth = WIDTH / ratio;
-    var rHeight = HEIGHT / ratio;
+    var rWidth = WIDTH / wRatio;
+    var rHeight = HEIGHT / wRatio;
     $menu.find('.wrap').css({
         width: rWidth,
         height: rHeight

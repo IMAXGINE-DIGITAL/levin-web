@@ -145,7 +145,9 @@ var pageSeq = [
     'page_ag', // 15:五星安全
     'page_af', // GOA车身
     'page_ae', // 主动安全配置
-    'page_h' // 主动安全系统
+    'page_h', // 主动安全系统
+    // 留资
+    'page_z', // 留资页面
 ];
 
 var catSeq = [
@@ -153,7 +155,8 @@ var catSeq = [
     {name: '内饰', period: [5, 7], index: 1},
     {name: '空间', period: [8, 11], index: 2},
     {name: '操控', period: [12, 14], index: 3},
-    {name: '安全', period: [15, 18], index: 4}
+    {name: '安全', period: [15, 18], index: 4},
+    {name: '预约', period: [19, 19], index: 5}
 ];
 export function indexOf(name) {
     return pageSeq.indexOf(name);
