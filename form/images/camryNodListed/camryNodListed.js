@@ -1,3 +1,7 @@
+
+(function($){
+
+
 $(function(){
 	isMobile = {  
 		Android: function() {  
@@ -189,5 +193,10 @@ function getSelectBox(){
 
 	});
 };
+
+
+})(jQuery);
+
+
 
 	

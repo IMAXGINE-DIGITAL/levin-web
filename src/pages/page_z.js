@@ -19,7 +19,7 @@ export function show($page) {
     var contentDocument = $('#form')[0].contentDocument;
     var $contentDoc = $(contentDocument);
 
-    $contentDoc.find('.header, .footer').remove();
+    $contentDoc.find('.header, .footer').hide();
     $contentDoc.find('html, body').css({
             width: '100%',
             height: '100%',
@@ -29,7 +29,7 @@ export function show($page) {
     var $formT = $contentDoc.find('.formT');
 
     $formT.css({
-        margin: 'auto',
-        paddingTop: ($contentDoc.height() - $formT.height()) / 2
+        // margin: 'auto',
+        top: ($contentDoc.height() - $formT.height()) / 2
     });
 }
