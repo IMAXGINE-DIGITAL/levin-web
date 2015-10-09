@@ -23,40 +23,8 @@
                 
                 	
                     <div class="formT">
-                    	<h3 class="formTit">优先订购</h3>
+                    	<h3 class="formTit">报价咨询</h3>
                     	<div class="controlGroup cf">
-                        	<div class="controlHalfL width49per">
-                                <p class="controlLeft"><em class="redP_r5">*</em>车型：</p>
-                                <div class="controls heightAuto">
-                                    <div class="selectBox">
-                                        <div class="selectVal">请选择省份</div>
-                                        <div class="selectNav"><em></em></div>
-                                        <select>
-                                        	<option>请选择城市</option>
-                                            <option>黑龙江省</option>
-                                            <option>辽宁省</option>
-                                            <option>广东省</option>
-                                            <option>河南省</option>
-                                            <option>湖南省</option>
-                                        </select>
-                                    </div>
-                                </div>
-                           </div>
-                           <div class="controlHalfL width49per ml_2per">
-                              	<p class="controlLeft"><em class="redP_r5">*</em>配置：</p>
-                                <div class="controls heightAuto">
-                                    <div class="selectBox">
-                                        <div class="selectVal">请选择城市</div>
-                                        <div class="selectNav"><em></em></div>
-                                        <select>
-                                        	<option>请选择城市</option>
-                                            <option>广东</option>
-                                            <option>上海</option>
-                                            <option>北京</option>
-                                        </select>
-                                        </div>
-                                </div>
-                            </div>
                         	<div class="controlHalfL">
                                 <p class="controlLeft"><em class="redP_r5">*</em>姓名：</p>
                                 <div class="controls">
@@ -208,11 +176,13 @@
             position: 'absolute',
             height: $(document.body).height() / 2,
             overflow: 'hidden',
-            bottom: $(document.body).height() / 6
+            bottom: $(document.body).height() / 5
         }).appendTo(document.body)
-        .append($('.formT'));
+            .append($('.formT'));
 
-        new IScroll(wrap[0]);
+        new IScroll(wrap[0], {
+            scrollbars: true
+        });
     }, false);
 </script>
 </body>
