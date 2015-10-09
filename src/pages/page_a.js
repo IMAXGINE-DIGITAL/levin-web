@@ -54,6 +54,12 @@ export function show($page) {
                 $page.find('.shift')
                     .removeClass('box-fold')
                     .addClass('fade-in')
+                    .hide();
+
+                $page.find('.shift .child-wrap')
+                    .remove()
+                    .children()
+                    .appendTo($page.find('.shift'));
             });
         }).then(function() {
             return animation.get('.shift').animate({
