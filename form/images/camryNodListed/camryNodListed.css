@@ -219,7 +219,13 @@ select {
 	width: 100%;
 	height: 100%;
 	z-index: 2;
-	background: url('bg.jpg') no-repeat scroll left center;
+    overflow: hidden;
+}
+
+.mask img {
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 /*top,20141225,sww*/
 
