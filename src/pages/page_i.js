@@ -15,9 +15,9 @@ export function render() {
         <div class="el bag anime fade-in" style="${elementRect(893,530,359,126)}">
             <img src="${path}/bag.jpg">
         </div>
-        <div class="el text anime fade-in text-wrap" style="${elementRect(614,134,904,713)}">
-            <span class="text_a" style="${elementRect(614,80,0,0,[614,134])}">超大行李空间</span>
-            <span class="text_b" style="${elementRect(614,40,0,104,[614,134])}">梦想再大，行囊再多，也能装载自如</span>
+        <div class="el text anime fade-in text-wrap" style="${elementRect(650,164,904,713)}">
+            <span class="text_a" style="${elementRect(650,110,0,0,[650,164])}">超大行李空间</span>
+            <span class="text_b" style="${elementRect(650,40,0,114,[650,164])}">梦想再大，行囊再多，也能装载自如</span>
         </div>
     `;
 }

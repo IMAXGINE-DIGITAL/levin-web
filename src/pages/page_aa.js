@@ -10,10 +10,10 @@ export function render() {
 
     return `
         <div class="bg"><img src="${path}/bg.jpg"></div>
-        <div class="el car anime zoom" style="${elementRect(166,114,715,402)}">
-            <img src="${path}/car.png"/>
+        <div class="el car anime zoom" style="${elementRect(187,124,710,450)}">
+            <img src="${path}/car1.png"/>
         </div>
-        <div class="el light-small anime flash" style="${elementRect(160,18.6,720,442)}">
+        <div class="el light-small anime flash" style="${elementRect(160,18.6,720,482)}">
             <img src="${path}/light.png"/>
         </div>
         <div class="el mask anime fade-in" style="${elementRect(1600,900,0,0)}">

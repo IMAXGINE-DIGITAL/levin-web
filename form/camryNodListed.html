@@ -168,7 +168,7 @@
 	</div>	
 </div>
 
-<div class="mask"></div>
+<div class="mask"><img src="./images/camryNodListed/bg.jpg" /></div>
 <script src="http://www.gac-toyota.com.cn/js/frame/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="http://www.gac-toyota.com.cn/js/frame/jquery.flexslider.js" type="text/javascript"></script>
 <script src="http://www.gac-toyota.com.cn/js/frame/jquery.jscrollpane.min.js" type="text/javascript"></script>
@@ -193,6 +193,21 @@ document.addEventListener('DOMContentLoaded', function() {
         top: ($(document.body).height() - $formT.height()) / 2
     });
 }, false);
+
+window.addEventListener('load', function() {
+    var $body = $(document.body);
+    var $img = $('.mask img');
+    var wRatio = $body.width() / $img.width();
+    var hRatio = $body.height() / $img.height();
+    var ratio = Math.max(wRatio, hRatio);
+
+    $img.width($img.width() * ratio);
+    $img.height($img.height() * ratio);
+    $img.css({
+        left: $body.width() / 2 - $img.width() / 2,
+        top: $body.height() / 2 - $img.height() / 2
+    });
+});
 </script>
 </body>
 </html>

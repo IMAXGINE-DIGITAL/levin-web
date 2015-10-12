@@ -13,11 +13,17 @@ export function render() {
         <div class="el car anime slide-in" style="${elementRect(1281,431,110,348)}">
             <img src="${path}/car.png"/>
         </div>
-        <div class="el lg1 anime slide-in rotate" style="${elementRect(180,180,235,586)}">
+        <div class="el lg1 anime slide-in" style="${elementRect(180,180,235,586)}">
             <img src="${path}/lg2.png"/>
         </div>
-        <div class="el lg2 anime slide-in rotate" style="${elementRect(190,190,1014,588)}">
+        <div class="el lg2 anime slide-in" style="${elementRect(190,190,1014,588)}">
             <img src="${path}/lg3.png"/>
+        </div>
+        <div class="el lg3 anime slide-in" style="${elementRect(130,130,255,613)}">
+            <img src="${path}/lg.png"/>
+        </div>
+        <div class="el lg4 anime slide-in" style="${elementRect(138,138,1040,621)}">
+            <img src="${path}/lg1.png"/>
         </div>
         <div class="el dl anime box-unfold" style="${elementRect(1600,900,0,0)}">
             <img src="${path}/dl.png"/>
@@ -55,6 +61,20 @@ export function show($page) {
                         }
                     }),
                     animation.get('.lg2').animate({
+                        duration: 600,
+                        'slide-in': {
+                            from: 'left',
+                            offset: '50%'
+                        }
+                    }),
+                    animation.get('.lg3').animate({
+                        duration: 600,
+                        'slide-in': {
+                            from: 'left',
+                            offset: '50%'
+                        }
+                    }),
+                    animation.get('.lg4').animate({
                         duration: 600,
                         'slide-in': {
                             from: 'left',
