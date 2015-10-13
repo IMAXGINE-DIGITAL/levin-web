@@ -178,7 +178,7 @@
 <script src="images/camryNodListed/gesture.js"></script>
 <script src="images/camryNodListed/iscroll.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
     function findDocTarget(target) {
         while (target && target !== document.documentElement && target !== wrap[0]) {
             target = target.parentNode;
@@ -196,15 +196,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }   
     });
 
-    var wrap = $('<div class="formW"></div>').css({
+    var $formT = $('.formT');
+    var $wrap = $('<div class="formW"></div>').css({
         position: 'absolute',
-        height: $(document.body).height() / 1.25,
+        height: $(document.body).height() / 1.3,
         overflow: 'hidden',
         bottom: '20px'
-    }).appendTo(document.body)
-        .append($('.formT'));
+    })
 
-    new IScroll(wrap[0], {
+    $wrap.appendTo(document.body)
+            .append($formT);
+    $formT.show();
+
+    new IScroll($wrap[0], {
         scrollbars: true
     });
 }, false);
