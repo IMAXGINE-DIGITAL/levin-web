@@ -175,11 +175,7 @@
 <script src="http://www.gac-toyota.com.cn/js/frame/jquery.mousewheel.js" type="text/javascript"></script>
 <script src="images/camryNodListed/camryNodListed.js" type="text/javascript"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-    });
-
+$(function() {
     $('.header,.footer').remove();
 
     $('html, body').css({
@@ -188,24 +184,28 @@ document.addEventListener('DOMContentLoaded', function() {
         overflow: 'hidden'
     });
 
-    var $formT = $('.formT');
-    $formT.css({
-        top: ($(document.body).height() - $formT.height()) / 2
-    });
-}, false);
-
-window.addEventListener('load', function() {
     var $body = $(document.body);
     var $img = $('.mask img');
-    var wRatio = $body.width() / $img.width();
-    var hRatio = $body.height() / $img.height();
-    var ratio = Math.max(wRatio, hRatio);
+    var $formT = $('.formT');
 
-    $img.width($img.width() * ratio);
-    $img.height($img.height() * ratio);
-    $img.css({
-        left: $body.width() / 2 - $img.width() / 2,
-        top: $body.height() / 2 - $img.height() / 2
+    $(window).on('load resize', function () {
+        $formT.css({
+            top: ($body.height() - $formT.height()) / 2
+        });
+
+        var wRatio = $body.width() / $img.width();
+        var hRatio = $body.height() / $img.height();
+        var ratio = Math.max(wRatio, hRatio);
+
+        var rWidth = $img.width() * ratio;
+        var rHeight = $img.height() * ratio;
+
+        $img.css({
+            width: rWidth,
+            height: rHeight,
+            left: ($body.width() - rWidth) / 2,
+            top: ($body.height() - rHeight) / 2
+        });
     });
 });
 </script>
