@@ -180,7 +180,7 @@
 <script>
 window.addEventListener('load', function() {
     function findDocTarget(target) {
-        while (target && target !== document.documentElement && target !== wrap[0]) {
+        while (target && target !== document.documentElement && target !== $wrap[0]) {
             target = target.parentNode;
         }
         return target === document.documentElement;
@@ -196,17 +196,23 @@ window.addEventListener('load', function() {
         }   
     });
 
+
     var $formT = $('.formT');
     var $wrap = $('<div class="formW"></div>').css({
         position: 'absolute',
-        height: $(document.body).height() / 1.3,
         overflow: 'hidden',
-        bottom: '20px'
-    })
-
-    $wrap.appendTo(document.body)
-            .append($formT);
+        bottom: 10
+    });
+    $wrap.appendTo(document.body).append($formT);
     $formT.show();
+
+    function resize() {
+        $wrap.css({
+            height: $(document.body).height() / 1.3,
+        });
+    }
+    resize();
+    window.addEventListener('resize', resize);
 
     new IScroll($wrap[0], {
         scrollbars: true
